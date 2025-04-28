@@ -5,15 +5,19 @@ public class Bonus {
     public String sourceID; //the ID of the attribute which gave out this bonus
     public String targetID; //the ID of the attribute which benefits from this bonus
 
-    public Bonus(int value, String sourceID, String targetID) {
+    public boolean isConditional;
+
+    public Bonus(int value, String sourceID, String targetID, boolean isConditional) {
         this.value = value;
         this.sourceID = sourceID;
         this.targetID = targetID;
+        this.isConditional = isConditional;
     }
 
     public Bonus() {
         value = 0;
         sourceID = null;
         targetID = null;
+        isConditional = false;
     }
 }
