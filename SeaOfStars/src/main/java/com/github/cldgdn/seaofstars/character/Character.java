@@ -1,7 +1,6 @@
 package com.github.cldgdn.seaofstars.character;
 
 import com.github.cldgdn.seaofstars.Constants;
-import com.github.cldgdn.seaofstars.throwable.exceptions.BadBonusException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,6 +27,7 @@ public class Character {
     public int usedHumanLimit;
 
     public int heroPoints;
+    public Fame fame;
 
     public boolean critical;
 
