@@ -13,11 +13,13 @@ public class Trait {
     public int baseLevel;
     public int computedLevel;
     public int modifier;
+    public final boolean isCustom;
 
-    public Trait(String ID, String name, String description, int baseLevel) {
+    public Trait(String ID, String name, String description, int baseLevel, boolean isCustom) {
         this.ID = ID;
         this.name = name;
         this.description = description;
         this.baseLevel = baseLevel;
+        this.isCustom = isCustom;
     }
 }

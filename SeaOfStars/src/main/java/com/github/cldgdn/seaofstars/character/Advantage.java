@@ -1,5 +1,6 @@
 package com.github.cldgdn.seaofstars.character;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Advantage {
@@ -9,6 +10,7 @@ public class Advantage {
     public boolean isPassive;
     public int heroPointCost;
     public List<Bonus> bonuses;
+    public boolean isCustom;
 
     public Advantage(String ID, String name, String description, boolean isPassive, int heroPointCost, List<Bonus> bonuses) {
         this.ID = ID;
@@ -17,5 +19,13 @@ public class Advantage {
         this.isPassive = isPassive;
         this.heroPointCost = heroPointCost;
         this.bonuses = bonuses;
+    }
+    public Advantage() {
+        this.ID = "";
+        this.name = "";
+        this.description = "";
+        this.isPassive = false;
+        this.heroPointCost = 0;
+        this.bonuses = new ArrayList<>();
     }
 }

@@ -2,8 +2,10 @@ package com.github.cldgdn.seaofstars.character;
 
 import com.github.cldgdn.seaofstars.Constants;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class Character {
     public CharacterInfo info;
@@ -27,7 +29,6 @@ public class Character {
     public int usedHumanLimit;
 
     public int heroPoints;
-    public Fame fame;
 
     public boolean critical;
 
@@ -96,7 +97,7 @@ public class Character {
             }
 
             //clamp ability level between min and max values
-            a.computedLevel = Math.clamp(a.computedLevel, Constants.MIN_ABILITY_LEVEL, Constants.MAX_ABILITY_LEVEL);
+            a.computedLevel = Math.max(Constants.MIN_ABILITY_LEVEL, Math.min(a.computedLevel, Constants.MAX_ABILITY_LEVEL));
         }
 
         //go through the bonuses that affect HP and HL
@@ -145,6 +146,8 @@ public class Character {
         advantages.add(advantage);
         dumpBonuses(advantage.bonuses);
 
+        update();
+
         return true;
     }
 
@@ -161,6 +164,8 @@ public class Character {
             removeBonuses(ID);
         }
 
+        update();
+
         return a;
     }
 
@@ -173,6 +178,8 @@ public class Character {
 
         implants.add(implant);
         dumpBonuses(implant.bonuses);
+
+        update();
 
         return true;
     }
@@ -189,6 +196,8 @@ public class Character {
         if (implant != null) {
             removeBonuses(ID);
         }
+
+        update();
 
         return implant;
     }

@@ -1,0 +1,13 @@
+name : Library advantage 1
+description : Library advantage 1 description
+isPassive : false
+heroPointCost : 3
+# LIST
+# BONUS
+targetID : abl-aim
+value : 2
+isConditional : false
+# BONUS
+targetID : trt-grc
+value : 3
+isConditional : false

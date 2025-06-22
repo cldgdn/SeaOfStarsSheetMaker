@@ -1,5 +1,9 @@
 package com.github.cldgdn.seaofstars;
 
+import com.github.cldgdn.seaofstars.character.Character;
+import com.github.cldgdn.seaofstars.sosd.read.*;
+import com.github.cldgdn.seaofstars.sosd.write.*;
+import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,5 +23,11 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args) {
         launch();
+
+        long startTime = System.currentTimeMillis();
+        System.out.println("number of increments: " + RollManager.rollAndCountIncrements(10, -2));
+        long endTime = System.currentTimeMillis();
+
+        System.out.println("time taken: " + (endTime - startTime) + "ms");
     }
 }

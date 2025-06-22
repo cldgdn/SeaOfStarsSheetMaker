@@ -1,5 +1,7 @@
 package com.github.cldgdn.seaofstars.character;
 
+import com.github.cldgdn.seaofstars.Constants;
+
 public class Background {
     public final String ID;
     public final String name;
@@ -7,8 +9,8 @@ public class Background {
     public final Bonus[] abilityBonuses;
 
     public Background(String ID, String name, String description, Bonus[] abilityBonuses) {
-        if (abilityBonuses.length != 2)
-            throw new IllegalArgumentException("Origin" + name + " has bad amount of Trait Bonuses");
+        if (abilityBonuses.length != Constants.BACKGROUND_BONUSES_AMT)
+            throw new IllegalArgumentException("Background " + name + " has bad amount of Trait Bonuses");
 
         this.ID = ID;
         this.name = name;

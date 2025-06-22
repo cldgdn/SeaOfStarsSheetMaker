@@ -26,7 +26,7 @@ public class Constants {
     public static final int MAX_ABILITY_BASE_LEVEL = 5;
     public static final int MIN_ABILITY_LEVEL = 1;
     public static final int MAX_ABILITY_LEVEL = 10;
-
+    public static final int DICE_EXPLODE_ABILITY_LEVEL = 8;
     public static final int ABILITIES_AMT = 16;
 
     //CHARACTER CONSTANTS-------------------------------------------------
@@ -38,4 +38,10 @@ public class Constants {
     public static final String HIT_POINTS_MAX_ID = "chr-hpm";
 
     public static final int HERO_POINTS_MAX = 3;
+
+    //RULES CONSTANTS-----------------------------------------------------
+    public static final int ORIGIN_BONUSES_AMT = 2;
+    public static final int BACKGROUND_BONUSES_AMT = 4;
+    public static final int RISK_DICE_FACES = 10; //you roll d10s for risks
+    public static final int INCREMENT_THRESHOLD = 10;
 }
