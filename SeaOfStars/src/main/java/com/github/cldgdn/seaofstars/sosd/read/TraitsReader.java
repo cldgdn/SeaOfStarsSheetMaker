@@ -41,11 +41,11 @@ public class TraitsReader {
         return traits.toArray(Trait[]::new);
     }
 
-    private static Trait readSingle(File traitFile) throws IOException, BadSOSDFormatException {
+    public static Trait readSingle(File traitFile) throws IOException, BadSOSDFormatException {
         return readSingle(traitFile, true, 0);
     }
 
-    private static Trait readSingle(File traitFile, boolean isCustom, int baseLevel) throws IOException, BadSOSDFormatException {
+    public static Trait readSingle(File traitFile, boolean isCustom, int baseLevel) throws IOException, BadSOSDFormatException {
         String ID = traitFile.getName().replace(".sosd", "");
         String name = "", description = "";
 

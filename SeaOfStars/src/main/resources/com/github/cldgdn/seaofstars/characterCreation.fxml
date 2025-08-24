@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.cldgdn.seaofstars.controller.CharacterCreationController">
+   <children>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="Informazioni Generali">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <Label text="Nome Personaggio" />
+                                    <TextField fx:id="characterNameField" promptText="Mario Rossi" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox spacing="10.0">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <children>
+                                    <Label text="Nome Giocatore" />
+                                    <TextField fx:id="playerNameField" promptText="Luigi Verdi" />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="130.0" spacing="10.0">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <children>
+                                    <Label text="Età Personaggio" />
+                                    <TextField fx:id="characterAgeField" promptText="55" />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="240.0" spacing="10.0">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <children>
+                                    <Label text="Fama" />
+                                    <TextField fx:id="characterFameField" promptText="Nobody" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Tratti">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="282.0" prefWidth="600.0">
+                     <children>
+                        <VBox alignment="TOP_RIGHT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="282.0" prefWidth="600.0" vbarPolicy="ALWAYS">
+                                 <content>
+                                    <VBox fx:id="traitsVBox" spacing="10.0">
+                                       <padding>
+                                          <Insets left="10.0" top="10.0" />
+                                       </padding>
+                                    </VBox>
+                                 </content>
+                              </ScrollPane>
+                              <HBox alignment="CENTER_RIGHT" prefWidth="600.0" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="traitPointsLabel" text="Punti da assegnare:" />
+                                    <CheckBox fx:id="libraryTraitsCheckBox" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#toggleLibraryTraits" selected="true" text="Usa Tratti di Libreria" />
+                                    <Button mnemonicParsing="false" onAction="#createNewTrait" text="Crea Nuovo" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <ButtonBar layoutX="400.0" layoutY="360.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <buttons>
+          <Button mnemonicParsing="false" onAction="#cancelCreation" text="Annulla" />
+            <Button mnemonicParsing="false" onAction="#saveCreation" text="Salva" />
+        </buttons>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+      </ButtonBar>
+      <Separator layoutY="359.0" prefHeight="1.0" prefWidth="600.0" />
+      <Separator layoutY="319.0" prefHeight="1.0" prefWidth="600.0" />
+      <HBox alignment="CENTER_LEFT" layoutY="319.0" prefHeight="40.0" prefWidth="200.0" spacing="10.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="319.0">
+         <children>
+            <Label fx:id="hpLabel" text="Punti Ferita:" />
+            <Label fx:id="hlLabel" layoutX="20.0" layoutY="22.0" text="Limite Umano:" />
+         </children>
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+      </HBox>
+   </children>
+</AnchorPane>

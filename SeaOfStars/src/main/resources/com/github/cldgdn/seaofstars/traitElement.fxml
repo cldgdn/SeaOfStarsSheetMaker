@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.cldgdn.seaofstars.controller.TraitElementController">
+   <children>
+      <Label fx:id="traitNameLabel" text="Name">
+         <tooltip>
+            <Tooltip fx:id="descTooltip" text="Empty Tooltip" wrapText="true" />
+         </tooltip></Label>
+      <VBox alignment="CENTER" spacing="10.0">
+         <children>
+            <RadioButton fx:id="radioButtonLv1" mnemonicParsing="false" onAction="#updateLevel" />
+            <RadioButton fx:id="radioButtonLv8" disable="true" layoutX="52.0" layoutY="102.0" mnemonicParsing="false" />
+         </children>
+         <HBox.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </HBox.margin>
+      </VBox>
+      <VBox spacing="10.0">
+         <padding>
+            <Insets bottom="5.0" top="5.0" />
+         </padding>
+         <children>
+            <RadioButton fx:id="radioButtonLv2" mnemonicParsing="false" onAction="#updateLevel" />
+            <RadioButton fx:id="radioButtonLv9" disable="true" layoutX="10.0" layoutY="42.0" mnemonicParsing="false" />
+         </children>
+      </VBox>
+      <VBox spacing="10.0">
+         <padding>
+            <Insets bottom="5.0" top="5.0" />
+         </padding>
+         <children>
+            <RadioButton fx:id="radioButtonLv3" mnemonicParsing="false" onAction="#updateLevel" />
+            <RadioButton fx:id="radioButtonLv10" disable="true" mnemonicParsing="false" />
+         </children>
+      </VBox>
+      <VBox layoutX="359.0" layoutY="10.0" spacing="10.0">
+         <padding>
+            <Insets bottom="5.0" top="5.0" />
+         </padding>
+         <children>
+            <RadioButton fx:id="radioButtonLv4" mnemonicParsing="false" onAction="#updateLevel" />
+            <RadioButton fx:id="radioButtonLv11" disable="true" layoutX="10.0" layoutY="15.0" mnemonicParsing="false" />
+         </children>
+      </VBox>
+      <VBox layoutX="369.0" layoutY="10.0" spacing="10.0">
+         <padding>
+            <Insets bottom="5.0" top="5.0" />
+         </padding>
+         <children>
+            <RadioButton fx:id="radioButtonLv5" mnemonicParsing="false" onAction="#updateLevel" />
+            <RadioButton fx:id="radioButtonLv12" disable="true" layoutX="10.0" layoutY="15.0" mnemonicParsing="false" />
+         </children>
+      </VBox>
+      <VBox layoutX="379.0" layoutY="10.0" spacing="10.0">
+         <padding>
+            <Insets bottom="5.0" top="5.0" />
+         </padding>
+         <children>
+            <RadioButton fx:id="radioButtonLv6" mnemonicParsing="false" onAction="#updateLevel" />
+            <RadioButton fx:id="radioButtonLv13" disable="true" layoutX="10.0" layoutY="15.0" mnemonicParsing="false" />
+         </children>
+      </VBox>
+      <VBox layoutX="389.0" layoutY="10.0" spacing="10.0">
+         <padding>
+            <Insets bottom="5.0" top="5.0" />
+         </padding>
+         <children>
+            <RadioButton fx:id="radioButtonLv7" mnemonicParsing="false" onAction="#updateLevel" />
+            <RadioButton fx:id="radioButtonLv14" disable="true" layoutX="10.0" layoutY="15.0" mnemonicParsing="false" />
+         </children>
+      </VBox>
+      <Label fx:id="levelLabel" text="Level" />
+      <Label fx:id="modLabel" text="Modificatore" />
+   </children>
+   <padding>
+      <Insets left="10.0" right="10.0" />
+   </padding>
+</HBox>

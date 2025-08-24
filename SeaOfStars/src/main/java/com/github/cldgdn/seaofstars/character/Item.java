@@ -12,4 +12,8 @@ public class Item {
         this.description = description;
         this.amount = amount;
     }
+
+    public Item() {
+
+    }
 }

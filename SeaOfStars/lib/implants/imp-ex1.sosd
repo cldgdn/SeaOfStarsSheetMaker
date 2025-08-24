@@ -1,0 +1,4 @@
+name : example implant
+description : the description of the example implant
+location : spine
+humanCost : 1

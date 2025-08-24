@@ -35,6 +35,10 @@ public class Character {
     public Character() {}
 
     public void init() {
+        traitBonuses = new ArrayList<>();
+        abilityBonuses = new ArrayList<>();
+        otherBonuses = new ArrayList<>();
+
         sortBonuses();
         update();
     }
