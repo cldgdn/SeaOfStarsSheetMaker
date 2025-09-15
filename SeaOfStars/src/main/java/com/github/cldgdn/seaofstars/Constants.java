@@ -28,7 +28,8 @@ public class Constants {
     public static final int MIN_ABILITY_LEVEL = 1;
     public static final int MAX_ABILITY_LEVEL = 10;
     public static final int DICE_EXPLODE_ABILITY_LEVEL = 7;
-    public static final int ABILITIES_AMT = 16;
+    public static final int ABILITIES_AMT = 15;
+    public static final int STARTING_ABILITY_POINTS = 16;
 
     //CHARACTER CONSTANTS-------------------------------------------------
     public static final int HUMAN_LIMIT_BASE = 3;

@@ -44,11 +44,11 @@ public class AbilitiesReader {
         return abilities.toArray(Ability[]::new);
     }
 
-    private static Ability readSingle(File abilityFile) throws IOException, BadSOSDFormatException {
+    public static Ability readSingle(File abilityFile) throws IOException, BadSOSDFormatException {
         return readSingle(abilityFile, true, 0);
     }
 
-    private static Ability readSingle(File abilityFile, boolean isCustom, int baseLevel) throws IOException, BadSOSDFormatException {
+    public static Ability readSingle(File abilityFile, boolean isCustom, int baseLevel) throws IOException, BadSOSDFormatException {
         String ID = abilityFile.getName().replace(".sosd", "");
         String name = "", description = "";
 
@@ -82,7 +82,8 @@ public class AbilitiesReader {
         if (!nameFound || !descFound || !baseValueFound) {
             throw new BadSOSDFormatException("Trait file " + abilityFile + " is incomplete");
         }
-
-        return new Ability(ID, name, description, baseLevel, isCustom);
+        Ability a = new Ability(ID, name, description, baseLevel, isCustom);
+        a.computedLevel = a.baseLevel;
+        return a;
     }
 }
