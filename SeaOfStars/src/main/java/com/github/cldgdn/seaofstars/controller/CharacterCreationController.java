@@ -83,7 +83,7 @@ public class CharacterCreationController {
 
     @FXML
     void toggleLibraryTraits(ActionEvent event) {
-
+        //TODO
     }
 
     public void initialize() {

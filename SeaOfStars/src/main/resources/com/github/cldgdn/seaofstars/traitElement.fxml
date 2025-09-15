@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.cldgdn.seaofstars.controller.TraitElementController">
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.cldgdn.seaofstars.controller.TraitElementController">
    <children>
       <Label fx:id="traitNameLabel" text="Name">
          <tooltip>
@@ -76,8 +76,14 @@
             <RadioButton fx:id="radioButtonLv14" disable="true" layoutX="10.0" layoutY="15.0" mnemonicParsing="false" />
          </children>
       </VBox>
-      <Label fx:id="levelLabel" text="Level" />
-      <Label fx:id="modLabel" text="Modificatore" />
+      <Label fx:id="levelLabel" text="Level">
+         <tooltip>
+            <Tooltip text="Il livello del Tratto deve essere compreso tra 1 e 7 al momento della creazione del personaggio." />
+         </tooltip></Label>
+      <Label fx:id="modLabel" text="Modificatore">
+         <tooltip>
+            <Tooltip text="Il modificatore del Tratto rappresenta l'influenza che questo tratto avrà sui dadi lanciati durante un rischio." />
+         </tooltip></Label>
    </children>
    <padding>
       <Insets left="10.0" right="10.0" />

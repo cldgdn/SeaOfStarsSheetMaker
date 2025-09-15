@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.cldgdn.seaofstars.controller.CharacterCreationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.cldgdn.seaofstars.controller.CharacterCreationController">
    <children>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -75,7 +75,7 @@
                      <children>
                         <VBox alignment="TOP_RIGHT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="282.0" prefWidth="600.0" vbarPolicy="ALWAYS">
+                              <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="282.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                                  <content>
                                     <VBox fx:id="traitsVBox" spacing="10.0">
                                        <padding>
@@ -87,8 +87,8 @@
                               <HBox alignment="CENTER_RIGHT" prefWidth="600.0" spacing="10.0">
                                  <children>
                                     <Label fx:id="traitPointsLabel" text="Punti da assegnare:" />
-                                    <CheckBox fx:id="libraryTraitsCheckBox" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#toggleLibraryTraits" selected="true" text="Usa Tratti di Libreria" />
-                                    <Button mnemonicParsing="false" onAction="#createNewTrait" text="Crea Nuovo" />
+                                    <CheckBox fx:id="libraryTraitsCheckBox" disable="true" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#toggleLibraryTraits" selected="true" text="Usa Tratti di Libreria" />
+                                    <Button disable="true" mnemonicParsing="false" onAction="#createNewTrait" text="Crea Nuovo" />
                                  </children>
                                  <padding>
                                     <Insets bottom="10.0" right="10.0" top="10.0" />
@@ -99,8 +99,34 @@
                      </children></AnchorPane>
             </content>
           </Tab>
+            <Tab text="Abilità">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Background">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Origini">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
         </tabs>
       </TabPane>
+      <Separator layoutY="319.0" prefHeight="1.0" prefWidth="600.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <HBox alignment="CENTER_LEFT" layoutY="319.0" prefHeight="40.0" prefWidth="200.0" spacing="10.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label fx:id="hpLabel" text="Punti Ferita:" />
+            <Label fx:id="hlLabel" layoutX="20.0" layoutY="22.0" text="Limite Umano:" />
+         </children>
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+      </HBox>
+      <Separator layoutY="359.0" prefHeight="1.0" prefWidth="600.0" AnchorPane.bottomAnchor="37.666666666666664" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <ButtonBar layoutX="400.0" layoutY="360.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <buttons>
           <Button mnemonicParsing="false" onAction="#cancelCreation" text="Annulla" />
@@ -110,16 +136,5 @@
             <Insets right="10.0" />
          </padding>
       </ButtonBar>
-      <Separator layoutY="359.0" prefHeight="1.0" prefWidth="600.0" />
-      <Separator layoutY="319.0" prefHeight="1.0" prefWidth="600.0" />
-      <HBox alignment="CENTER_LEFT" layoutY="319.0" prefHeight="40.0" prefWidth="200.0" spacing="10.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="319.0">
-         <children>
-            <Label fx:id="hpLabel" text="Punti Ferita:" />
-            <Label fx:id="hlLabel" layoutX="20.0" layoutY="22.0" text="Limite Umano:" />
-         </children>
-         <padding>
-            <Insets left="10.0" right="10.0" />
-         </padding>
-      </HBox>
    </children>
 </AnchorPane>
