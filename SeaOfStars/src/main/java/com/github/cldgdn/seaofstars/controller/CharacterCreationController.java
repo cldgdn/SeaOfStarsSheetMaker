@@ -13,13 +13,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.util.StringConverter;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.invoke.StringConcatException;
 import java.util.ArrayList;
 
 public class CharacterCreationController {
@@ -80,6 +80,19 @@ public class CharacterCreationController {
     private CheckBox libraryAbilitiesCheckBox;
 
     @FXML
+    private TextField bgNameField;
+
+    @FXML
+    private TextArea bdDescriptionArea;
+
+    @FXML
+    private ComboBox<Ability> p1BackgroundMenu;
+    @FXML
+    private ComboBox<Ability> p2BackgroundMenu;
+    @FXML
+    private ComboBox<Ability> m1BackgroundMenu;
+
+    @FXML
     void cancelCreation(ActionEvent event) {
 
     }
@@ -118,6 +131,22 @@ public class CharacterCreationController {
                 fetchLibraryAbilities();
             }
 
+            StringConverter<Ability> converter = new StringConverter<Ability>() {
+                @Override
+                public String toString(Ability ability) {
+                    return ability == null ? null : ability.name;
+                }
+
+                @Override
+                public Ability fromString(String s) {
+                    return null;
+                }
+            };
+
+            p1BackgroundMenu.setConverter(converter);
+            p2BackgroundMenu.setConverter(converter);
+            m1BackgroundMenu.setConverter(converter);
+
             for (Trait t : traits) {
                 FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("traitElement.fxml"));
                 Node element = loader.load();
@@ -138,6 +167,10 @@ public class CharacterCreationController {
                 aec.setCreator(this);
 
                 abilitiesVBox.getChildren().add(element);
+
+                p1BackgroundMenu.getItems().add(a);
+                p2BackgroundMenu.getItems().add(a);
+                m1BackgroundMenu.getItems().add(a);
             }
 
             updateText();
