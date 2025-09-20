@@ -2,7 +2,9 @@ package com.github.cldgdn.seaofstars.controller;
 
 import com.github.cldgdn.seaofstars.HelloApplication;
 import com.github.cldgdn.seaofstars.character.CharacterInfo;
+import com.github.cldgdn.seaofstars.controller.dialog.CreateCharacterDialog;
 import com.github.cldgdn.seaofstars.sosd.read.InfoReader;
+import com.github.cldgdn.seaofstars.sosd.write.CharacterWriter;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,12 +31,23 @@ public class StartScreenController {
 
     @FXML
     void createNewCharacter(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("characterCreation.fxml"));
+        /*FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("characterCreation.fxml"));
+
         Scene scene = new Scene(loader.load());
 
         HelloApplication application = HelloApplication.instance;
 
-        application.setStage("Sea Of Stars - Creazione Personaggio", scene);
+        application.setStage("Sea Of Stars - Creazione Personaggio", scene);*/
+
+        CreateCharacterDialog dialog = new CreateCharacterDialog();
+        dialog.showAndWait().ifPresent(character -> {
+            try {
+                CharacterWriter.write(character, "characters");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+        });
     }
 
     @FXML

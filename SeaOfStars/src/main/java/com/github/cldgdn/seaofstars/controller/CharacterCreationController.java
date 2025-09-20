@@ -2,10 +2,12 @@ package com.github.cldgdn.seaofstars.controller;
 
 import com.github.cldgdn.seaofstars.Constants;
 import com.github.cldgdn.seaofstars.HelloApplication;
+import com.github.cldgdn.seaofstars.LibCache;
 import com.github.cldgdn.seaofstars.character.Ability;
 import com.github.cldgdn.seaofstars.character.Character;
 import com.github.cldgdn.seaofstars.character.CharacterInfo;
 import com.github.cldgdn.seaofstars.character.Trait;
+import com.github.cldgdn.seaofstars.controller.dialog.CreateAdvantageDialog;
 import com.github.cldgdn.seaofstars.sosd.read.AbilitiesReader;
 import com.github.cldgdn.seaofstars.sosd.read.TraitsReader;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
@@ -93,16 +95,6 @@ public class CharacterCreationController {
     private ComboBox<Ability> m1BackgroundMenu;
 
     @FXML
-    void cancelCreation(ActionEvent event) {
-
-    }
-
-    @FXML
-    void saveCreation(ActionEvent event) {
-
-    }
-
-    @FXML
     void toggleLibraryTraits(ActionEvent event) {
         //TODO
     }
@@ -122,13 +114,21 @@ public class CharacterCreationController {
         //TODO
     }
 
+    @FXML
+    void createNewAdvantage(ActionEvent event) {
+        CreateAdvantageDialog dialog = new CreateAdvantageDialog();
+        dialog.showAndWait().ifPresent(advantage -> {
+            System.out.println("Advantage created.");
+        });
+    }
+
     public void initialize() {
         try {
             if (libraryTraitsCheckBox.isSelected()) {
-                fetchLibraryTraits();
+                traits = LibCache.getTraits();
             }
             if (libraryAbilitiesCheckBox.isSelected()) {
-                fetchLibraryAbilities();
+                abilities = LibCache.getAbilities();
             }
 
             StringConverter<Ability> converter = new StringConverter<Ability>() {
@@ -179,41 +179,13 @@ public class CharacterCreationController {
         }
     }
 
-    private void fetchLibraryTraits() throws BadSOSDFormatException, IOException {
-        File traitsFolder = new File("lib\\traits");
-
-        if (traitsFolder.exists() && traitsFolder.isDirectory()) {
-            File[] traitFiles = traitsFolder.listFiles();
-
-            if (traitFiles != null && traitFiles.length != 0) {
-                traits = new Trait[traitFiles.length];
-
-                for (int i = 0; i < traitFiles.length; i++) {
-                    traits[i] = TraitsReader.readSingle(traitFiles[i], false, Constants.ZERO_TRAIT_LEVEL);
-                }
-            }
-        }
-    }
-
-    private void fetchLibraryAbilities() throws BadSOSDFormatException, IOException {
-        File abilitiesFolder = new File("lib\\abilities");
-
-        if (abilitiesFolder.exists() && abilitiesFolder.isDirectory()) {
-            File[] abilityFiles = abilitiesFolder.listFiles();
-
-            if (abilityFiles != null && abilityFiles.length != 0) {
-                abilities = new Ability[abilityFiles.length];
-
-                for (int i = 0; i < abilityFiles.length; i++) {
-                    abilities[i] = AbilitiesReader.readSingle(abilityFiles[i], false, Constants.MIN_ABILITY_LEVEL);
-                }
-            }
-        }
-    }
-
     public void updateText() {
         traitPointsLabel.setText(tpLabelPref + traitPointsLeft);
         abilityPointsLabel.setText(tpLabelPref + abilityPointsLeft);
+    }
+
+    public Character getCharacter() {
+        return character;
     }
 
 }
