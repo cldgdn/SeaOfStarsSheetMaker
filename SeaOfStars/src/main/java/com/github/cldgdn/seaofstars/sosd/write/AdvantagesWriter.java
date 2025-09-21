@@ -24,7 +24,7 @@ public class AdvantagesWriter {
         }
     }
 
-    private static void writeSingle(Advantage a, String characterPath) throws IOException {
+    public static void writeSingle(Advantage a, String characterPath) throws IOException {
         if (a.isCustom) {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "\\advantages\\" + a.ID + ".sosd"))) {
                 writer.write("name : " + a.name + "\n");

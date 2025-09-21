@@ -1,5 +1,6 @@
 package com.github.cldgdn.seaofstars.controller;
 
+import com.github.cldgdn.seaofstars.character.Bonus;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -10,17 +11,19 @@ public class BonusElementController<T> {
 
     public VBox container;
     public Node element;
+    public boolean removed;
 
 
     @FXML
     public ComboBox<T> attributeComboBox;
     @FXML
-    private ComboBox<Integer> bonusValueComboBox;
+    public ComboBox<Integer> bonusValueComboBox;
 
     @FXML
     void removeSelf(ActionEvent event) {
         if (container != null) {
             container.getChildren().remove(element);
+            removed = true;
         }
     }
 
@@ -30,5 +33,6 @@ public class BonusElementController<T> {
 
     public void initialize() {
         bonusValueComboBox.getItems().addAll(new Integer[]{4, 3, 2, 1, -1, -2, -3, -4});
+        removed = false;
     }
 }

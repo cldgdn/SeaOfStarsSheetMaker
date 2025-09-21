@@ -14,6 +14,8 @@ import javafx.scene.layout.Pane;
 import java.io.IOException;
 
 public class CreateAdvantageDialog extends Dialog<Advantage> {
+    private CreateAdvantageController controller;
+
     public CreateAdvantageDialog() {
         setTitle("Creazione Vantaggio");
 
@@ -22,6 +24,7 @@ public class CreateAdvantageDialog extends Dialog<Advantage> {
         try {
             ScrollPane content = loader.load();
             CreateAdvantageController controller = loader.getController();
+            this.controller = controller;
 
             getDialogPane().setContent(content);
 
@@ -31,7 +34,7 @@ public class CreateAdvantageDialog extends Dialog<Advantage> {
 
             setResultConverter(dialogButton -> {
                 if (dialogButton == okButton) {
-                    return new Advantage();
+                    return controller.getAdvantage();
                 }
                 else return null;
             });

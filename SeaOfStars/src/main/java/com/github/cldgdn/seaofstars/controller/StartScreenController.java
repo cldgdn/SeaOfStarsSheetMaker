@@ -1,9 +1,12 @@
 package com.github.cldgdn.seaofstars.controller;
 
 import com.github.cldgdn.seaofstars.HelloApplication;
+import com.github.cldgdn.seaofstars.character.Advantage;
 import com.github.cldgdn.seaofstars.character.CharacterInfo;
+import com.github.cldgdn.seaofstars.controller.dialog.CreateAdvantageDialog;
 import com.github.cldgdn.seaofstars.controller.dialog.CreateCharacterDialog;
 import com.github.cldgdn.seaofstars.sosd.read.InfoReader;
+import com.github.cldgdn.seaofstars.sosd.write.AdvantagesWriter;
 import com.github.cldgdn.seaofstars.sosd.write.CharacterWriter;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 import javafx.event.ActionEvent;
@@ -26,7 +29,14 @@ public class StartScreenController {
 
     @FXML
     void createNewAdvantage(ActionEvent event) {
-
+        CreateAdvantageDialog dialog = new CreateAdvantageDialog();
+        dialog.showAndWait().ifPresent(advantage -> {
+            try {
+                AdvantagesWriter.writeSingle(advantage, "lib");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     @FXML

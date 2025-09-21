@@ -1,0 +1,13 @@
+name : Coriaceo
+description : Questo personaggio è semplicemente duro come pochi. La sua costituzione naturale fa sì che esso sia estremamente resistente, al punto di essere intimidatorio.
+isPassive : true
+heroPointCost : 0
+# LIST
+# BONUS
+targetID : trt-rst
+value : 3
+isConditional : false
+# BONUS
+targetID : abl-int
+value : 1
+isConditional : false
