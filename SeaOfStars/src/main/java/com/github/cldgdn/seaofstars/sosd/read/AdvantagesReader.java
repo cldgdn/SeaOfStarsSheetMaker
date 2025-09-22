@@ -44,7 +44,7 @@ public class AdvantagesReader {
         return advantages;
     }
 
-    private static Advantage readSingle(File file) throws IOException, BadSOSDFormatException {
+    public static Advantage readSingle(File file) throws IOException, BadSOSDFormatException {
         Advantage a = new Advantage();
         a.ID = file.getName().replace(".sosd", "");
 

@@ -1,8 +1,10 @@
 package com.github.cldgdn.seaofstars;
 
 import com.github.cldgdn.seaofstars.character.Ability;
+import com.github.cldgdn.seaofstars.character.Advantage;
 import com.github.cldgdn.seaofstars.character.Trait;
 import com.github.cldgdn.seaofstars.sosd.read.AbilitiesReader;
+import com.github.cldgdn.seaofstars.sosd.read.AdvantagesReader;
 import com.github.cldgdn.seaofstars.sosd.read.TraitsReader;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 
@@ -12,6 +14,7 @@ import java.io.IOException;
 public class LibCache {
     private static Trait[] traits = null;
     private static Ability[] abilities = null;
+    private static Advantage[] advantages = null;
 
     public static Trait[] getTraits(boolean reset) throws BadSOSDFormatException, IOException {
         if (reset || traits == null) {
@@ -59,5 +62,29 @@ public class LibCache {
 
     public static Ability[] getAbilities() throws BadSOSDFormatException, IOException {
         return getAbilities(false);
+    }
+
+    public static Advantage[] getAdvantages(boolean reset) throws BadSOSDFormatException, IOException {
+        if (reset || advantages == null) {
+            File advantagesFolder = new File("lib\\advantages");
+
+            if (advantagesFolder.exists() && advantagesFolder.isDirectory()) {
+                File[] advantageFiles = advantagesFolder.listFiles();
+
+                if (advantageFiles != null && advantageFiles.length != 0) {
+                    advantages = new Advantage[advantageFiles.length];
+
+                    for (int i = 0; i < advantageFiles.length; i++) {
+                        advantages[i] = AdvantagesReader.readSingle(advantageFiles[i]);
+                    }
+                }
+            }
+        }
+
+        return advantages;
+    }
+
+    public static Advantage[] getAdvantages() throws BadSOSDFormatException, IOException {
+        return getAdvantages(false);
     }
 }

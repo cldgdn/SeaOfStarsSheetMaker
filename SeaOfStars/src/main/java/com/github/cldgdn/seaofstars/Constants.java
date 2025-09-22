@@ -46,4 +46,5 @@ public class Constants {
     public static final int BACKGROUND_BONUSES_AMT = 4;
     public static final int RISK_DICE_FACES = 10; //you roll d10s for risks
     public static final int INCREMENT_THRESHOLD = 10;
+    public static final int ADVANTAGES_AT_CREATION_AMT = 3;
 }

@@ -131,6 +131,69 @@
                      </children></AnchorPane>
               </content>
             </Tab>
+            <Tab text="Origini">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane dividerPositions="0.4" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <items>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <content>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                             <children>
+                                                <Label text="Nome Origine:" />
+                                                <TextField fx:id="ogNameField" promptText="Venusiano" />
+                                                <Separator>
+                                                   <VBox.margin>
+                                                      <Insets left="-10.0" right="-10.0" />
+                                                   </VBox.margin>
+                                                </Separator>
+                                                <Label text="Bonus:" />
+                                                <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                   <children>
+                                                      <ComboBox fx:id="originBonusAMenu" prefWidth="150.0" promptText="Seleziona Tratto" />
+                                                      <Label text="+1" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="123.0" spacing="5.0">
+                                                   <children>
+                                                      <ComboBox fx:id="originBonusBMenu" prefWidth="150.0" promptText="Seleziona Tratto" />
+                                                      <Label text="+1" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </padding>
+                                          </VBox>
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <content>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                             <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </padding>
+                                             <children>
+                                                <Label text="Descrizione:" />
+                                                <TextArea fx:id="ogDescriptionArea" prefHeight="200.0" prefWidth="200.0" promptText="Questo personaggio vive da sempre su Venere, le strade e i palazzi dei bassifondi Auralici fanno parte del suo DNA." wrapText="true" />
+                                             </children>
+                                          </VBox>
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </AnchorPane>
+                           </items>
+                        </SplitPane>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
             <Tab text="Background">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -200,16 +263,29 @@
                      </children></AnchorPane>
               </content>
             </Tab>
-            <Tab text="Origini">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-            </Tab>
             <Tab text="Vantaggi">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#createNewAdvantage" text="Crea Nuovo" />
+                        <HBox alignment="CENTER_RIGHT" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <Label fx:id="advantagePointsLabel" text="Punti da assegnare" />
+                              <CheckBox fx:id="libraryAdvantagesCheckBox" disable="true" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#toggleLibraryAdvantages" selected="true" text="Usa Vantaggi di Libreria" />
+                              <Button mnemonicParsing="false" onAction="#createNewAdvantage" text="Crea Nuovo" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <content>
+                              <VBox fx:id="advantagesVBox" spacing="10.0">
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
                      </children>
                   </AnchorPane>
               </content>
