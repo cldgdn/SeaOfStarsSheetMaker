@@ -17,7 +17,7 @@ public class CreateAdvantageDialog extends Dialog<Advantage> {
     private CreateAdvantageController controller;
 
     public CreateAdvantageDialog() {
-        setTitle("Creazione Vantaggio");
+        setTitle("Sea Of Stars - Creazione Vantaggio");
 
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("createAdvantageDialog.fxml"));
 

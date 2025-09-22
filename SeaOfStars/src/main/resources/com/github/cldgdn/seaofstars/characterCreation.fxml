@@ -12,6 +12,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -290,11 +291,43 @@
                   </AnchorPane>
               </content>
             </Tab>
+            <Tab text="Impianti">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <HBox alignment="CENTER_RIGHT" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <Label fx:id="implantsPointsLabel" text="Limite Rimasto" />
+                              <CheckBox fx:id="libraryImplantsCheckBox" disable="true" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#toggleLibraryImplants" selected="true" text="Usa Vantaggi di Libreria" />
+                              <Button mnemonicParsing="false" onAction="#createNewImplant" text="Crea Nuovo" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <content>
+                              <VBox fx:id="implantsVBox" spacing="10.0">
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
         </tabs>
       </TabPane>
       <Separator layoutY="319.0" prefHeight="1.0" prefWidth="600.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <HBox alignment="CENTER_LEFT" layoutY="319.0" prefHeight="40.0" prefWidth="200.0" spacing="10.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
+            <Button mnemonicParsing="false" onAction="#updateCharacter" text="Aggiorna Personaggio">
+               <tooltip>
+                  <Tooltip text="ATTENZIONE! A causa di limitazioni tecniche, questo pulsante funziona solo se sono state completate tutte le pagine seguenti: Informazioni Generali, Origini, Background." />
+               </tooltip>
+            </Button>
             <Label fx:id="hpLabel" text="Punti Ferita:" />
             <Label fx:id="hlLabel" layoutX="20.0" layoutY="22.0" text="Limite Umano:" />
          </children>

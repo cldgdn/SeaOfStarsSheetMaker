@@ -1,6 +1,8 @@
 module com.github.cldgdn.seaofstars {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.graphics;
+    requires javafx.base;
 
 
     opens com.github.cldgdn.seaofstars to javafx.fxml;

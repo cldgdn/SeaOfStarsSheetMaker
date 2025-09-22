@@ -121,7 +121,7 @@ public class CreateAdvantageController {
         }
 
         for (BonusElementController<Trait> controller : traitBonusControllers) {
-            if (controller.removed) break;
+            if (controller.removed) continue;
 
             Bonus b = new Bonus();
             b.sourceID = a.ID;
@@ -131,7 +131,7 @@ public class CreateAdvantageController {
             a.bonuses.add(b);
         }
         for (BonusElementController<Ability> controller : abilityBonusControllers) {
-            if (controller.removed) break;
+            if (controller.removed) continue;
 
             Bonus b = new Bonus();
             b.sourceID = a.ID;
@@ -141,7 +141,7 @@ public class CreateAdvantageController {
             a.bonuses.add(b);
         }
         for (BonusElementController<String> controller : otherBonusControllers) {
-            if (controller.removed) break;
+            if (controller.removed) continue;
 
             Bonus b = new Bonus();
             b.sourceID = a.ID;

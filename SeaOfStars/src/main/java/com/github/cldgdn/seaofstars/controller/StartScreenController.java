@@ -5,9 +5,11 @@ import com.github.cldgdn.seaofstars.character.Advantage;
 import com.github.cldgdn.seaofstars.character.CharacterInfo;
 import com.github.cldgdn.seaofstars.controller.dialog.CreateAdvantageDialog;
 import com.github.cldgdn.seaofstars.controller.dialog.CreateCharacterDialog;
+import com.github.cldgdn.seaofstars.controller.dialog.CreateImplantDialog;
 import com.github.cldgdn.seaofstars.sosd.read.InfoReader;
 import com.github.cldgdn.seaofstars.sosd.write.AdvantagesWriter;
 import com.github.cldgdn.seaofstars.sosd.write.CharacterWriter;
+import com.github.cldgdn.seaofstars.sosd.write.ImplantsWriter;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,7 +64,14 @@ public class StartScreenController {
 
     @FXML
     void createNewImplant(ActionEvent event) {
-
+        CreateImplantDialog dialog = new CreateImplantDialog();
+        dialog.showAndWait().ifPresent(implant -> {
+            try {
+                ImplantsWriter.writeSingle(implant, "lib");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     @FXML

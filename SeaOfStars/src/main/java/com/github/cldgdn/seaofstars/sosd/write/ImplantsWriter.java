@@ -24,10 +24,10 @@ public class ImplantsWriter {
         }
     }
 
-    private static void writeSingle(Implant i, String characterPath) throws IOException{
+    public static void writeSingle(Implant i, String characterPath) throws IOException{
         if (i.isCustom) {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "\\implants\\" + i.ID + ".sosd"))) {
-                writer.write("name : " + i.ID + "\n");
+                writer.write("name : " + i.name + "\n");
                 writer.write("description : " + i.description + "\n");
                 writer.write("location : " + i.location + "\n");
                 writer.write("humanCost : " + i.humanCost + "\n");

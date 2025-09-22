@@ -6,6 +6,7 @@ import com.github.cldgdn.seaofstars.LibCache;
 import com.github.cldgdn.seaofstars.character.*;
 import com.github.cldgdn.seaofstars.character.Character;
 import com.github.cldgdn.seaofstars.controller.dialog.CreateAdvantageDialog;
+import com.github.cldgdn.seaofstars.controller.dialog.CreateImplantDialog;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,19 +30,13 @@ public class CharacterCreationController {
     private Trait[] traits;
     private Ability[] abilities;
     private Advantage[] advantages;
+    private Implant[] implants;
     private List<Advantage> customAdvantages = new ArrayList<>();
+    private List<Implant> customImplants = new ArrayList<>();
 
     private final String hpLabelPref = "Punti Ferita: ";
     private final String hlLabelPref = "Limite Umano: ";
     private final String tpLabelPref = "Punti da assegnare: ";
-
-
-    public CharacterCreationController() {
-        character.implants = new ArrayList<>();
-        character.advantages = new ArrayList<>();
-        character.items = new ArrayList<>();
-    }
-
 
     @FXML private Label hlLabel;
     @FXML private Label hpLabel;
@@ -63,6 +58,10 @@ public class CharacterCreationController {
     @FXML private CheckBox libraryAdvantagesCheckBox;
     @FXML private Label advantagePointsLabel;
 
+    @FXML private VBox implantsVBox;
+    @FXML private CheckBox libraryImplantsCheckBox;
+    @FXML private Label implantsPointsLabel;
+
     @FXML private TextField bgNameField;
     @FXML private TextArea bgDescriptionArea;
     @FXML private ComboBox<Ability> p1BackgroundMenu;
@@ -73,6 +72,12 @@ public class CharacterCreationController {
     @FXML private TextArea ogDescriptionArea;
     @FXML private ComboBox<Trait> originBonusAMenu;
     @FXML private ComboBox<Trait> originBonusBMenu;
+
+    public CharacterCreationController() {
+        character.implants = new ArrayList<>();
+        character.advantages = new ArrayList<>();
+        character.items = new ArrayList<>();
+    }
 
     @FXML
     void toggleLibraryTraits(ActionEvent event) {
@@ -120,6 +125,19 @@ public class CharacterCreationController {
             }
 
         });
+    }
+
+    @FXML
+    void createNewImplant(ActionEvent event) {
+        CreateImplantDialog dialog = new CreateImplantDialog();
+        dialog.showAndWait().ifPresent(implant -> {
+            //TODO
+        });
+    }
+
+    @FXML
+    void updateCharacter(ActionEvent event) {
+
     }
 
     public void initialize() {
@@ -220,5 +238,4 @@ public class CharacterCreationController {
     public Character getCharacter() {
         return character;
     }
-
 }

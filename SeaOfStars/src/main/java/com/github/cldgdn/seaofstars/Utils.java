@@ -10,16 +10,16 @@ public class Utils {
         int i = 0, consonants = 0;
 
         for (; i < chars.length; i++) {
-            if ("AEIOUaeiou".indexOf(chars[i]) == -1) {
+            if ("AEIOUaeiou ".indexOf(chars[i]) == -1) {
                 consonants ++;
             }
         }
 
         for (i = 0; i < chars.length; i++) {
-            if (consonants < 3) {
+            if (consonants < 3 && chars[i] != ' ') {
                 id += chars[i];
                 consonants++;
-            } else if ("AEIOUaeiou".indexOf(chars[i]) == -1) {
+            } else if ("AEIOUaeiou ".indexOf(chars[i]) == -1) {
                 id += chars[i];
             }
 

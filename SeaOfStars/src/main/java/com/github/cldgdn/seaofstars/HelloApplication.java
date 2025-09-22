@@ -12,7 +12,6 @@ public class HelloApplication extends Application {
 
     public static HelloApplication instance = null;
     public static Stage stage;
-    public String balls = "cringe";
 
     public HelloApplication() {
         if (instance == null) {
@@ -32,17 +31,10 @@ public class HelloApplication extends Application {
         stage.setTitle("Sea Of Stars - Home");
         stage.setScene(scene);
         stage.show();
-        balls = "based";
         HelloApplication.stage = stage;
     }
 
     public static void main(String[] args) {
         launch();
-
-        long startTime = System.currentTimeMillis();
-        System.out.println("number of increments: " + RollManager.rollAndCountIncrements(10, 0));
-        long endTime = System.currentTimeMillis();
-
-        System.out.println("time taken: " + (endTime - startTime) + "ms");
     }
 }
