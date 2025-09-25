@@ -43,18 +43,19 @@ public class StartScreenController {
 
     @FXML
     void createNewCharacter(ActionEvent event) throws IOException {
-        /*FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("characterCreation.fxml"));
-
-        Scene scene = new Scene(loader.load());
-
-        HelloApplication application = HelloApplication.instance;
-
-        application.setStage("Sea Of Stars - Creazione Personaggio", scene);*/
-
         CreateCharacterDialog dialog = new CreateCharacterDialog();
         dialog.showAndWait().ifPresent(character -> {
             try {
-                CharacterWriter.write(character, "characters");
+                CharacterWriter.write(character, "characters\\" + character.info.name);
+
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("characterElement.fxml"));
+                Node element = loader.load();
+
+                CharacterElementController cec = loader.getController();
+
+                cec.setCharacter(character.info.name, character.info.playerName, new File("character\\" + character.info.name));
+
+                charactersVBox.getChildren().add(element);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

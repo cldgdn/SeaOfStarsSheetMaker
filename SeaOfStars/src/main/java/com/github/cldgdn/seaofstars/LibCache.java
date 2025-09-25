@@ -2,9 +2,11 @@ package com.github.cldgdn.seaofstars;
 
 import com.github.cldgdn.seaofstars.character.Ability;
 import com.github.cldgdn.seaofstars.character.Advantage;
+import com.github.cldgdn.seaofstars.character.Implant;
 import com.github.cldgdn.seaofstars.character.Trait;
 import com.github.cldgdn.seaofstars.sosd.read.AbilitiesReader;
 import com.github.cldgdn.seaofstars.sosd.read.AdvantagesReader;
+import com.github.cldgdn.seaofstars.sosd.read.ImplantsReader;
 import com.github.cldgdn.seaofstars.sosd.read.TraitsReader;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 
@@ -15,6 +17,7 @@ public class LibCache {
     private static Trait[] traits = null;
     private static Ability[] abilities = null;
     private static Advantage[] advantages = null;
+    private static Implant[] implants = null;
 
     public static Trait[] getTraits(boolean reset) throws BadSOSDFormatException, IOException {
         if (reset || traits == null) {
@@ -86,5 +89,29 @@ public class LibCache {
 
     public static Advantage[] getAdvantages() throws BadSOSDFormatException, IOException {
         return getAdvantages(false);
+    }
+
+    public static Implant[] getImplants(boolean reset) throws BadSOSDFormatException, IOException {
+        if (reset || implants == null) {
+            File implantsFolder = new File("lib\\implants");
+
+            if (implantsFolder.exists() && implantsFolder.isDirectory()) {
+                File[] implantFiles = implantsFolder.listFiles();
+
+                if (implantFiles != null && implantFiles.length != 0) {
+                    implants = new Implant[implantFiles.length];
+
+                    for (int i = 0; i < implantFiles.length; i++) {
+                        implants[i] = ImplantsReader.readSingle(implantFiles[i]);
+                    }
+                }
+            }
+        }
+
+        return implants;
+    }
+
+    public static Implant[] getImplants() throws BadSOSDFormatException, IOException {
+        return getImplants(false);
     }
 }

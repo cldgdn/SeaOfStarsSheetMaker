@@ -16,8 +16,8 @@ public class Constants {
     public static final String GRACE_ID = "trt-grc";
     public static final String ACUMEN_ID = "trt-acm";
     public static final String PANACHE_ID = "trt-pan";
-    public static final String RESOLVE_ID = "trt-rsl";
-    public static final String RESISTANCE_ID = "trt-rss";
+    public static final String RESOLVE_ID = "trt-rsv";
+    public static final String RESISTANCE_ID = "trt-rst";
 
     public static final int TRAITS_AMT = 6;
     public static final int STARTING_TRAIT_POINTS = 6;
@@ -43,7 +43,7 @@ public class Constants {
 
     //RULES CONSTANTS-----------------------------------------------------
     public static final int ORIGIN_BONUSES_AMT = 2;
-    public static final int BACKGROUND_BONUSES_AMT = 4;
+    public static final int BACKGROUND_BONUSES_AMT = 3;
     public static final int RISK_DICE_FACES = 10; //you roll d10s for risks
     public static final int INCREMENT_THRESHOLD = 10;
     public static final int ADVANTAGES_AT_CREATION_AMT = 3;

@@ -3,10 +3,12 @@ package com.github.cldgdn.seaofstars.controller;
 import com.github.cldgdn.seaofstars.Constants;
 import com.github.cldgdn.seaofstars.HelloApplication;
 import com.github.cldgdn.seaofstars.LibCache;
+import com.github.cldgdn.seaofstars.Utils;
 import com.github.cldgdn.seaofstars.character.*;
 import com.github.cldgdn.seaofstars.character.Character;
 import com.github.cldgdn.seaofstars.controller.dialog.CreateAdvantageDialog;
 import com.github.cldgdn.seaofstars.controller.dialog.CreateImplantDialog;
+import com.github.cldgdn.seaofstars.sosd.write.ImplantsWriter;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,7 +27,7 @@ public class CharacterCreationController {
     public int traitPointsLeft = Constants.STARTING_TRAIT_POINTS;
     public int abilityPointsLeft = Constants.STARTING_ABILITY_POINTS;
     public int advantagesLeft = Constants.ADVANTAGES_AT_CREATION_AMT;
-    private Character character = new Character();
+    public Character character = new Character();
     private CharacterInfo info = new CharacterInfo();
     private Trait[] traits;
     private Ability[] abilities;
@@ -33,6 +35,9 @@ public class CharacterCreationController {
     private Implant[] implants;
     private List<Advantage> customAdvantages = new ArrayList<>();
     private List<Implant> customImplants = new ArrayList<>();
+
+    public List<Advantage> selectedAdvantages = new ArrayList<>();
+    public List<Implant> selectedImplants = new ArrayList<>();
 
     private final String hpLabelPref = "Punti Ferita: ";
     private final String hlLabelPref = "Limite Umano: ";
@@ -91,6 +96,10 @@ public class CharacterCreationController {
     void toggleLibraryAdvantages(ActionEvent event) {
         //TODO
     }
+    @FXML
+    void toggleLibraryImplants(ActionEvent event) {
+        //TODO
+    }
 
     @FXML
     void createNewTrait(ActionEvent event) {
@@ -131,25 +140,54 @@ public class CharacterCreationController {
     void createNewImplant(ActionEvent event) {
         CreateImplantDialog dialog = new CreateImplantDialog();
         dialog.showAndWait().ifPresent(implant -> {
-            //TODO
+            customImplants.add(implant);
+
+            try {
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("implantElement.fxml"));
+                Node element = loader.load();
+
+                ImplantElementController iec = new ImplantElementController();
+                iec.setImplant(implant);
+                iec.setController(this);
+
+                implantsVBox.getChildren().add(element);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (BadSOSDFormatException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 
     @FXML
     void updateCharacter(ActionEvent event) {
+        character.info = getInfo();
+        character.hitPoints = Constants.HIT_POINT_BASE;
+        character.origin = getOrigin();
+        character.background = getBackground();
+        character.traits = traits;
+        character.abilities = abilities;
+        character.advantages = selectedAdvantages;
+        character.implants = new ArrayList<>();
 
+        character.init();
+
+        updateText();
     }
 
     public void initialize() {
         try {
             if (libraryTraitsCheckBox.isSelected()) {
-                traits = LibCache.getTraits();
+                traits = LibCache.getTraits(true);
             }
             if (libraryAbilitiesCheckBox.isSelected()) {
-                abilities = LibCache.getAbilities();
+                abilities = LibCache.getAbilities(true);
             }
             if (libraryAdvantagesCheckBox.isSelected()) {
-                advantages = LibCache.getAdvantages();
+                advantages = LibCache.getAdvantages(true);
+            }
+            if (libraryImplantsCheckBox.isSelected()) {
+                implants = LibCache.getImplants(true);
             }
 
             StringConverter<Ability> abilityConverter = new StringConverter<Ability>() {
@@ -223,6 +261,17 @@ public class CharacterCreationController {
                 advantagesVBox.getChildren().add(element);
             }
 
+            for (Implant i : implants) {
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("implantElement.fxml"));
+                Node element = loader.load();
+
+                ImplantElementController iec = new ImplantElementController();
+                iec.setImplant(i);
+                iec.setController(this);
+
+                implantsVBox.getChildren().add(element);
+            }
+
             updateText();
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -233,6 +282,75 @@ public class CharacterCreationController {
         traitPointsLabel.setText(tpLabelPref + traitPointsLeft);
         abilityPointsLabel.setText(tpLabelPref + abilityPointsLeft);
         advantagePointsLabel.setText(tpLabelPref + advantagesLeft);
+        implantsPointsLabel.setText("Limite Rimasto: " + (character.humanLimit - character.usedHumanLimit));
+
+        hpLabel.setText(hpLabelPref + character.hitPointsMax);
+        hlLabel.setText(hlLabelPref + character.humanLimit);
+    }
+
+    public CharacterInfo getInfo() {
+        CharacterInfo info = new CharacterInfo();
+        info.name = characterNameField.getText();
+        info.playerName = playerNameField.getText();
+        info.age = Integer.parseInt(characterAgeField.getText());
+        info.fame = characterFameField.getText();
+        info.money = 0;
+
+        return info;
+    }
+
+    public Origin getOrigin() {
+        String originID = Utils.genID("ori", ogNameField.getText());
+
+        Bonus b0 = new Bonus();
+        b0.targetID = originBonusAMenu.getSelectionModel().getSelectedItem().ID;
+        b0.sourceID = originID;
+        b0.isConditional = false;
+        b0.value = 1;
+
+        Bonus b1 = new Bonus();
+        b1.targetID = originBonusBMenu.getSelectionModel().getSelectedItem().ID;
+        b1.sourceID = originID;
+        b1.isConditional = false;
+        b1.value = 1;
+
+        Origin origin = new Origin(
+                originID,
+                ogNameField.getText(),
+                ogDescriptionArea.getText().replace("\n", " "),
+                new Bonus[]{b0, b1}
+        );
+
+        return origin;
+    }
+
+    public Background getBackground() {
+        String backgroundID = Utils.genID("bkg", bgNameField.getText());
+
+        Bonus b0 = new Bonus();
+        b0.targetID = p1BackgroundMenu.getSelectionModel().getSelectedItem().ID;
+        b0.sourceID = backgroundID;
+        b0.isConditional = false;
+        b0.value = 1;
+
+        Bonus b1 = new Bonus();
+        b1.targetID = p2BackgroundMenu.getSelectionModel().getSelectedItem().ID;
+        b1.sourceID = backgroundID;
+        b1.isConditional = false;
+        b1.value = 2;
+
+        Bonus b2 = new Bonus();
+        b2.targetID = m1BackgroundMenu.getSelectionModel().getSelectedItem().ID;
+        b2.sourceID = backgroundID;
+        b2.isConditional = false;
+        b2.value = -1;
+
+        return new Background(
+                backgroundID,
+                bgNameField.getText(),
+                bgDescriptionArea.getText().replace("\n", ""),
+                new Bonus[]{b0, b1, b2}
+        );
     }
 
     public Character getCharacter() {

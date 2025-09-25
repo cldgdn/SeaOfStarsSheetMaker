@@ -44,7 +44,7 @@ public class ImplantsReader {
         return implants;
     }
 
-    private static Implant readSingle(File file) throws BadSOSDFormatException, IOException {
+    public static Implant readSingle(File file) throws BadSOSDFormatException, IOException {
         Implant i = new Implant();
         i.ID = file.getName().replace(".sosd", "");
 

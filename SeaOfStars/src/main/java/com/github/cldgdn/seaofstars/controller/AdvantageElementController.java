@@ -85,6 +85,7 @@ public class AdvantageElementController {
         if (selectionBox.isSelected()) {
             if (controller.advantagesLeft > 0) {
                 controller.advantagesLeft--;
+                controller.selectedAdvantages.add(advantage);
             }
             else {
                 selectionBox.setSelected(false);
@@ -92,6 +93,7 @@ public class AdvantageElementController {
         }
         else {
             controller.advantagesLeft += (controller.advantagesLeft >= Constants.ADVANTAGES_AT_CREATION_AMT) ? 0 : 1;
+            controller.selectedAdvantages.remove(advantage);
         }
 
         controller.updateText();

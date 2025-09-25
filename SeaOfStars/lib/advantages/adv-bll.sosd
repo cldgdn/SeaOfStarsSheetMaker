@@ -1,0 +1,13 @@
+name : baller
+description : sdoihf	
+isPassive : true
+heroPointCost : 0
+# LIST
+# BONUS
+targetID : chr-hpm
+value : 2
+isConditional : false
+# BONUS
+targetID : chr-lmt
+value : 2
+isConditional : false
