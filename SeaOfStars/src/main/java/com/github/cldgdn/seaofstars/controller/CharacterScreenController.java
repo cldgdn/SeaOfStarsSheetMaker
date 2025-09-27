@@ -3,6 +3,7 @@ package com.github.cldgdn.seaofstars.controller;
 import com.github.cldgdn.seaofstars.HelloApplication;
 import com.github.cldgdn.seaofstars.character.*;
 import com.github.cldgdn.seaofstars.character.Character;
+import com.github.cldgdn.seaofstars.controller.dialog.HpUpdateDialog;
 import com.github.cldgdn.seaofstars.sosd.read.CharacterReader;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 import javafx.event.ActionEvent;
@@ -21,7 +22,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class CharacterScreenController {
 
     private Character character = null;
-    private String[] moneyNames = new String[]{"SUNC", "Crediti", "Sunnies"};
+    private final String[] moneyNames = new String[]{"SUNC", "Crediti", "Sunnies"};
 
     @FXML private VBox abilitiesVBox;
     @FXML private VBox advantagesVBox;
@@ -48,11 +49,7 @@ public class CharacterScreenController {
         try {
             Character c = CharacterReader.read(character.info.name);
 
-            traitsVBox.getChildren().removeAll();
-            abilitiesVBox.getChildren().removeAll();
-            advantagesVBox.getChildren().removeAll();
-            implantsVBox.getChildren().removeAll();
-            itemsVBox.getChildren().removeAll();
+            //TODO: make it so each vbox drops the elements from before so that setCharacter can put in the new ones
 
             setCharacter(c);
         } catch (BadSOSDFormatException | IOException e) {
@@ -62,7 +59,11 @@ public class CharacterScreenController {
 
     @FXML
     void hpChange(ActionEvent event) {
-
+        HpUpdateDialog dialog = new HpUpdateDialog();
+        dialog.showAndWait().ifPresent(value -> {
+            character.hitPoints += value;
+            hpField.setText(character.hitPoints + "/" + character.hitPointsMax);
+        });
     }
 
     @FXML

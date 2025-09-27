@@ -50,6 +50,9 @@ public class StartScreenController {
         CreateCharacterDialog dialog = new CreateCharacterDialog();
         dialog.showAndWait().ifPresent(character -> {
             try {
+                character.init();
+                character.hitPoints = character.hitPointsMax;
+
                 CharacterWriter.write(character, "characters\\" + character.info.name);
 
                 FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("characterElement.fxml"));

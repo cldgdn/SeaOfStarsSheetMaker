@@ -1,8 +1,0 @@
-name : imp-c01
-description : the description for the test custom implant
-location : hands
-humanCost : 2
-# BONUS
-targetID : trt-vig
-value : 2
-isConditional : false

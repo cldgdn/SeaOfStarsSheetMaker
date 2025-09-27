@@ -13,8 +13,6 @@ import javafx.scene.control.ScrollPane;
 import java.io.IOException;
 
 public class CreateImplantDialog extends Dialog<Implant> {
-    private CreateImplantController controller;
-
     public CreateImplantDialog() {
         setTitle("Sea Of Stars - Creazione Impianto");
 
@@ -23,7 +21,6 @@ public class CreateImplantDialog extends Dialog<Implant> {
         try {
             ScrollPane content = loader.load();
             CreateImplantController controller = loader.getController();
-            this.controller = controller;
 
             getDialogPane().setContent(content);
 

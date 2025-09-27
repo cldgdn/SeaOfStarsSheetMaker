@@ -1,9 +1,0 @@
-name : test_custom_advantage
-description : The description of the test custom advantage
-isPassive : true
-heroPointCost : 0
-# LIST
-# BONUS
-targetID : abl-aim
-value : 2
-isConditional : false
