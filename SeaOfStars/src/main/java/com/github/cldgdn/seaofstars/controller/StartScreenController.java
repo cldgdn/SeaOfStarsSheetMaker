@@ -1,8 +1,10 @@
 package com.github.cldgdn.seaofstars.controller;
 
 import com.github.cldgdn.seaofstars.HelloApplication;
+import com.github.cldgdn.seaofstars.LibCache;
 import com.github.cldgdn.seaofstars.character.Advantage;
 import com.github.cldgdn.seaofstars.character.CharacterInfo;
+import com.github.cldgdn.seaofstars.character.Implant;
 import com.github.cldgdn.seaofstars.controller.dialog.CreateAdvantageDialog;
 import com.github.cldgdn.seaofstars.controller.dialog.CreateCharacterDialog;
 import com.github.cldgdn.seaofstars.controller.dialog.CreateImplantDialog;
@@ -15,19 +17,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.Tab;
 import javafx.scene.layout.VBox;
 
 import java.io.File;
 import java.io.IOException;
 public class StartScreenController {
 
-    @FXML
-    private VBox charactersVBox;
-
-    @FXML
-    private MenuBar menuBar;
+    @FXML private Tab advantagesTab;
+    @FXML private VBox advantagesVBox;
+    @FXML private Tab charactersTab;
+    @FXML private VBox charactersVBox;
+    @FXML private Tab implantsTab;
+    @FXML private VBox implantsVBox;
+    @FXML private MenuBar menuBar;
 
     @FXML
     void createNewAdvantage(ActionEvent event) {
@@ -112,6 +116,28 @@ public class StartScreenController {
                     charactersVBox.getChildren().add(element);
                 }
             }
+        }
+
+        for (Advantage a : LibCache.getAdvantages(true)) {
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("advantageElement.fxml"));
+            Node element = loader.load();
+
+            AdvantageElementController con = loader.getController();
+            con.setDisplayOnly();
+            con.setAdvantage(a);
+
+            advantagesVBox.getChildren().add(element);
+        }
+
+        for (Implant i : LibCache.getImplants()) {
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("implantElement.fxml"));
+            Node element = loader.load();
+
+            ImplantElementController con = loader.getController();
+            con.setDisplayOnly();
+            con.setImplant(i);
+
+            implantsVBox.getChildren().add(element);
         }
     }
 
