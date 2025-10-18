@@ -8,6 +8,11 @@ import java.util.Random;
 public class RollManager {
     public static int rollAndCountIncrements(int abilityLevel, int traitModifier) {
         int[] rolls = rollDice(abilityLevel, traitModifier, Constants.RISK_DICE_FACES, abilityLevel >= Constants.DICE_EXPLODE_ABILITY_LEVEL);
+
+        return countIncrements(rolls);
+    }
+
+    public static int countIncrements(int[] rolls) {
         boolean[] used = new boolean[rolls.length];
         List<Integer> bestGroup, currGroup;
         int swap, curr, increments = 0, bestBeginning, total, bestTotal, currBeginning;
@@ -20,8 +25,6 @@ public class RollManager {
             rolls[i] = rolls[rolls.length - 1- i];
             rolls[rolls.length - 1 - i] = swap;
         }
-
-        System.out.println("rolls : " + Arrays.toString(rolls));
 
         while (true) {
             //pick the highest available roll to add to the current group

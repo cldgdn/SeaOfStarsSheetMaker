@@ -39,30 +39,9 @@ public class AdvantageElementController {
         Ability[] abilities = LibCache.getAbilities();
 
         for (Bonus b : advantage.bonuses) {
-            String targetName = "nothing";
             Label currBonus = new Label();
 
-            if (b.targetID.startsWith("trt")) {
-                for (Trait t : traits) {
-                    if (t.ID.equals(b.targetID)) {
-                        targetName = "(T) " + t.name;
-                        break;
-                    }
-                }
-            } else if (b.targetID.startsWith("abl")) {
-                for (Ability a : abilities) {
-                    if (a.ID.equals(b.targetID)) {
-                        targetName = "(A) " + a.name;
-                        break;
-                    }
-                }
-            } else if (b.targetID.equals(Constants.HIT_POINTS_MAX_ID)) {
-                targetName = "Punti Ferita";
-            } else if (b.targetID.equals(Constants.HUMAN_LIMIT_ID)) {
-                targetName = "Limite Umano";
-            }
-
-            currBonus.setText(targetName + " " + (b.value >= 0 ? "+" + b.value : b.value));
+            currBonus.setText(b.toString());
 
             bonusesHBox.getChildren().add(currBonus);
         }

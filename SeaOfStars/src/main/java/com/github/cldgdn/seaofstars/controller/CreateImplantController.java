@@ -1,7 +1,7 @@
 package com.github.cldgdn.seaofstars.controller;
 
 import com.github.cldgdn.seaofstars.Constants;
-import com.github.cldgdn.seaofstars.HelloApplication;
+import com.github.cldgdn.seaofstars.SeaOfStarsMain;
 import com.github.cldgdn.seaofstars.LibCache;
 import com.github.cldgdn.seaofstars.Utils;
 import com.github.cldgdn.seaofstars.character.Ability;
@@ -46,7 +46,7 @@ public class CreateImplantController {
         Object source = event.getSource();
 
         if (source instanceof Button) {
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("bonusElement.fxml"));
+            FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("bonusElement.fxml"));
             Node element = loader.load();
 
             Button b = (Button) source;

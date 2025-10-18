@@ -1,8 +1,7 @@
 package com.github.cldgdn.seaofstars.controller.dialog;
 
-import com.github.cldgdn.seaofstars.HelloApplication;
+import com.github.cldgdn.seaofstars.SeaOfStarsMain;
 import com.github.cldgdn.seaofstars.character.Implant;
-import com.github.cldgdn.seaofstars.controller.CreateAdvantageController;
 import com.github.cldgdn.seaofstars.controller.CreateImplantController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ButtonBar;
@@ -16,7 +15,7 @@ public class CreateImplantDialog extends Dialog<Implant> {
     public CreateImplantDialog() {
         setTitle("Sea Of Stars - Creazione Impianto");
 
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("createImplantDialog.fxml"));
+        FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("createImplantDialog.fxml"));
 
         try {
             ScrollPane content = loader.load();

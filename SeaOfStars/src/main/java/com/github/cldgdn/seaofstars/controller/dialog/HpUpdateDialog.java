@@ -1,6 +1,6 @@
 package com.github.cldgdn.seaofstars.controller.dialog;
 
-import com.github.cldgdn.seaofstars.HelloApplication;
+import com.github.cldgdn.seaofstars.SeaOfStarsMain;
 import com.github.cldgdn.seaofstars.controller.HpUpdateController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ButtonBar;
@@ -15,7 +15,7 @@ public class HpUpdateDialog extends Dialog<Integer> {
     public HpUpdateDialog() {
         setTitle("Subisci o Cura ferite");
 
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("hpUpdate.fxml"));
+        FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("hpUpdate.fxml"));
 
         try {
             HBox content = loader.load();

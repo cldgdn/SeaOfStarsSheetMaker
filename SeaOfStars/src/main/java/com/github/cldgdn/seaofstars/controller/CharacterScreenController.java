@@ -1,9 +1,10 @@
 package com.github.cldgdn.seaofstars.controller;
 
-import com.github.cldgdn.seaofstars.HelloApplication;
+import com.github.cldgdn.seaofstars.SeaOfStarsMain;
 import com.github.cldgdn.seaofstars.character.*;
 import com.github.cldgdn.seaofstars.character.Character;
 import com.github.cldgdn.seaofstars.controller.dialog.HpUpdateDialog;
+import com.github.cldgdn.seaofstars.controller.dialog.RollWithIncrementsDialog;
 import com.github.cldgdn.seaofstars.sosd.read.CharacterReader;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 import javafx.event.ActionEvent;
@@ -15,7 +16,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -50,6 +50,9 @@ public class CharacterScreenController {
             Character c = CharacterReader.read(character.info.name);
 
             //TODO: make it so each vbox drops the elements from before so that setCharacter can put in the new ones
+            advantagesVBox.getChildren().clear();
+            implantsVBox.getChildren().clear();
+            itemsVBox.getChildren().clear();
 
             setCharacter(c);
         } catch (BadSOSDFormatException | IOException e) {
@@ -68,7 +71,8 @@ public class CharacterScreenController {
 
     @FXML
     void rollWithIncrements(ActionEvent event) {
-
+        RollWithIncrementsDialog dialog = new RollWithIncrementsDialog(character);
+        dialog.showAndWait();
     }
 
 
@@ -126,7 +130,7 @@ public class CharacterScreenController {
 
         //TRAITS INFORMATION DISPLAY
         for (Trait t : character.traits) {
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("traitElement.fxml"));
+            FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("traitElement.fxml"));
             Node element = loader.load();
 
             TraitElementController controller = loader.getController();
@@ -138,7 +142,7 @@ public class CharacterScreenController {
 
         //ABILITIES INFORMATION DISPLAY
         for (Ability a : character.abilities) {
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("abilityElement.fxml"));
+            FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("abilityElement.fxml"));
             Node element = loader.load();
 
             AbilityElementController controller = loader.getController();
@@ -150,7 +154,7 @@ public class CharacterScreenController {
 
         //ADVANTAGES INFORMATION DISPLAY
         for (Advantage a : character.advantages) {
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("advantageElement.fxml"));
+            FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("advantageElement.fxml"));
             Node element = loader.load();
 
             AdvantageElementController controller = loader.getController();
@@ -162,7 +166,7 @@ public class CharacterScreenController {
 
         //IMPLANTS INFORMATION DISPLAY
         for (Implant i : character.implants) {
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("implantElement.fxml"));
+            FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("implantElement.fxml"));
             Node element = loader.load();
 
             ImplantElementController controller = loader.getController();

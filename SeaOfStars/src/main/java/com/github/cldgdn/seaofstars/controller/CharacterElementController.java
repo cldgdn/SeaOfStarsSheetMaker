@@ -1,6 +1,6 @@
 package com.github.cldgdn.seaofstars.controller;
 
-import com.github.cldgdn.seaofstars.HelloApplication;
+import com.github.cldgdn.seaofstars.SeaOfStarsMain;
 import com.github.cldgdn.seaofstars.sosd.read.CharacterReader;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 import javafx.event.ActionEvent;
@@ -28,7 +28,7 @@ public class CharacterElementController {
     @FXML
     void openCharacter(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("characterScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("characterScreen.fxml"));
             Parent root = loader.load();
 
             CharacterScreenController controller = loader.getController();

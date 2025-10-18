@@ -1,6 +1,6 @@
 package com.github.cldgdn.seaofstars.controller;
 
-import com.github.cldgdn.seaofstars.HelloApplication;
+import com.github.cldgdn.seaofstars.SeaOfStarsMain;
 import com.github.cldgdn.seaofstars.LibCache;
 import com.github.cldgdn.seaofstars.character.Advantage;
 import com.github.cldgdn.seaofstars.character.CharacterInfo;
@@ -55,7 +55,7 @@ public class StartScreenController {
 
                 CharacterWriter.write(character, "characters\\" + character.info.name);
 
-                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("characterElement.fxml"));
+                FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("characterElement.fxml"));
                 Node element = loader.load();
 
                 CharacterElementController cec = loader.getController();
@@ -107,7 +107,7 @@ public class StartScreenController {
 
             for (File character : files) {
                 if (character.isDirectory()) {
-                    FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("characterElement.fxml"));
+                    FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("characterElement.fxml"));
                     Node element = loader.load();
 
                     CharacterElementController cec = loader.getController();
@@ -122,7 +122,7 @@ public class StartScreenController {
         }
 
         for (Advantage a : LibCache.getAdvantages(true)) {
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("advantageElement.fxml"));
+            FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("advantageElement.fxml"));
             Node element = loader.load();
 
             AdvantageElementController con = loader.getController();
@@ -133,7 +133,7 @@ public class StartScreenController {
         }
 
         for (Implant i : LibCache.getImplants()) {
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("implantElement.fxml"));
+            FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("implantElement.fxml"));
             Node element = loader.load();
 
             ImplantElementController con = loader.getController();

@@ -8,12 +8,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class SeaOfStarsMain extends Application {
 
-    public static HelloApplication instance = null;
+    public static SeaOfStarsMain instance = null;
     public static Stage stage;
 
-    public HelloApplication() {
+    public SeaOfStarsMain() {
         if (instance == null) {
             instance = this;
         }
@@ -26,12 +26,12 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("startScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(SeaOfStarsMain.class.getResource("startScreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Sea Of Stars - Home");
         stage.setScene(scene);
         stage.show();
-        HelloApplication.stage = stage;
+        SeaOfStarsMain.stage = stage;
     }
 
     public static void main(String[] args) {

@@ -1,14 +1,13 @@
 package com.github.cldgdn.seaofstars.controller;
 
 import com.github.cldgdn.seaofstars.Constants;
-import com.github.cldgdn.seaofstars.HelloApplication;
+import com.github.cldgdn.seaofstars.SeaOfStarsMain;
 import com.github.cldgdn.seaofstars.LibCache;
 import com.github.cldgdn.seaofstars.Utils;
 import com.github.cldgdn.seaofstars.character.*;
 import com.github.cldgdn.seaofstars.character.Character;
 import com.github.cldgdn.seaofstars.controller.dialog.CreateAdvantageDialog;
 import com.github.cldgdn.seaofstars.controller.dialog.CreateImplantDialog;
-import com.github.cldgdn.seaofstars.sosd.write.ImplantsWriter;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -118,7 +117,7 @@ public class CharacterCreationController {
             customAdvantages.add(advantage);
 
             try {
-                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("advantageElement.fxml"));
+                FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("advantageElement.fxml"));
                 Node element = loader.load();
 
                 AdvantageElementController aec = loader.getController();
@@ -143,7 +142,7 @@ public class CharacterCreationController {
             customImplants.add(implant);
 
             try {
-                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("implantElement.fxml"));
+                FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("implantElement.fxml"));
                 Node element = loader.load();
 
                 ImplantElementController iec = new ImplantElementController();
@@ -229,7 +228,7 @@ public class CharacterCreationController {
             originBonusBMenu.getItems().addAll(traits);
 
             for (Trait t : traits) {
-                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("traitElement.fxml"));
+                FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("traitElement.fxml"));
                 Node element = loader.load();
 
                 TraitElementController tec = loader.getController();
@@ -240,7 +239,7 @@ public class CharacterCreationController {
             }
 
             for (Ability a : abilities) {
-                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("abilityElement.fxml"));
+                FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("abilityElement.fxml"));
                 Node element = loader.load();
 
                 AbilityElementController aec = loader.getController();
@@ -251,7 +250,7 @@ public class CharacterCreationController {
             }
 
             for (Advantage a : advantages) {
-                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("advantageElement.fxml"));
+                FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("advantageElement.fxml"));
                 Node element = loader.load();
 
                 AdvantageElementController aec = loader.getController();
@@ -262,10 +261,10 @@ public class CharacterCreationController {
             }
 
             for (Implant i : implants) {
-                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("implantElement.fxml"));
+                FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("implantElement.fxml"));
                 Node element = loader.load();
 
-                ImplantElementController iec = new ImplantElementController();
+                ImplantElementController iec = loader.getController();
                 iec.setImplant(i);
                 iec.setController(this);
 
