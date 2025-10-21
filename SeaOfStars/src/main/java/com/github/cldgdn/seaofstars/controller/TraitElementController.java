@@ -97,7 +97,7 @@ public class TraitElementController {
 
                     levelLabel.setText("Livello: " + trait.baseLevel);
 
-                    int mod = (trait.baseLevel - Constants.ZERO_TRAIT_LEVEL);
+                    int mod = (trait.baseLevel - Constants.get.ZERO_TRAIT_LEVEL);
                     modLabel.setText("Mod: " + ((mod >= 0) ? "+" : "") + mod);
 
                     break;
@@ -121,7 +121,7 @@ public class TraitElementController {
         levelLabel.setText("Livello: " + t.baseLevel);
         descTooltip.setText(trait.description);
 
-        int mod = (t.baseLevel - Constants.ZERO_TRAIT_LEVEL);
+        int mod = (t.baseLevel - Constants.get.ZERO_TRAIT_LEVEL);
         modLabel.setText("Mod: " + ((mod >= 0) ? "+" : "") + mod);
 
         for (int i = 0; i < t.baseLevel; i++) {

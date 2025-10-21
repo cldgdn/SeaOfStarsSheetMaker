@@ -14,6 +14,7 @@ public class HpUpdateDialog extends Dialog<Integer> {
 
     public HpUpdateDialog() {
         setTitle("Subisci o Cura ferite");
+        setResizable(true);
 
         FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("hpUpdate.fxml"));
 

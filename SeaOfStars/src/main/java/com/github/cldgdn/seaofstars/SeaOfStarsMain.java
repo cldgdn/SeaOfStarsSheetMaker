@@ -26,6 +26,7 @@ public class SeaOfStarsMain extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        new Constants();
         FXMLLoader fxmlLoader = new FXMLLoader(SeaOfStarsMain.class.getResource("startScreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Sea Of Stars - Home");

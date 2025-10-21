@@ -9,7 +9,7 @@ public class Origin {
     public final Bonus[] traitBonuses;
 
     public Origin(String ID, String name, String description, Bonus[] traitBonuses) {
-        if (traitBonuses.length != Constants.ORIGIN_BONUSES_AMT)
+        if (traitBonuses.length != Constants.get.ORIGIN_BONUSES_AMT)
             throw new IllegalArgumentException("Origin" + name + " has bad amount of Trait Bonuses");
 
         this.ID = ID;

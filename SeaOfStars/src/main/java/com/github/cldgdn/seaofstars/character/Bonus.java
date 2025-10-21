@@ -2,8 +2,6 @@ package com.github.cldgdn.seaofstars.character;
 
 import com.github.cldgdn.seaofstars.Constants;
 import com.github.cldgdn.seaofstars.LibCache;
-import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
-import javafx.scene.control.Label;
 
 import java.io.IOException;
 

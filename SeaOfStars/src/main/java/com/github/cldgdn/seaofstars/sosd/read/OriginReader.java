@@ -51,7 +51,7 @@ public class OriginReader {
             }
         }
 
-        if (!bonusesFound || bonuses.length != Constants.ORIGIN_BONUSES_AMT) {
+        if (!bonusesFound || bonuses.length != Constants.get.ORIGIN_BONUSES_AMT) {
             throw new BadSOSDFormatException("Incomplete origin.sosd");
         }
 

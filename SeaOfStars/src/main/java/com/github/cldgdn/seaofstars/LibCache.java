@@ -30,7 +30,7 @@ public class LibCache {
                     traits = new Trait[traitFiles.length];
 
                     for (int i = 0; i < traitFiles.length; i++) {
-                        traits[i] = TraitsReader.readSingle(traitFiles[i], false, Constants.ZERO_TRAIT_LEVEL);
+                        traits[i] = TraitsReader.readSingle(traitFiles[i], false, Constants.get.ZERO_TRAIT_LEVEL);
                     }
                 }
             }
@@ -54,7 +54,7 @@ public class LibCache {
                     abilities = new Ability[abilityFiles.length];
 
                     for (int i = 0; i < abilityFiles.length; i++) {
-                        abilities[i] = AbilitiesReader.readSingle(abilityFiles[i], false, Constants.MIN_ABILITY_LEVEL);
+                        abilities[i] = AbilitiesReader.readSingle(abilityFiles[i], false, Constants.get.MIN_ABILITY_LEVEL);
                     }
                 }
             }

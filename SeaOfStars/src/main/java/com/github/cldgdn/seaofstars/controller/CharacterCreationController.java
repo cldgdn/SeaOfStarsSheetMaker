@@ -23,9 +23,9 @@ import java.util.List;
 
 public class CharacterCreationController {
 
-    public int traitPointsLeft = Constants.STARTING_TRAIT_POINTS;
-    public int abilityPointsLeft = Constants.STARTING_ABILITY_POINTS;
-    public int advantagesLeft = Constants.ADVANTAGES_AT_CREATION_AMT;
+    public int traitPointsLeft = Constants.get.STARTING_TRAIT_POINTS;
+    public int abilityPointsLeft = Constants.get.STARTING_ABILITY_POINTS;
+    public int advantagesLeft = Constants.get.ADVANTAGES_AT_CREATION_AMT;
     public Character character = new Character();
     private CharacterInfo info = new CharacterInfo();
     private Trait[] traits;
@@ -161,7 +161,7 @@ public class CharacterCreationController {
     @FXML
     void updateCharacter(ActionEvent event) {
         character.info = getInfo();
-        character.hitPoints = Constants.HIT_POINT_BASE;
+        character.hitPoints = Constants.get.HIT_POINT_BASE;
         character.origin = getOrigin();
         character.background = getBackground();
         character.traits = traits;

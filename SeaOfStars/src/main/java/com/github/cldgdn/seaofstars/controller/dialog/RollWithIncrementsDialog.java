@@ -18,6 +18,7 @@ public class RollWithIncrementsDialog extends Dialog<Integer> {
         character = c;
 
         setTitle("Lancio dadi");
+        setResizable(true);
 
         FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("rollWithIncrementsDialog.fxml"));
 

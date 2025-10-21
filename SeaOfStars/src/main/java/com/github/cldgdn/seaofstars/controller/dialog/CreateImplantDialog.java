@@ -14,6 +14,7 @@ import java.io.IOException;
 public class CreateImplantDialog extends Dialog<Implant> {
     public CreateImplantDialog() {
         setTitle("Sea Of Stars - Creazione Impianto");
+        setResizable(true);
 
         FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("createImplantDialog.fxml"));
 

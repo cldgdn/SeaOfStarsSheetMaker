@@ -4,9 +4,9 @@ import com.github.cldgdn.seaofstars.character.Character;
 
 public class Utils {
     public static String genID(String pref, String name) {
-        String id = pref.substring(0, 3) + "-";
+        String id = pref.substring(0, 3) + "-" + name.replace(" ", "").toLowerCase();
 
-        char[] chars = name.toCharArray();
+        /*char[] chars = name.toCharArray();
         int i = 0, consonants = 0;
 
         for (; i < chars.length; i++) {
@@ -28,8 +28,8 @@ public class Utils {
 
         while (id.length() < 7) {
             id += '_';
-        }
+        }*/
 
-        return id.toLowerCase();
+        return id;
     }
 }

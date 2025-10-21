@@ -53,7 +53,7 @@ public class BackgroundReader {
             }
         }
 
-        if (!bonusesFound || bonuses.length != Constants.BACKGROUND_BONUSES_AMT) {
+        if (!bonusesFound || bonuses.length != Constants.get.BACKGROUND_BONUSES_AMT) {
             throw new BadSOSDFormatException("Incomplete background.sosd or wrong number of bonuses");
         }
 

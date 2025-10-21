@@ -9,7 +9,7 @@ public class Background {
     public final Bonus[] abilityBonuses;
 
     public Background(String ID, String name, String description, Bonus[] abilityBonuses) {
-        if (abilityBonuses.length != Constants.BACKGROUND_BONUSES_AMT)
+        if (abilityBonuses.length != Constants.get.BACKGROUND_BONUSES_AMT)
             throw new IllegalArgumentException("Background " + name + " has bad amount of Trait Bonuses");
 
         this.ID = ID;

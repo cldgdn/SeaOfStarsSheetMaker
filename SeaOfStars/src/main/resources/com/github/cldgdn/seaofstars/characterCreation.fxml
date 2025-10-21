@@ -80,7 +80,7 @@
                            <children>
                               <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="282.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                                  <content>
-                                    <VBox fx:id="traitsVBox" spacing="10.0">
+                                    <VBox fx:id="traitsVBox" alignment="TOP_CENTER" spacing="10.0">
                                        <padding>
                                           <Insets left="10.0" top="10.0" />
                                        </padding>
@@ -110,7 +110,7 @@
                            <children>
                               <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="282.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                                  <content>
-                                    <VBox fx:id="abilitiesVBox" spacing="10.0">
+                                    <VBox fx:id="abilitiesVBox" alignment="TOP_CENTER" spacing="10.0">
                                        <padding>
                                           <Insets left="10.0" top="10.0" />
                                        </padding>

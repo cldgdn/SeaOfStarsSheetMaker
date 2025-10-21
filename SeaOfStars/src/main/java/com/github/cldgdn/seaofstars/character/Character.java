@@ -20,11 +20,11 @@ public class Character {
     public List<Item> items;
     public List<Bonus> otherBonuses;
 
-    public int hitPointsBase = Constants.HIT_POINT_BASE;
+    public int hitPointsBase = Constants.get.HIT_POINT_BASE;
     public int hitPointsMax;
     public int hitPoints;
 
-    public int humanLimitBase = Constants.HUMAN_LIMIT_BASE;
+    public int humanLimitBase = Constants.get.HUMAN_LIMIT_BASE;
     public int humanLimit;
     public int usedHumanLimit;
 
@@ -64,7 +64,7 @@ public class Character {
         usedHumanLimit = 0;
         critical = false;
 
-        if (hitPoints <= Constants.CRITICAL_HP) {
+        if (hitPoints <= Constants.get.CRITICAL_HP) {
             critical = true;
         }
 
@@ -80,12 +80,12 @@ public class Character {
             }
 
             //set critical conditions flag to true if trait went below minimum level (def is <= 1)
-            if (t.computedLevel < Constants.MIN_TRAIT_LEVEL) {
+            if (t.computedLevel < Constants.get.MIN_TRAIT_LEVEL) {
                 critical = true;
             }
             //cap trait to max allowed level (def is 14)
-            else if (t.computedLevel > Constants.MAX_TRAIT_LEVEL) {
-                t.computedLevel = Constants.MAX_TRAIT_LEVEL;
+            else if (t.computedLevel > Constants.get.MAX_TRAIT_LEVEL) {
+                t.computedLevel = Constants.get.MAX_TRAIT_LEVEL;
             }
         }
 
@@ -101,7 +101,7 @@ public class Character {
             }
 
             //clamp ability level between min and max values
-            a.computedLevel = Math.max(Constants.MIN_ABILITY_LEVEL, Math.min(a.computedLevel, Constants.MAX_ABILITY_LEVEL));
+            a.computedLevel = Math.max(Constants.get.MIN_ABILITY_LEVEL, Math.min(a.computedLevel, Constants.get.MAX_ABILITY_LEVEL));
         }
 
         //go through the bonuses that affect HP and HL
@@ -125,12 +125,12 @@ public class Character {
         for (Trait t : traits) {
             //calculate modifier taking into account that, if the character is in critical conditions different traits get buffed or debuffed
             if (t.ID.equals(Constants.RESISTANCE_ID) || t.ID.equals(Constants.RESOLVE_ID)) {
-                t.modifier = (t.computedLevel - Constants.ZERO_TRAIT_LEVEL) + (critical ? Constants.CRITICAL_CONDITION_BUFF : 0);
+                t.modifier = (t.computedLevel - Constants.get.ZERO_TRAIT_LEVEL) + (critical ? Constants.get.CRITICAL_CONDITION_BUFF : 0);
                 //calculates bonus to human limit given by trait if resistance or resolve
-                humanLimit += (t.modifier <= 0) ? (t.modifier) : (t.modifier * Constants.HUMAN_LIMIT_BASE);
+                humanLimit += (t.modifier <= 0) ? (t.modifier) : (t.modifier * Constants.get.HUMAN_LIMIT_BASE);
             }
             else {
-                t.modifier = (t.computedLevel - Constants.ZERO_TRAIT_LEVEL) + (critical ? Constants.CRITICAL_CONDITION_DEBUFF : 0);
+                t.modifier = (t.computedLevel - Constants.get.ZERO_TRAIT_LEVEL) + (critical ? Constants.get.CRITICAL_CONDITION_DEBUFF : 0);
             }
 
             if (t.ID.equals(Constants.RESISTANCE_ID)) {

@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class RollManager {
     public static int rollAndCountIncrements(int abilityLevel, int traitModifier) {
-        int[] rolls = rollDice(abilityLevel, traitModifier, Constants.RISK_DICE_FACES, abilityLevel >= Constants.DICE_EXPLODE_ABILITY_LEVEL);
+        int[] rolls = rollDice(abilityLevel, traitModifier, Constants.get.RISK_DICE_FACES, abilityLevel >= Constants.get.DICE_EXPLODE_ABILITY_LEVEL);
 
         return countIncrements(rolls);
     }
@@ -40,7 +40,7 @@ public class RollManager {
                 break;
 
             //if the high roll picked is already an increment by itself (10 or more), then it is counted as such and the algorythm moves on to the next highest roll
-            if (rolls[curr] >= Constants.INCREMENT_THRESHOLD) {
+            if (rolls[curr] >= Constants.get.INCREMENT_THRESHOLD) {
                 increments++;
                 continue;
             }
@@ -68,7 +68,7 @@ public class RollManager {
 
                     total += rolls[i];
                     currGroup.add(i);
-                    if (total >= Constants.INCREMENT_THRESHOLD) {
+                    if (total >= Constants.get.INCREMENT_THRESHOLD) {
                         //if threshold is reached for the first time, mark the current group as best
                         if (bestGroup == null) {
                             betterFound = true;

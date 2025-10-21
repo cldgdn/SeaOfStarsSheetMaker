@@ -37,8 +37,8 @@ public class RollWithIncrementsController {
         int[] rolls = RollManager.rollDice(
                 ability.computedLevel,
                 trait.modifier,
-                Constants.RISK_DICE_FACES,
-                ability.computedLevel >= Constants.DICE_EXPLODE_ABILITY_LEVEL
+                Constants.get.RISK_DICE_FACES,
+                ability.computedLevel >= Constants.get.DICE_EXPLODE_ABILITY_LEVEL
         );
 
         int increments = RollManager.countIncrements(rolls);

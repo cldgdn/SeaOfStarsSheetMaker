@@ -16,6 +16,7 @@ public class CreateAdvantageDialog extends Dialog<Advantage> {
 
     public CreateAdvantageDialog() {
         setTitle("Sea Of Stars - Creazione Vantaggio");
+        setResizable(true);
 
         FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("createAdvantageDialog.fxml"));
 

@@ -14,6 +14,7 @@ import java.io.IOException;
 public class CreateCharacterDialog extends Dialog<Character> {
     public CreateCharacterDialog() {
         setTitle("Sea of Stars - Creazione Personaggio");
+        setResizable(true);
 
         FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("characterCreation.fxml"));
 

@@ -71,7 +71,7 @@ public class AdvantageElementController {
             }
         }
         else {
-            controller.advantagesLeft += (controller.advantagesLeft >= Constants.ADVANTAGES_AT_CREATION_AMT) ? 0 : 1;
+            controller.advantagesLeft += (controller.advantagesLeft >= Constants.get.ADVANTAGES_AT_CREATION_AMT) ? 0 : 1;
             controller.selectedAdvantages.remove(advantage);
         }
 

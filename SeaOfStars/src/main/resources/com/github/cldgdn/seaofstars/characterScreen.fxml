@@ -147,7 +147,7 @@
                         </Label>
                         <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="36.0">
                            <content>
-                              <VBox fx:id="traitsVBox" spacing="10.0">
+                              <VBox fx:id="traitsVBox" alignment="TOP_CENTER" spacing="10.0">
                                  <padding>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
@@ -165,7 +165,7 @@
                         </Label>
                         <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="36.0">
                            <content>
-                              <VBox fx:id="abilitiesVBox" spacing="10.0">
+                              <VBox fx:id="abilitiesVBox" alignment="TOP_CENTER" spacing="10.0">
                                  <padding>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
