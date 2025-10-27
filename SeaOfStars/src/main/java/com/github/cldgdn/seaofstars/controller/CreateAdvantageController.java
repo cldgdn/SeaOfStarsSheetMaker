@@ -101,7 +101,7 @@ public class CreateAdvantageController {
     }
 
     public void initialize() {
-        costValueCombo.getItems().addAll(new Integer[]{1, 2, 3, 4});
+        costValueCombo.getItems().addAll(new Integer[]{0, 1, 2, 3, 4});
     }
 
     public Advantage getAdvantage() {

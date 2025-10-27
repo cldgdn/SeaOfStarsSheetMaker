@@ -1,21 +1,18 @@
 package com.github.cldgdn.seaofstars.controller;
 
 import com.github.cldgdn.seaofstars.Constants;
-import com.github.cldgdn.seaofstars.LibCache;
 import com.github.cldgdn.seaofstars.RollManager;
-import com.github.cldgdn.seaofstars.character.Ability;
-import com.github.cldgdn.seaofstars.character.Bonus;
+import com.github.cldgdn.seaofstars.character.*;
 import com.github.cldgdn.seaofstars.character.Character;
-import com.github.cldgdn.seaofstars.character.Trait;
-import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
 
-import java.io.IOException;
 import java.util.Arrays;
 
 public class RollWithIncrementsController {
@@ -25,18 +22,23 @@ public class RollWithIncrementsController {
     @FXML private VBox activeAbilityBonusesVBox;
     @FXML private VBox activeTraitBonusesVBox;
     @FXML private Label rollResultLabel;
+    @FXML private ComboBox<Integer> bonusDiceBox;
 
     public Character character;
     public int lastIncrementsRolled = 0;
+
+    private int activeAbilityBonusTotal = 0;
+    private int activeTraitBonusTotal = 0;
 
     @FXML
     void callRoll(ActionEvent event) {
         Trait trait = traitCombo.getSelectionModel().getSelectedItem();
         Ability ability = abilityCombo.getSelectionModel().getSelectedItem();
+        int bonusDice = bonusDiceBox.getSelectionModel().getSelectedItem();
 
         int[] rolls = RollManager.rollDice(
-                ability.computedLevel,
-                trait.modifier,
+                ability.computedLevel + activeAbilityBonusTotal + bonusDice,
+                trait.modifier + activeTraitBonusTotal,
                 Constants.get.RISK_DICE_FACES,
                 ability.computedLevel >= Constants.get.DICE_EXPLODE_ABILITY_LEVEL
         );
@@ -45,7 +47,12 @@ public class RollWithIncrementsController {
 
         lastIncrementsRolled = increments;
 
-        rollResultLabel.setText(Arrays.toString(rolls) + " -> " + increments + " incrementi");
+        rollResultLabel.setText(
+                trait.name + (trait.modifier + activeTraitBonusTotal < 0 ? " " : " +") + (trait.modifier + activeTraitBonusTotal) + " + " +
+                ability.name + " " + (ability.computedLevel + activeAbilityBonusTotal) +
+                "(" + (bonusDice < 0 ? " " : " +") + bonusDice + ") -> " +
+                Arrays.toString(rolls) + " -> " + increments + " incrementi"
+        );
     }
 
     @FXML
@@ -56,7 +63,25 @@ public class RollWithIncrementsController {
 
         for (Bonus b : character.traitBonuses) {
             if (b.targetID.equals(t.ID)) {
-                activeTraitBonusesVBox.getChildren().add(new Label(b.toString()));
+                Label l = new Label(b.toString() + " - " + findSource(b));
+                if (b.isConditional) {
+                    HBox hBox = new HBox();
+                    CheckBox cb = new CheckBox();
+
+                    cb.setOnAction(actionEvent -> {
+                        if (cb.isSelected()) {
+                            activeTraitBonusTotal += b.value;
+                        } else {
+                            activeTraitBonusTotal -= b.value;
+                        }
+                    });
+
+                    hBox.setSpacing(5);
+                    hBox.getChildren().addAll(cb, l);
+                    activeTraitBonusesVBox.getChildren().add(hBox);
+                } else {
+                    activeTraitBonusesVBox.getChildren().add(l);
+                }
             }
         }
     }
@@ -69,9 +94,52 @@ public class RollWithIncrementsController {
 
         for (Bonus b : character.abilityBonuses) {
             if (b.targetID.equals(a.ID)) {
-                activeAbilityBonusesVBox.getChildren().add(new Label(b.toString()));
+                Label l = new Label(b.toString() + " - " + findSource(b));
+                if (b.isConditional) {
+                    HBox hBox = new HBox();
+                    CheckBox cb = new CheckBox();
+
+                    cb.setOnAction(actionEvent -> {
+                        if (cb.isSelected()) {
+                            activeAbilityBonusTotal += b.value;
+                        } else {
+                            activeAbilityBonusTotal -= b.value;
+                        }
+                    });
+
+                    hBox.setSpacing(5);
+                    hBox.getChildren().addAll(cb, l);
+                    activeAbilityBonusesVBox.getChildren().add(hBox);
+                } else {
+                    activeAbilityBonusesVBox.getChildren().add(l);
+                }
             }
         }
+    }
+
+    private String findSource(Bonus b) {
+        String sourceName = "none";
+        if (b.sourceID.startsWith("adv")) {
+            for (Advantage a : character.advantages) {
+                if (a.ID.equals(b.sourceID)) {
+                    sourceName = a.name;
+                    break;
+                }
+            }
+        } else if (b.sourceID.startsWith("imp")) {
+            for (Implant i : character.implants) {
+                if (i.ID.equals(b.sourceID)) {
+                    sourceName = i.name;
+                    break;
+                }
+            }
+        } else if (b.sourceID.startsWith("bkg")) {
+            sourceName = character.background.name;
+        } else if (b.sourceID.startsWith("ori")){
+            sourceName = character.origin.name;
+        }
+
+        return sourceName;
     }
 
     public void setCharacter(Character character) {this.character = character;}
@@ -80,7 +148,7 @@ public class RollWithIncrementsController {
         abilityCombo.setConverter(new StringConverter<Ability>() {
             @Override
             public String toString(Ability ability) {
-                return ability == null ? null : ability.name;
+                return ability == null ? null : ability.name + " (" + ability.computedLevel + ")";
             }
 
             @Override
@@ -92,7 +160,7 @@ public class RollWithIncrementsController {
         traitCombo.setConverter(new StringConverter<Trait>() {
             @Override
             public String toString(Trait trait) {
-                return trait == null ? null : trait.name;
+                return trait == null ? null : trait.name + " (" + (trait.modifier < 0 ? "" : "+") + trait.modifier + ")";
             }
 
             @Override
@@ -104,6 +172,7 @@ public class RollWithIncrementsController {
         try {
             traitCombo.getItems().addAll(character.traits);
             abilityCombo.getItems().addAll(character.abilities);
+            bonusDiceBox.getItems().addAll(new Integer[]{4, 3, 2, 1, 0, -1, -2, -3, -4});
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

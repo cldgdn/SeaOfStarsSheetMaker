@@ -1,0 +1,5 @@
+name : Stomaco di Ferro
+description : Cibi avariati non hanno mai effetti negativi sul personaggio, che invece ne trae normale sostentamento. Il personaggio è inoltre molto resistente ad alcol ed altre sostanze inebrianti. (Il Vantaggio si applica sempre tranne nel caso di veleni e simili)
+isPassive : true
+heroPointCost : 0
+# LIST

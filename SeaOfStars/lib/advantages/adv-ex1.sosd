@@ -6,8 +6,8 @@ heroPointCost : 3
 # BONUS
 targetID : abl-aim
 value : 2
-isConditional : false
+isConditional : true
 # BONUS
 targetID : trt-grc
 value : 3
-isConditional : false
+isConditional : true

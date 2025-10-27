@@ -74,7 +74,7 @@ public class Character {
 
             //for each trait bonus, check if it is for this specific trait and in that case add it to the computed trait level
             for (Bonus b : traitBonuses) {
-                if (t.ID.equals(b.targetID)) {
+                if (t.ID.equals(b.targetID) && !b.isConditional) {
                     t.computedLevel += b.value;
                 }
             }

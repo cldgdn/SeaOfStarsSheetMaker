@@ -2,6 +2,7 @@ package com.github.cldgdn.seaofstars.controller;
 
 import com.github.cldgdn.seaofstars.SeaOfStarsMain;
 import com.github.cldgdn.seaofstars.sosd.read.CharacterReader;
+import com.github.cldgdn.seaofstars.sosd.write.CharacterWriter;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,6 +38,13 @@ public class CharacterElementController {
             Stage stage = new Stage();
             stage.setTitle("Sea Of Stars - " + characterNameField.getText());
             stage.setScene(new Scene(root));
+            stage.setOnCloseRequest(e -> {
+                try {
+                    CharacterWriter.write(controller.character, "characters\\" + controller.character.info.name.replace(" ", "_"));
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
             stage.show();
 
         } catch (IOException | BadSOSDFormatException e) {

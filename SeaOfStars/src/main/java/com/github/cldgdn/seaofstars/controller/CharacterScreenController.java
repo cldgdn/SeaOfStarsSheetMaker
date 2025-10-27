@@ -15,13 +15,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class CharacterScreenController {
 
-    private Character character = null;
+    public Character character = null;
     private final String[] moneyNames = new String[]{"SUNC", "Crediti", "Sunnies"};
 
     @FXML private VBox abilitiesVBox;
@@ -47,14 +50,14 @@ public class CharacterScreenController {
     @FXML
     void refreshCharacter(ActionEvent event) {
         try {
-            Character c = CharacterReader.read(character.info.name);
-
             //TODO: make it so each vbox drops the elements from before so that setCharacter can put in the new ones
             advantagesVBox.getChildren().clear();
             implantsVBox.getChildren().clear();
             itemsVBox.getChildren().clear();
+            originVBox.getChildren().clear();
+            backgroundVBox.getChildren().clear();
 
-            setCharacter(c);
+            setCharacter(character);
         } catch (BadSOSDFormatException | IOException e) {
             throw new RuntimeException(e);
         }
@@ -72,7 +75,11 @@ public class CharacterScreenController {
     @FXML
     void rollWithIncrements(ActionEvent event) {
         RollWithIncrementsDialog dialog = new RollWithIncrementsDialog(character);
-        dialog.showAndWait();
+        Window window = dialog.getDialogPane().getScene().getWindow();
+        if (window instanceof Stage stage) {
+            stage.initModality(Modality.NONE);
+        }
+        dialog.show();
     }
 
 
