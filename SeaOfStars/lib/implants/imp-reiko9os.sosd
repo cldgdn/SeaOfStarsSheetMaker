@@ -1,0 +1,12 @@
+name : Reiko9 OS
+description : OS neurale prodotto dalla divisione SR&D di Reiko NERE, versione 9. Fornisce tutte le funzionalità di base ed avanzate. Permette il coordinamento di protesi ed impianti anche non conformi all'anatomia umana naturale grazie ad uno strato TIAI e connessione diretta al SNC. 
+location : Nuca
+humanCost : 2
+# BONUS
+targetID : chr-lmt
+value : 4
+isConditional : false
+# BONUS
+targetID : chr-lmt
+value : 4
+isConditional : false

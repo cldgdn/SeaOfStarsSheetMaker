@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class BackgroundWriter {
     public static void write(Background background, String characterPath) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "\\background.sosd"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "/background.sosd"))) {
             writer.write("id : " + background.ID + "\n");
             writer.write("name : " + background.name + "\n");
             writer.write("description : " + background.description + "\n");

@@ -21,7 +21,7 @@ public class LibCache {
 
     public static Trait[] getTraits(boolean reset) throws BadSOSDFormatException, IOException {
         if (reset || traits == null) {
-            File traitsFolder = new File("lib\\traits");
+            File traitsFolder = new File("lib/traits");
 
             if (traitsFolder.exists() && traitsFolder.isDirectory()) {
                 File[] traitFiles = traitsFolder.listFiles();
@@ -45,7 +45,7 @@ public class LibCache {
 
     public static Ability[] getAbilities(boolean reset) throws BadSOSDFormatException, IOException {
         if (reset || abilities == null) {
-            File abilitiesFolder = new File("lib\\abilities");
+            File abilitiesFolder = new File("lib/abilities");
 
             if (abilitiesFolder.exists() && abilitiesFolder.isDirectory()) {
                 File[] abilityFiles = abilitiesFolder.listFiles();
@@ -69,7 +69,7 @@ public class LibCache {
 
     public static Advantage[] getAdvantages(boolean reset) throws BadSOSDFormatException, IOException {
         if (reset || advantages == null) {
-            File advantagesFolder = new File("lib\\advantages");
+            File advantagesFolder = new File("lib/advantages");
 
             if (advantagesFolder.exists() && advantagesFolder.isDirectory()) {
                 File[] advantageFiles = advantagesFolder.listFiles();
@@ -93,7 +93,7 @@ public class LibCache {
 
     public static Implant[] getImplants(boolean reset) throws BadSOSDFormatException, IOException {
         if (reset || implants == null) {
-            File implantsFolder = new File("lib\\implants");
+            File implantsFolder = new File("lib/implants");
 
             if (implantsFolder.exists() && implantsFolder.isDirectory()) {
                 File[] implantFiles = implantsFolder.listFiles();

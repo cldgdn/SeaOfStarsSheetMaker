@@ -31,7 +31,7 @@ public class CharacterReader {
         Character character = new Character();
         boolean hpFound = false;
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(characterPath + "\\otherStats.sosd"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(characterPath + "/otherStats.sosd"))) {
             String line;
 
             while ((line = reader.readLine()) != null) {

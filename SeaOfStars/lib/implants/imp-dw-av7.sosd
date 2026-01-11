@@ -1,0 +1,16 @@
+name : DW-A v7
+description : Braccio cibernetico prodotto da DrakeWatch, versione 7. Protesi anatomica che sostituisce l'intero braccio e parte della spalla. Necessita di un NOS di livello medio. Fornisce la capacità di regolare la forza esercitata, ed è in grado di effettuare movimenti anche estremamente rapidi. 
+location : Braccio
+humanCost : 2
+# BONUS
+targetID : trt-vig
+value : 2
+isConditional : false
+# BONUS
+targetID : abl-atl
+value : 1
+isConditional : false
+# BONUS
+targetID : abl-fgt
+value : 1
+isConditional : false

@@ -53,7 +53,7 @@ public class Constants {
     public Constants() {
         get = this;
 
-        try (BufferedReader reader = new BufferedReader(new FileReader("lib\\config"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("lib/config"))) {
             String line;
 
             while ((line = reader.readLine()) != null) {

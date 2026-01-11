@@ -12,13 +12,13 @@ import java.util.List;
 
 public class ImplantsReader {
     public static List<Implant> read(String characterPath) throws BadSOSDFormatException, IOException {
-        File implantsFolder = new File(characterPath + "\\implants");
+        File implantsFolder = new File(characterPath + "/implants");
         List<Implant> implants = new ArrayList<>();
 
         if (implantsFolder.exists() && implantsFolder.isDirectory()) {
             File[] files = implantsFolder.listFiles();
             if (files == null || files.length == 0) {
-                throw new BadSOSDFormatException("No implant files in " + characterPath + "\\implants folder. (at least empty lib.sosd required)");
+                throw new BadSOSDFormatException("No implant files in " + characterPath + "/implants folder. (at least empty lib.sosd required)");
             }
 
             for (File file : files) {
@@ -27,7 +27,7 @@ public class ImplantsReader {
                         String line;
 
                         while ((line = reader.readLine()) != null) {
-                            Implant i = readSingle(new File("lib\\implants\\" + line + ".sosd"));
+                            Implant i = readSingle(new File("lib/implants/" + line + ".sosd"));
                             i.isCustom = false;
                             implants.add(i);
                         }

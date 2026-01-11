@@ -9,13 +9,13 @@ import java.util.List;
 
 public class TraitsReader {
     public static Trait[] read(String characterPath) throws BadSOSDFormatException, IOException {
-        File traitsFolder = new File(characterPath + "\\traits");
+        File traitsFolder = new File(characterPath + "/traits");
         List<Trait> traits = new ArrayList<>();
 
         if (traitsFolder.exists() && traitsFolder.isDirectory()) {
             File[] files = traitsFolder.listFiles();
             if (files == null || files.length == 0) {
-                throw new BadSOSDFormatException("No trait files in " + characterPath + "\\traits folder");
+                throw new BadSOSDFormatException("No trait files in " + characterPath + "/traits folder");
             }
 
             for (File f : files) {
@@ -26,7 +26,7 @@ public class TraitsReader {
                         while ((line = reader.readLine()) != null) {
                             String[] words = line.split(" : ");
 
-                            traits.add(readSingle(new File("lib\\traits\\" + words[0] + ".sosd"), false, Integer.parseInt(words[1])));
+                            traits.add(readSingle(new File("lib/traits/" + words[0] + ".sosd"), false, Integer.parseInt(words[1])));
                         }
                     }
                 }

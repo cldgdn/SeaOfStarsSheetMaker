@@ -9,7 +9,7 @@ import java.io.IOException;
 public class InfoWriter {
 
     public static void write(CharacterInfo info, String characterPath) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "\\info.sosd"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "/info.sosd"))) {
             writer.write("name : " + info.name + "\n");
             writer.write("playerName : " + info.playerName + "\n");
             writer.write("age : " + info.age + "\n");

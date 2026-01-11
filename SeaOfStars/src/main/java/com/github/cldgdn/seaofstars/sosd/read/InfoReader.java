@@ -15,7 +15,7 @@ public class InfoReader {
                 moneyFound = false;
 
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(characterPath + "\\info.sosd"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(characterPath + "/info.sosd"))) {
             String line;
 
             while((line = reader.readLine()) != null) {

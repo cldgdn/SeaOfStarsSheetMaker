@@ -12,12 +12,12 @@ import java.util.List;
 
 public class ItemsWriter {
     public static void write(List<Item> items, String characterPath) throws IOException {
-        Path dirPath = Path.of(characterPath + "\\items");
+        Path dirPath = Path.of(characterPath + "/items");
 
         Files.createDirectories(dirPath);
 
         for (Item item : items) {
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "\\items\\" + item.ID + ".sosd"))) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "/items/" + item.ID + ".sosd"))) {
                 writer.write("name : " + item.name + "\n");
                 writer.write("description : " + item.description + "\n");
                 writer.write("amount : " + item.amount);

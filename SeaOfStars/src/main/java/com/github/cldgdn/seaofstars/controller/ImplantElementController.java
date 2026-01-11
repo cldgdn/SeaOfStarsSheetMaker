@@ -47,9 +47,6 @@ public class ImplantElementController {
         costLabel.setText("Costo umano: " + implant.humanCost);
         locationLabel.setText("Posizione: " + implant.location);
 
-        Trait[] traits = LibCache.getTraits();
-        Ability[] abilities = LibCache.getAbilities();
-
         for (Bonus b : implant.bonuses) {
             Label currBonus = new Label();
 

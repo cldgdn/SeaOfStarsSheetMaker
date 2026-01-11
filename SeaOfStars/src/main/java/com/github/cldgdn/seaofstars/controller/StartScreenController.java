@@ -53,14 +53,14 @@ public class StartScreenController {
                 character.init();
                 character.hitPoints = character.hitPointsMax;
 
-                CharacterWriter.write(character, "characters\\" + character.info.name);
+                CharacterWriter.write(character, "characters/" + character.info.name);
 
                 FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("characterElement.fxml"));
                 Node element = loader.load();
 
                 CharacterElementController cec = loader.getController();
 
-                cec.setCharacter(character.info.name, character.info.playerName, new File("character\\" + character.info.name));
+                cec.setCharacter(character.info.name, character.info.playerName, new File("character/" + character.info.name));
 
                 charactersVBox.getChildren().add(element);
             } catch (IOException e) {

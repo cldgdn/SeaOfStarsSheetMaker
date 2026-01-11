@@ -1,0 +1,8 @@
+name : NOS Base
+description : Un Sistema Operativo Neurale di base, buono a controllare qualsiasi impianto puramente sostitutivo (protesi semplici).
+location : Nuca
+humanCost : 0
+# BONUS
+targetID : chr-lmt
+value : 1
+isConditional : false

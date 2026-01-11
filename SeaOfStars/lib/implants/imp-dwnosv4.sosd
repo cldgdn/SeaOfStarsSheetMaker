@@ -1,0 +1,8 @@
+name : DWNOS v4
+description : OS neurale prodotto da DrakeWatch, versione 4. Fornisce tutte le funzionalità di base e specifiche funzionalità avanzate, quali: controllo e coordinazione di protesi ed impianti umanoidi con funzioni estranee.
+location : Nuca
+humanCost : 1
+# BONUS
+targetID : chr-lmt
+value : 4
+isConditional : false

@@ -11,11 +11,11 @@ import java.util.List;
 
 public class AdvantagesWriter {
     public static void write(List<Advantage> advantages, String characterPath) throws IOException {
-        Path dirPath = Path.of(characterPath + "\\advantages");
+        Path dirPath = Path.of(characterPath + "/advantages");
 
         Files.createDirectories(dirPath);
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "\\advantages\\lib.sosd"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "/advantages/lib.sosd"))) {
             writer.write("");
         }
 
@@ -26,7 +26,7 @@ public class AdvantagesWriter {
 
     public static void writeSingle(Advantage a, String characterPath) throws IOException {
         if (a.isCustom) {
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "\\advantages\\" + a.ID + ".sosd"))) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "/advantages/" + a.ID + ".sosd"))) {
                 writer.write("name : " + a.name + "\n");
                 writer.write("description : " + a.description + "\n");
                 writer.write("isPassive : " + a.isPassive + "\n");
@@ -37,7 +37,7 @@ public class AdvantagesWriter {
             }
         }
         else {
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "\\advantages\\lib.sosd", true))) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "/advantages/lib.sosd", true))) {
                 writer.write(a.ID + "\n");
             }
         }

@@ -40,7 +40,7 @@ public class CharacterElementController {
             stage.setScene(new Scene(root));
             stage.setOnCloseRequest(e -> {
                 try {
-                    CharacterWriter.write(controller.character, "characters\\" + controller.character.info.name.replace(" ", "_"));
+                    CharacterWriter.write(controller.character, "characters/" + controller.character.info.name.replace(" ", "_"));
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }

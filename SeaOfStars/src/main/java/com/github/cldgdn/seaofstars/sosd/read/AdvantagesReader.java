@@ -12,13 +12,13 @@ import java.util.List;
 
 public class AdvantagesReader {
     public static List<Advantage> read(String characterPath) throws BadSOSDFormatException, IOException {
-        File advantagesFolder = new File(characterPath + "\\advantages");
+        File advantagesFolder = new File(characterPath + "/advantages");
         List<Advantage> advantages = new ArrayList<>();
 
         if (advantagesFolder.exists() && advantagesFolder.isDirectory()) {
             File[] files = advantagesFolder.listFiles();
             if (files == null || files.length == 0) {
-                throw new BadSOSDFormatException("No advantage files in " + characterPath + "\\advantages folder");
+                throw new BadSOSDFormatException("No advantage files in " + characterPath + "/advantages folder");
             }
 
             for (File file : files) {
@@ -27,7 +27,7 @@ public class AdvantagesReader {
                         String line;
 
                         while ((line = reader.readLine()) != null) {
-                            Advantage a = readSingle(new File("lib\\advantages\\" + line + ".sosd"));
+                            Advantage a = readSingle(new File("lib/advantages/" + line + ".sosd"));
                             a.isCustom = false;
                             advantages.add(a);
                         }

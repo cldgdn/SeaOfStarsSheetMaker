@@ -22,7 +22,7 @@ public class OriginReader {
         int bonusesFoundAmt = 0;
 
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(characterPath + "\\origin.sosd"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(characterPath + "/origin.sosd"))) {
             String line;
 
             while ((line = reader.readLine()) != null) {

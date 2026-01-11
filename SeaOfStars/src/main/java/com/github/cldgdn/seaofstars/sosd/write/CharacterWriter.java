@@ -27,7 +27,7 @@ public class CharacterWriter {
     }
 
     private static void writeOtherInfo(Character character, String characterPath) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "\\otherStats.sosd"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "/otherStats.sosd"))) {
             writer.write("hitPoints : " + character.hitPoints + "\n");
         }
     }

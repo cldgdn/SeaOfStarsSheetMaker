@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ItemsReader {
     public static List<Item> read(String characterPath) throws BadSOSDFormatException, IOException {
-        File itemsFolder = new File(characterPath + "\\items");
+        File itemsFolder = new File(characterPath + "/items");
         List<Item> items = new ArrayList<>();
 
         if (itemsFolder.exists() && itemsFolder.isDirectory()) {

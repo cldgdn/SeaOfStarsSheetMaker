@@ -24,7 +24,7 @@ public class BackgroundReader {
         int bonusesFoundAmt = 0;
 
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(characterPath + "\\background.sosd"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(characterPath + "/background.sosd"))) {
             String line;
 
             while ((line = reader.readLine()) != null) {

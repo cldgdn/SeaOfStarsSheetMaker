@@ -12,13 +12,13 @@ import java.util.List;
 
 public class AbilitiesReader {
     public static Ability[] read(String characterPath) throws BadSOSDFormatException, IOException {
-        File abilitiesFolder = new File(characterPath + "\\abilities");
+        File abilitiesFolder = new File(characterPath + "/abilities");
         List<Ability> abilities = new ArrayList<>();
 
         if (abilitiesFolder.exists() && abilitiesFolder.isDirectory()) {
             File[] files = abilitiesFolder.listFiles();
             if (files == null || files.length == 0) {
-                throw new BadSOSDFormatException("No trait files in " + characterPath + "\\abilities folder");
+                throw new BadSOSDFormatException("No trait files in " + characterPath + "/abilities folder");
             }
 
             for (File f : files) {
@@ -29,7 +29,7 @@ public class AbilitiesReader {
                         while ((line = reader.readLine()) != null) {
                             String[] words = line.split(" : ");
 
-                            abilities.add(readSingle(new File("lib\\abilities\\" + words[0] + ".sosd"), false, Integer.parseInt(words[1])));
+                            abilities.add(readSingle(new File("lib/abilities/" + words[0] + ".sosd"), false, Integer.parseInt(words[1])));
                         }
                     }
                 }

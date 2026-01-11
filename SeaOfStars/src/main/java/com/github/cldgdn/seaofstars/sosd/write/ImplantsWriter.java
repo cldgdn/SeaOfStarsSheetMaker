@@ -11,11 +11,11 @@ import java.util.List;
 
 public class ImplantsWriter {
     public static void write(List<Implant> implants, String characterPath) throws IOException {
-        Path dirPath = Path.of(characterPath + "\\implants");
+        Path dirPath = Path.of(characterPath + "/implants");
 
         Files.createDirectories(dirPath);
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "\\implants\\lib.sosd"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "/implants/lib.sosd"))) {
             writer.write("");
         }
 
@@ -26,17 +26,17 @@ public class ImplantsWriter {
 
     public static void writeSingle(Implant i, String characterPath) throws IOException{
         if (i.isCustom) {
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "\\implants\\" + i.ID + ".sosd"))) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "/implants/" + i.ID + ".sosd"))) {
                 writer.write("name : " + i.name + "\n");
                 writer.write("description : " + i.description + "\n");
                 writer.write("location : " + i.location + "\n");
                 writer.write("humanCost : " + i.humanCost + "\n");
-
+                writer.write("# LIST\n");
                 BonusWriter.writeBonuses(i.bonuses, writer);
             }
         }
         else {
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "\\implants\\lib.sosd", true))) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "/implants/lib.sosd", true))) {
                 writer.write(i.ID + "\n");
             }
         }
