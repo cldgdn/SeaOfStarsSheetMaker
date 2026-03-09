@@ -28,7 +28,7 @@ public class AdvantagesWriter {
         if (a.isCustom) {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "/advantages/" + a.ID + ".sosd"))) {
                 writer.write("name : " + a.name + "\n");
-                writer.write("description : " + a.description + "\n");
+                writer.write("description : " + a.description.replace("\n", "\\n") + "\n");
                 writer.write("isPassive : " + a.isPassive + "\n");
                 writer.write("heroPointCost : " + a.heroPointCost + "\n");
                 writer.write("# LIST\n");

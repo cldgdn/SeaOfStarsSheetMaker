@@ -62,7 +62,7 @@ public class AdvantagesReader {
                     nameFound = true;
                 }
                 else if (line.startsWith("description : ") && !descFound) {
-                    a.description = line.substring("description : ".length());
+                    a.description = line.substring("description : ".length()).replace("\\n", "\n");
                     descFound = true;
                 }
                 else if (line.startsWith("isPassive : ") && !passiveFound) {

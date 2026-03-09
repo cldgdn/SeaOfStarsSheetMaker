@@ -28,7 +28,7 @@ public class AbilitiesWriter {
         if (a.isCustom) {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "/abilities/" + a.ID + ".sosd"))) {
                 writer.write("name : " + a.name + "\n");
-                writer.write("description : " + a.description + "\n");
+                writer.write("description : " + a.description.replace("\n", "\\n") + "\n");
                 writer.write("baseLevel : " + a.baseLevel);
             }
         }

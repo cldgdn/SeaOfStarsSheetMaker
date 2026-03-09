@@ -111,7 +111,7 @@ public class CreateAdvantageController {
 
         a.name = nameField.getText();
         a.ID = Utils.genID("adv", a.name);
-        a.description = descriptionArea.getText().replace("\n", " ");
+        a.description = descriptionArea.getText();
 
         if (isPassiveBox.isSelected()) {
             a.isPassive = true;
