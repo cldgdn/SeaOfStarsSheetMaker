@@ -1,0 +1,16 @@
+id : bkg-rockergirl
+name : Rockergirl
+description : Da un dive bar ad un cimitero ed infine il parcheggio di un edificio residenziale. Questa � la tipica scaletta di chi � ancora convinto che il rock non sia morto. Nonostante ci�, molti sarebbero sorpresi dal tipo di conoscenze che si possono fare quando la propria band ottiene l'attenzione delle giuste persone.
+# LIST
+# BONUS
+targetID : abl-cnv
+value : 1
+isConditional : false
+# BONUS
+targetID : abl-exh
+value : 2
+isConditional : false
+# BONUS
+targetID : abl-mel
+value : -1
+isConditional : false

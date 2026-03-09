@@ -1,0 +1,12 @@
+id : ori-newchibacity
+name : New Chiba City
+description : Le strade di Night City, o New Chiba per i gaijin, non ammettono che qualcuno sopravviva a lungo senza una mente salda e una bocca larga. A New Chiba chi conta davvero tra gli sfigati del 99% non sono i borg-ganger armati fino ai denti, ma i pochi dotati del carisma necessario a convincere questi ultimi ad ignorarli.
+# LIST
+# BONUS
+targetID : trt-pan
+value : 1
+isConditional : false
+# BONUS
+targetID : trt-rsv
+value : 1
+isConditional : false

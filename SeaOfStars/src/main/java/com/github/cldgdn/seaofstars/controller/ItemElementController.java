@@ -1,0 +1,54 @@
+package com.github.cldgdn.seaofstars.controller;
+
+import com.github.cldgdn.seaofstars.character.Item;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.HBox;
+
+public class ItemElementController {
+    private Item item;
+    private CharacterCreationController controller;
+
+    @FXML private Button addButton;
+    @FXML private Label amtLabel;
+    @FXML private HBox bonusesHBox;
+    @FXML private TextArea descriptionArea;
+    @FXML private Label nameLabel;
+    @FXML private Button remButton;
+
+    @FXML
+    void changeItemAmount(ActionEvent event) {
+        Object source = event.getSource();
+
+        if (source instanceof Button) {
+            Button b = (Button) source;
+
+            if (b == addButton) {
+                System.out.println("Increasing amount to " + (item.amount + 1));
+                item.amount++;
+            }
+            else if (b == remButton) {
+                System.out.println("Decreasing amount to " + (item.amount - 1));
+                item.amount--;
+            }
+        }
+
+        amtLabel.setText("Quantità: " + item.amount);
+    }
+
+    public void setController(CharacterCreationController controller) {
+        this.controller = controller;
+    }
+
+    public void setItem(Item i) {
+        this.item = i;
+
+        nameLabel.setText(item.name);
+        descriptionArea.setText(item.description);
+        amtLabel.setText("Quantità: " + item.amount);
+    }
+}

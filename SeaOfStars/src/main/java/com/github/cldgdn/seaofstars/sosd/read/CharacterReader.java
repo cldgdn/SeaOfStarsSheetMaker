@@ -20,6 +20,7 @@ public class CharacterReader {
             character.abilities = AbilitiesReader.read(characterPath);
             character.advantages = AdvantagesReader.read(characterPath);
             character.implants = ImplantsReader.read(characterPath);
+            character.items = ItemsReader.read(characterPath);
 
             return character;
         }

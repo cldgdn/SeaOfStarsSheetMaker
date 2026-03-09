@@ -1,0 +1,21 @@
+name : Gold Digger
+description : Quando si trova ad un evento sociale, il personaggio è in grado, tramite conoscenze, fama o puro carisma, di infilarsi in un gruppo di corporativi anche di alto livello con facilità se spende un Punto Eroe. Se spende un ulteriore PE, può scegliere di essere convincere gli altri ad abbassare la guardia e, potenzialmente, rivelare segreti. Altrimenti, il secondo PE può essere utilizzato per ottenere un bonus ad una dell proprie abilità sociali.
+isPassive : false
+heroPointCost : 1
+# LIST
+# BONUS
+targetID : abl-cnv
+value : 2
+isConditional : true
+# BONUS
+targetID : abl-emp
+value : 2
+isConditional : true
+# BONUS
+targetID : abl-exh
+value : 2
+isConditional : true
+# BONUS
+targetID : abl-int
+value : 2
+isConditional : true

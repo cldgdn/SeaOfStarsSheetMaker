@@ -1,0 +1,13 @@
+name : LW HyperLung
+description : Polmoni cibernetici anatomici prodotti da LifeWire. Necessitano di un OS basico per poter essere utilizzati. Migliorano di molto la capacit� fisica grazie alla migliore ossigenazione del sangue e capacit� estesa fino a 8 minuti di apnea.
+location : Polmoni
+humanCost : 2
+# LIST
+# BONUS
+targetID : trt-rst
+value : 1
+isConditional : false
+# BONUS
+targetID : abl-atl
+value : 2
+isConditional : false

@@ -1,0 +1,9 @@
+name : Techie
+description : Il personaggio può spendere un Punto Eroe per effettuare delle riparazioni sulla maggior parte degli oggetti. Nel caso di oggetti troppo complessi o danni eccessivi, il PE speso diventa un bonus al Rischio di riparazione.
+isPassive : false
+heroPointCost : 1
+# LIST
+# BONUS
+targetID : abl-rep
+value : 2
+isConditional : true

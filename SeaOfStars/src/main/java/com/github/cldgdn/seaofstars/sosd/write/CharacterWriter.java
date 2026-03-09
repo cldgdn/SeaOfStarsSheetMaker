@@ -24,6 +24,7 @@ public class CharacterWriter {
         AbilitiesWriter.write(character.abilities, characterPath);
         AdvantagesWriter.write(character.advantages, characterPath);
         ImplantsWriter.write(character.implants, characterPath);
+        ItemsWriter.write(character.items, characterPath);
     }
 
     private static void writeOtherInfo(Character character, String characterPath) throws IOException {

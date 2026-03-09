@@ -1,0 +1,5 @@
+name : Affascinare
+description : Spendendo un Punto Eroe, il personaggio può catturare l'attenzione di un altro, che si concentrerà solo su di lui finché egli continuerà ad interagirvi.
+isPassive : false
+heroPointCost : 1
+# LIST

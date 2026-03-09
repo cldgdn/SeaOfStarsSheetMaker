@@ -1,0 +1,5 @@
+name : Silverhand
+description : Il carisma del personaggio � tale da renderlo in grado di convincere gli altri a seguirlo nelle missioni pi� folli e disperate, spendendo due Punti Eroe per far cambiare idea a qualcuno che si sia rifiutato di assecondarlo.
+isPassive : false
+heroPointCost : 2
+# LIST

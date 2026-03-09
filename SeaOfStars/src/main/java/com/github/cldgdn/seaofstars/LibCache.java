@@ -27,10 +27,24 @@ public class LibCache {
                 File[] traitFiles = traitsFolder.listFiles();
 
                 if (traitFiles != null && traitFiles.length != 0) {
-                    traits = new Trait[traitFiles.length];
+                    int len = traitFiles.length;
 
+                    for (File f : traitFiles) {
+                        if (f.getName().startsWith("."))
+                            len--;
+                    }
+
+                    traits = new Trait[len];
+
+                    int j = 0;
                     for (int i = 0; i < traitFiles.length; i++) {
-                        traits[i] = TraitsReader.readSingle(traitFiles[i], false, Constants.get.ZERO_TRAIT_LEVEL);
+                        if (traitFiles[i].getName().startsWith(".")) {
+                            System.out.println("INFO: skipped file in lib/traits: " + traitFiles[i].getName());
+                            continue;
+                        }
+
+                        traits[j] = TraitsReader.readSingle(traitFiles[i], false, Constants.get.ZERO_TRAIT_LEVEL);
+                        j++;
                     }
                 }
             }
@@ -51,10 +65,24 @@ public class LibCache {
                 File[] abilityFiles = abilitiesFolder.listFiles();
 
                 if (abilityFiles != null && abilityFiles.length != 0) {
-                    abilities = new Ability[abilityFiles.length];
+                    int len = abilityFiles.length;
 
+                    for (File f : abilityFiles) {
+                        if (f.getName().startsWith("."))
+                            len--;
+                    }
+
+                    abilities = new Ability[len];
+
+                    int j = 0;
                     for (int i = 0; i < abilityFiles.length; i++) {
-                        abilities[i] = AbilitiesReader.readSingle(abilityFiles[i], false, Constants.get.MIN_ABILITY_LEVEL);
+                        if (abilityFiles[i].getName().startsWith(".")) {
+                            System.out.println("INFO: skipped file in lib/abilities: " + abilityFiles[i].getName());
+                            continue;
+                        }
+
+                        abilities[j] = AbilitiesReader.readSingle(abilityFiles[i], false, Constants.get.MIN_ABILITY_LEVEL);
+                        j++;
                     }
                 }
             }
@@ -75,10 +103,24 @@ public class LibCache {
                 File[] advantageFiles = advantagesFolder.listFiles();
 
                 if (advantageFiles != null && advantageFiles.length != 0) {
-                    advantages = new Advantage[advantageFiles.length];
+                    int len = advantageFiles.length;
 
+                    for (File f : advantageFiles) {
+                        if (f.getName().startsWith("."))
+                            len--;
+                    }
+
+                    advantages = new Advantage[len];
+
+                    int j = 0;
                     for (int i = 0; i < advantageFiles.length; i++) {
-                        advantages[i] = AdvantagesReader.readSingle(advantageFiles[i]);
+                        if (advantageFiles[i].getName().startsWith(".")) {
+                            System.out.println("INFO: skipped file in lib/advantages: " + advantageFiles[i].getName());
+                            continue;
+                        }
+
+                        advantages[j] = AdvantagesReader.readSingle(advantageFiles[i]);
+                        j++;
                     }
                 }
             }
@@ -99,10 +141,24 @@ public class LibCache {
                 File[] implantFiles = implantsFolder.listFiles();
 
                 if (implantFiles != null && implantFiles.length != 0) {
-                    implants = new Implant[implantFiles.length];
+                    int len = implantFiles.length;
 
+                    for (File f : implantFiles) {
+                        if (f.getName().startsWith("."))
+                            len--;
+                    }
+
+                    implants = new Implant[len];
+
+                    int j = 0;
                     for (int i = 0; i < implantFiles.length; i++) {
-                        implants[i] = ImplantsReader.readSingle(implantFiles[i]);
+                        if (implantFiles[i].getName().startsWith(".")) {
+                            System.out.println("INFO: skipped file in lib/implants: " + implantFiles[i].getName());
+                            continue;
+                        }
+
+                        implants[j] = ImplantsReader.readSingle(implantFiles[i]);
+                        j++;
                     }
                 }
             }

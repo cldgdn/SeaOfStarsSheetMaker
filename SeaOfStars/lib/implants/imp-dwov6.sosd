@@ -1,0 +1,13 @@
+name : DWO v6
+description : Sistema oculare DrakeWatch, versione 6. In coppia con un DWNOS di versione 4+, offre un sistema di puntamento olografico, HUD di base, visione ad infrarossi e notturna, scanner limitato.
+location : Occhi
+humanCost : 3
+# LIST
+# BONUS
+targetID : abl-ntc
+value : 1
+isConditional : false
+# BONUS
+targetID : abl-aim
+value : 2
+isConditional : false

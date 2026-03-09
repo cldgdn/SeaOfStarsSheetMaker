@@ -1,0 +1,13 @@
+name : Selvaggio
+description : Il personaggio ha una buona capacit� di sopravvivenza in ambienti selvatici, come le foreste marziane ed i deserci mercuriani, ottenendo dei vantaggi su tutti i rischi che richiedono di interagire con o in questo tipo di ambienti.
+isPassive : false
+heroPointCost : 0
+# LIST
+# BONUS
+targetID : trt-grc
+value : 1
+isConditional : true
+# BONUS
+targetID : trt-acm
+value : 2
+isConditional : true

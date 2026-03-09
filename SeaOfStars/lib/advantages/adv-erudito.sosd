@@ -1,0 +1,17 @@
+name : Erudito
+description : Questo personaggio ha speso molto tempo a studiare e/o molti crediti in chip di conoscenza.
+isPassive : true
+heroPointCost : 0
+# LIST
+# BONUS
+targetID : trt-acm
+value : 2
+isConditional : false
+# BONUS
+targetID : abl-knw
+value : 3
+isConditional : false
+# BONUS
+targetID : abl-rep
+value : 1
+isConditional : false

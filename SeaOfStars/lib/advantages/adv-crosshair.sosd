@@ -1,0 +1,29 @@
+name : Crosshair
+description : Questo personaggio non ha bisogno di aiuti meccanici per colpire i suoi bersagli. Applicabile solo a personaggi che non hanno impianti di alcun tipo che possano aiutarli a sparare (es occhi, OS, protesi cibernetiche).
+isPassive : true
+heroPointCost : 0
+# LIST
+# BONUS
+targetID : trt-grc
+value : 3
+isConditional : false
+# BONUS
+targetID : trt-rsv
+value : 2
+isConditional : false
+# BONUS
+targetID : abl-atl
+value : 1
+isConditional : false
+# BONUS
+targetID : abl-aim
+value : 4
+isConditional : false
+# BONUS
+targetID : abl-int
+value : 1
+isConditional : false
+# BONUS
+targetID : chr-hpm
+value : 3
+isConditional : false

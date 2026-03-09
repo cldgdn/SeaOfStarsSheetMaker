@@ -1,0 +1,21 @@
+name : DWNOS v6-C
+description : Sistema Operativo Neurale prodotto da DrakeWatch, versione 6 tipo Combat. Fornisce funzionalità base come comunicazione NET0, integrazione con DW cyberware, gestione di impianti anatomici. Fornisce funzionalità avanzate come sistemi di difesa fisica, mira assistita e gestione di impianti non anatomici. 6 slot per chip.
+location : Nuca
+humanCost : 3
+# LIST
+# BONUS
+targetID : abl-aim
+value : 1
+isConditional : false
+# BONUS
+targetID : abl-fgt
+value : 1
+isConditional : false
+# BONUS
+targetID : chr-lmt
+value : 4
+isConditional : false
+# BONUS
+targetID : chr-lmt
+value : 4
+isConditional : false

@@ -1,0 +1,25 @@
+name : Gearless Joe
+description : Questo personaggio non ha bisogno di aiuti meccanici per saper alzare le mani. Applicabile esclusivamente ad un personaggio che non ha alcun tipo di impianto che ne migliori le prestazioni fisiche (es polmoni, cuore, protesi cibernetiche, OS).
+isPassive : true
+heroPointCost : 0
+# LIST
+# BONUS
+targetID : trt-vig
+value : 3
+isConditional : false
+# BONUS
+targetID : trt-rst
+value : 2
+isConditional : false
+# BONUS
+targetID : abl-atl
+value : 2
+isConditional : false
+# BONUS
+targetID : abl-fgt
+value : 4
+isConditional : false
+# BONUS
+targetID : abl-int
+value : 1
+isConditional : false

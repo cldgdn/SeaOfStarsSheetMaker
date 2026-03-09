@@ -182,5 +182,16 @@ public class CharacterScreenController {
 
             implantsVBox.getChildren().add(element);
         }
+
+        //ITEMS INFORMATION DISPLAY
+        for (Item i : character.items) {
+            FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("itemElement.fxml"));
+            Node element = loader.load();
+
+            ItemElementController controller = loader.getController();
+            controller.setItem(i);
+
+            itemsVBox.getChildren().add(element);
+        }
     }
 }

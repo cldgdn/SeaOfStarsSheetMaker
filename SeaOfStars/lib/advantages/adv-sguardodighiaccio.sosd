@@ -1,0 +1,9 @@
+name : Sguardo di Ghiaccio
+description : Spendendo un Punto Eroe, il personaggio può intimidire un altro personaggio e forzarlo a togliersi dai piedi o a cambiare idea. Nel caso in cui il bersaglio sia particolarmente impavido, il personaggio ottiene un bonus al proprio rischio di intimidazione.
+isPassive : false
+heroPointCost : 1
+# LIST
+# BONUS
+targetID : abl-int
+value : 2
+isConditional : true

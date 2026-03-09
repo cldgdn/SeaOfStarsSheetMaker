@@ -134,6 +134,15 @@ public class TraitElementController {
     }
 
     void setDisplayOnly() {
+        levelLabel.setText("Livello: " + trait.computedLevel);
+
+        int mod = (trait.computedLevel - Constants.get.ZERO_TRAIT_LEVEL);
+        modLabel.setText("Mod: " + ((mod >= 0) ? "+" : "") + mod);
+
+        for (int i = 0; i < trait.computedLevel; i++) {
+            radios[i].setSelected(true);
+        }
+
         for (RadioButton radio : radios) {
             radio.setDisable(true);
         }

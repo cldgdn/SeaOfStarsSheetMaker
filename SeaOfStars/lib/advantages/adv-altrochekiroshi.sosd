@@ -1,0 +1,13 @@
+name : Altro che Kiroshi
+description : Il personaggio è dotato di una vista naturale straordinaria, ed è in grado di distinguere piccoli dettagli anche a kilometri di distanza. Questo vantaggio è applicabile soltanto ad un personaggio dotato di occhi interamente naturali. 
+isPassive : true
+heroPointCost : 0
+# LIST
+# BONUS
+targetID : abl-aim
+value : 1
+isConditional : false
+# BONUS
+targetID : abl-ntc
+value : 3
+isConditional : false

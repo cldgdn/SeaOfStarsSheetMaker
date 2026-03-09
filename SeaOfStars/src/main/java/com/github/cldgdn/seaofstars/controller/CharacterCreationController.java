@@ -145,7 +145,7 @@ public class CharacterCreationController {
                 FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("implantElement.fxml"));
                 Node element = loader.load();
 
-                ImplantElementController iec = new ImplantElementController();
+                ImplantElementController iec = loader.getController();
                 iec.setImplant(implant);
                 iec.setController(this);
 

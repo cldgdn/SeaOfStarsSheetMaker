@@ -1,0 +1,5 @@
+name : In the Biz
+description : Il personaggio ha una reputazione utile all'interno di un ambito a scelta (da segnare in appunti personali), che sia tra i Cowboy di Marte, nei ranghi di una corporazione o altro. Questa reputazione gli permette di spendere un PE per entrare in contatto con loro e richiedere assistenza.
+isPassive : false
+heroPointCost : 1
+# LIST

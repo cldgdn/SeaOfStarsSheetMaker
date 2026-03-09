@@ -1,0 +1,9 @@
+name : Clint Eastwood
+description : Il personaggio ha un senso della mira estremamente affinato.
+isPassive : true
+heroPointCost : 0
+# LIST
+# BONUS
+targetID : abl-aim
+value : 2
+isConditional : false

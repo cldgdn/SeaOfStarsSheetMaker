@@ -1,0 +1,5 @@
+name : Gangoon
+description : Il personaggio è nel giro criminale di una gang a scelta (segnare in appunti personali), ed ha accesso alle sue risorse principali (in base alla gang), che siano runner, cowboy o altro. 
+isPassive : true
+heroPointCost : 0
+# LIST

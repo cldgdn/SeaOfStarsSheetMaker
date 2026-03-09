@@ -1,0 +1,13 @@
+name : Built Different
+description : Questo personaggio è semplicemente fatto di un'altra stoffa.
+isPassive : true
+heroPointCost : 0
+# LIST
+# BONUS
+targetID : trt-rst
+value : 2
+isConditional : false
+# BONUS
+targetID : trt-rsv
+value : 2
+isConditional : false

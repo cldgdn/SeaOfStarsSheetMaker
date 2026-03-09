@@ -53,7 +53,7 @@ public class StartScreenController {
                 character.init();
                 character.hitPoints = character.hitPointsMax;
 
-                CharacterWriter.write(character, "characters/" + character.info.name);
+                CharacterWriter.write(character, "characters/" + character.info.name.replace(" ", "_"));
 
                 FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("characterElement.fxml"));
                 Node element = loader.load();

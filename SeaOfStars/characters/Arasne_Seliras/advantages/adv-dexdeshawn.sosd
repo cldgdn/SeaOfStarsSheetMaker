@@ -1,0 +1,13 @@
+name : Dex DeShawn
+description : Il personaggio sa calare un perfetto velo di calma su di se. Spendendo un Punto Eroe, � in grado di coprire una propria lacuna od incompetenza grazie alle sue estreme capacit� di dialogo. Una volta attivato questo effetto, esso rimarr� attivo per tutta la durata della scena corrente.
+isPassive : false
+heroPointCost : 1
+# LIST
+# BONUS
+targetID : trt-pan
+value : 1
+isConditional : true
+# BONUS
+targetID : abl-cnv
+value : 2
+isConditional : true

@@ -24,10 +24,7 @@ public class ItemsReader {
             for (File f : files) {
                 items.add(readSingle(f));
             }
-        } else {
-            throw new IllegalArgumentException("No items folder in " + characterPath + " character folder.");
         }
-
         return items;
     }
 

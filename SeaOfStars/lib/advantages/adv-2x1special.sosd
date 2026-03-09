@@ -1,0 +1,5 @@
+name : 2x1 Special
+description : Spendendo tre Punti Eroe, il personaggio può utilizzare i propri incrementi per causare danni doppi per questo turno.
+isPassive : false
+heroPointCost : 3
+# LIST

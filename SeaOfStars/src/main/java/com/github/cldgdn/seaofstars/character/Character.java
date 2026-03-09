@@ -112,15 +112,6 @@ public class Character {
             }
         }
 
-        //compute total human cost
-        for (Implant i : implants) {
-            usedHumanLimit += i.humanCost;
-        }
-        //check if limit was broken
-        if (usedHumanLimit > humanLimit) {
-            critical = true;
-        }
-
         //modifiers are calculated last as they are dependent on critical conditions, which can be triggered by multiple sources
         for (Trait t : traits) {
             //calculate modifier taking into account that, if the character is in critical conditions different traits get buffed or debuffed
@@ -137,6 +128,15 @@ public class Character {
                 //character gets 1 extra hp per level of resistance
                 hitPointsMax += t.computedLevel;
             }
+        }
+
+        //compute total human cost
+        for (Implant i : implants) {
+            usedHumanLimit += i.humanCost;
+        }
+        //check if limit was broken
+        if (usedHumanLimit > humanLimit) {
+            critical = true;
         }
     }
 
