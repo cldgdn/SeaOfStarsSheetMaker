@@ -13,7 +13,7 @@ public class BackgroundWriter {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "/background.sosd"))) {
             writer.write("id : " + background.ID + "\n");
             writer.write("name : " + background.name + "\n");
-            writer.write("description : " + background.description + "\n");
+            writer.write("description : " + background.description.replace("\n", "\\n") + "\n");
             writer.write("# LIST\n");
 
             BonusWriter.writeBonuses(background.abilityBonuses, writer);

@@ -28,7 +28,7 @@ public class ImplantsWriter {
         if (i.isCustom) {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "/implants/" + i.ID + ".sosd"))) {
                 writer.write("name : " + i.name + "\n");
-                writer.write("description : " + i.description + "\n");
+                writer.write("description : " + i.description.replace("\n", "\\n") + "\n");
                 writer.write("location : " + i.location + "\n");
                 writer.write("humanCost : " + i.humanCost + "\n");
                 writer.write("# LIST\n");

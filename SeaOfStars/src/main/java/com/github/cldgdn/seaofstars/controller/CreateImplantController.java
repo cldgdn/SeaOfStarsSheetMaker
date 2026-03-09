@@ -106,7 +106,7 @@ public class CreateImplantController {
 
         i.name = nameField.getText();
         i.ID = Utils.genID("imp", i.name);
-        i.description = descriptionArea.getText().replace("\n", " ");
+        i.description = descriptionArea.getText();
         i.location = locationField.getText();
         i.humanCost = costValueCombo.getValue();
 

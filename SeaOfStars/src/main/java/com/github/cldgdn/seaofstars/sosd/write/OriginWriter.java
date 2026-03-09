@@ -12,7 +12,7 @@ public class OriginWriter {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "/origin.sosd"))) {
             writer.write("id : " + origin.ID + "\n");
             writer.write("name : " + origin.name + "\n");
-            writer.write("description : " + origin.description + "\n");
+            writer.write("description : " + origin.description.replace("\n", "\\n") + "\n");
             writer.write("# LIST\n");
 
             BonusWriter.writeBonuses(origin.traitBonuses, writer);

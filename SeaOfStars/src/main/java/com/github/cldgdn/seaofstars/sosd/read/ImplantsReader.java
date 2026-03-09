@@ -62,7 +62,7 @@ public class ImplantsReader {
                     nameFound = true;
                 }
                 else if (line.startsWith("description : ") && !descFound) {
-                    i.description = line.substring("description : ".length());
+                    i.description = line.substring("description : ".length()).replace("\\n", "\n");
                     descFound = true;
                 }
                 else if (line.startsWith("location : ") && !locationFound) {

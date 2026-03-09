@@ -34,7 +34,7 @@ public class OriginReader {
                         name = line.substring("name : ".length());
                         nameFound = true;
                     } else if (line.startsWith("description : ") && !descFound) {
-                        description = line.substring("description : ".length());
+                        description = line.substring("description : ".length()).replace("\\n", "\n");
                         descFound = true;
                     } else if (line.startsWith("# LIST")) {
                         if (!idFound || !nameFound || !descFound) {

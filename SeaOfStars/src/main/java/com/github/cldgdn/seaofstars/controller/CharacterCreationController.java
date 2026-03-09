@@ -316,7 +316,7 @@ public class CharacterCreationController {
         Origin origin = new Origin(
                 originID,
                 ogNameField.getText(),
-                ogDescriptionArea.getText().replace("\n", " "),
+                ogDescriptionArea.getText(),
                 new Bonus[]{b0, b1}
         );
 
@@ -347,7 +347,7 @@ public class CharacterCreationController {
         return new Background(
                 backgroundID,
                 bgNameField.getText(),
-                bgDescriptionArea.getText().replace("\n", ""),
+                bgDescriptionArea.getText(),
                 new Bonus[]{b0, b1, b2}
         );
     }

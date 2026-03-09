@@ -28,7 +28,7 @@ public class TraitsWriter {
         if (t.isCustom) {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "/traits/" + t.ID + ".sosd"))) {
                 writer.write("name : " + t.name + "\n");
-                writer.write("description : " + t.description + "\n");
+                writer.write("description : " + t.description.replace("\n", "\\n") + "\n");
                 writer.write("baseLevel : " + t.baseLevel);
             }
         }

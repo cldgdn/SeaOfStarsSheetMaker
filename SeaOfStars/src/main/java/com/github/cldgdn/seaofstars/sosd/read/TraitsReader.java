@@ -66,7 +66,7 @@ public class TraitsReader {
                     nameFound = true;
                 }
                 else if (line.startsWith("description : ") && !descFound) {
-                    description = line.substring("description : ".length());
+                    description = line.substring("description : ".length()).replace("\\n", "\n");
                     descFound = true;
                 }
                 else if (line.startsWith("baseLevel : ") && !baseValueFound) {
