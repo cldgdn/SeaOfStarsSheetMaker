@@ -5,7 +5,7 @@ import com.github.cldgdn.seaofstars.Constants;
 public class Background {
     public final String ID;
     public final String name;
-    public final String description;
+    public String description;
     public final Bonus[] abilityBonuses;
 
     public Background(String ID, String name, String description, Bonus[] abilityBonuses) {

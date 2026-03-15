@@ -5,7 +5,7 @@ import com.github.cldgdn.seaofstars.Constants;
 public class Origin {
     public final String ID;
     public final String name;
-    public final String description;
+    public String description;
     public final Bonus[] traitBonuses;
 
     public Origin(String ID, String name, String description, Bonus[] traitBonuses) {

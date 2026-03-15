@@ -3,9 +3,11 @@ package com.github.cldgdn.seaofstars.controller;
 import com.github.cldgdn.seaofstars.SeaOfStarsMain;
 import com.github.cldgdn.seaofstars.character.*;
 import com.github.cldgdn.seaofstars.character.Character;
+import com.github.cldgdn.seaofstars.controller.dialog.CreateItemDialog;
 import com.github.cldgdn.seaofstars.controller.dialog.HpUpdateDialog;
 import com.github.cldgdn.seaofstars.controller.dialog.RollWithIncrementsDialog;
 import com.github.cldgdn.seaofstars.sosd.read.CharacterReader;
+import com.github.cldgdn.seaofstars.sosd.write.CharacterWriter;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -50,7 +52,6 @@ public class CharacterScreenController {
     @FXML
     void refreshCharacter(ActionEvent event) {
         try {
-            //TODO: make it so each vbox drops the elements from before so that setCharacter can put in the new ones
             advantagesVBox.getChildren().clear();
             implantsVBox.getChildren().clear();
             itemsVBox.getChildren().clear();
@@ -80,6 +81,27 @@ public class CharacterScreenController {
             stage.initModality(Modality.NONE);
         }
         dialog.show();
+    }
+
+    @FXML
+    void addItem(ActionEvent event) {
+        CreateItemDialog dialog = new CreateItemDialog();
+        dialog.showAndWait().ifPresent(item -> {
+            character.items.add(item);
+            refreshCharacter(null);
+        });
+    }
+
+    @FXML
+    void saveCharacterEdits(ActionEvent event) {
+        character.background.description = backgroundDescriptionArea.getText();
+        character.origin.description = originDescriptionArea.getText();
+
+        try {
+            CharacterWriter.write(character, character.info.name.replace(" ", "_"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

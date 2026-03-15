@@ -8,10 +8,12 @@ import com.github.cldgdn.seaofstars.character.Implant;
 import com.github.cldgdn.seaofstars.controller.dialog.CreateAdvantageDialog;
 import com.github.cldgdn.seaofstars.controller.dialog.CreateCharacterDialog;
 import com.github.cldgdn.seaofstars.controller.dialog.CreateImplantDialog;
+import com.github.cldgdn.seaofstars.controller.dialog.CreateItemDialog;
 import com.github.cldgdn.seaofstars.sosd.read.InfoReader;
 import com.github.cldgdn.seaofstars.sosd.write.AdvantagesWriter;
 import com.github.cldgdn.seaofstars.sosd.write.CharacterWriter;
 import com.github.cldgdn.seaofstars.sosd.write.ImplantsWriter;
+import com.github.cldgdn.seaofstars.sosd.write.ItemsWriter;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +25,10 @@ import javafx.scene.layout.VBox;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
 public class StartScreenController {
 
     @FXML private Tab advantagesTab;
@@ -84,6 +90,14 @@ public class StartScreenController {
 
     @FXML
     void createNewItem(ActionEvent event) {
+        CreateItemDialog dialog = new CreateItemDialog();
+        dialog.showAndWait().ifPresent(item -> {
+            try {
+                ItemsWriter.writeSingle(item, "lib");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
     }
 
@@ -105,19 +119,39 @@ public class StartScreenController {
             if (files == null)
                 return;
 
+            List<CharacterInfo> infos = new ArrayList<>();
             for (File character : files) {
                 if (character.isDirectory()) {
-                    FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("characterElement.fxml"));
-                    Node element = loader.load();
-
-                    CharacterElementController cec = loader.getController();
-
-                    CharacterInfo info = InfoReader.read(character.getPath());
-
-                    cec.setCharacter(info.name, info.playerName, character);
-
-                    charactersVBox.getChildren().add(element);
+                    infos.add(InfoReader.read(character.getPath()));
                 }
+            }
+
+            infos.sort(new Comparator<CharacterInfo>() {
+                @Override
+                public int compare(CharacterInfo o1, CharacterInfo o2) {
+                    if (o1.playerName.equals("cladio")) {
+                        if (o1.playerName.equals(o2.playerName))
+                            return 0;
+                        return -1;
+                    }
+                    else if (o2.playerName.equals("cladio"))
+                        return 1;
+
+
+                    return o1.playerName.compareTo(o2.playerName);
+                }
+            });
+
+            for (CharacterInfo info : infos) {
+                System.err.println("Adding " + info.name + " by " + info.playerName);
+                FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("characterElement.fxml"));
+                Node element = loader.load();
+
+                CharacterElementController cec = loader.getController();
+
+                cec.setCharacter(info.name, info.playerName, new File("characters/" + info.name.replace(" ", "_")));
+
+                charactersVBox.getChildren().add(element);
             }
         }
 
