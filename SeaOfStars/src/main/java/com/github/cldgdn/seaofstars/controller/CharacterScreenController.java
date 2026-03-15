@@ -98,7 +98,7 @@ public class CharacterScreenController {
         character.origin.description = originDescriptionArea.getText();
 
         try {
-            CharacterWriter.write(character, character.info.name.replace(" ", "_"));
+            CharacterWriter.write(character, "characters/" + character.info.name.replace(" ", "_"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
