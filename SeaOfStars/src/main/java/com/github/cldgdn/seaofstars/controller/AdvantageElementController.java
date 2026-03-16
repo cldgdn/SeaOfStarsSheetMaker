@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 
 import java.io.IOException;
@@ -34,6 +35,10 @@ public class AdvantageElementController {
         nameLabel.setText(advantage.name);
         costLabel.setText(advantage.isPassive ? "Effetto Passivo" : advantage.heroPointCost + " Punti Eroe");
         descriptionArea.setText(advantage.description);
+
+        if (advantage.isCustom) {
+            descriptionArea.setEditable(true);
+        }
 
         Trait[] traits = LibCache.getTraits();
         Ability[] abilities = LibCache.getAbilities();
@@ -76,5 +81,10 @@ public class AdvantageElementController {
         }
 
         controller.updateText();
+    }
+
+    @FXML
+    void updateDescription(KeyEvent event) {
+        advantage.description = descriptionArea.getText();
     }
 }

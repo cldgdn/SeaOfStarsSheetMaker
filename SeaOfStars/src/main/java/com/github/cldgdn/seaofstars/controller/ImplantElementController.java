@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 
 import java.io.IOException;
@@ -47,6 +48,10 @@ public class ImplantElementController {
         costLabel.setText("Costo umano: " + implant.humanCost);
         locationLabel.setText("Posizione: " + implant.location);
 
+        if (implant.isCustom) {
+            descriptionArea.setEditable(true);
+        }
+
         for (Bonus b : implant.bonuses) {
             Label currBonus = new Label();
 
@@ -76,6 +81,11 @@ public class ImplantElementController {
                 controller.updateText();
             }
         }
+    }
+
+    @FXML
+    void updateDescription(KeyEvent event) {
+        implant.description = descriptionArea.getText();
     }
 
 }
