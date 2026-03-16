@@ -12,11 +12,9 @@ import javafx.scene.layout.HBox;
 
 public class ItemElementController {
     private Item item;
-    private CharacterCreationController controller;
 
     @FXML private Button addButton;
     @FXML private Label amtLabel;
-    @FXML private HBox bonusesHBox;
     @FXML private TextArea descriptionArea;
     @FXML private Label nameLabel;
     @FXML private Button remButton;
@@ -45,10 +43,7 @@ public class ItemElementController {
     void updateDescription(KeyEvent event) {
         item.description = descriptionArea.getText();
     }
-
-    public void setController(CharacterCreationController controller) {
-        this.controller = controller;
-    }
+    
 
     public void setItem(Item i) {
         this.item = i;

@@ -112,6 +112,8 @@ public class StartScreenController {
     }
 
     public void initialize() throws IOException, BadSOSDFormatException {
+        long time = System.nanoTime();
+        System.out.println("[INFO] Adding Characters...");
         File characterFolder = new File("characters");
         if (characterFolder.exists() && characterFolder.isDirectory()) {
             File[] files = characterFolder.listFiles();
@@ -154,6 +156,7 @@ public class StartScreenController {
                 charactersVBox.getChildren().add(element);
             }
         }
+        System.out.println("[INFO] Characters Done. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)\n");
 
         for (Advantage a : LibCache.getAdvantages(true)) {
             FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("advantageElement.fxml"));
