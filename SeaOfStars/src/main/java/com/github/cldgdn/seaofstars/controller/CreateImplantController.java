@@ -87,6 +87,9 @@ public class CreateImplantController {
                 bec.setAttributeList(new String[]{"Punti Ferita", "Limite Umano"});
                 bec.container = bonusesVbox;
                 bec.element = element;
+                bec.passiveCheckBox.setManaged(false);
+                bec.passiveCheckBox.setDisable(true);
+                bec.passiveCheckBox.setVisible(false);
 
                 otherBonusControllers.add(bec);
             }
@@ -117,7 +120,7 @@ public class CreateImplantController {
             b.sourceID = i.ID;
             b.targetID = controller.attributeComboBox.getSelectionModel().getSelectedItem().ID;
             b.value = controller.bonusValueComboBox.getSelectionModel().getSelectedItem();
-            b.isConditional = false;
+            b.isConditional = !controller.passiveCheckBox.isSelected();
 
             i.bonuses.add(b);
         }
@@ -128,7 +131,7 @@ public class CreateImplantController {
             b.sourceID = i.ID;
             b.targetID = controller.attributeComboBox.getSelectionModel().getSelectedItem().ID;
             b.value = controller.bonusValueComboBox.getSelectionModel().getSelectedItem();
-            b.isConditional = false;
+            b.isConditional = !controller.passiveCheckBox.isSelected();
 
             i.bonuses.add(b);
         }

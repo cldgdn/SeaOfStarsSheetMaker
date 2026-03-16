@@ -22,12 +22,16 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class CharacterScreenController {
 
     public Character character = null;
     private final String[] moneyNames = new String[]{"SUNC", "Crediti", "Sunnies"};
+
+    private List<ItemElementController> itemControllers = new ArrayList<>();
 
     @FXML private VBox abilitiesVBox;
     @FXML private VBox advantagesVBox;
@@ -103,7 +107,6 @@ public class CharacterScreenController {
             throw new RuntimeException(e);
         }
     }
-
 
     public void setCharacter(Character c) throws IOException, BadSOSDFormatException {
         this.character = c;
@@ -206,6 +209,7 @@ public class CharacterScreenController {
         }
 
         //ITEMS INFORMATION DISPLAY
+        itemControllers.clear();
         for (Item i : character.items) {
             FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("itemElement.fxml"));
             Node element = loader.load();
@@ -213,6 +217,7 @@ public class CharacterScreenController {
             ItemElementController controller = loader.getController();
             controller.setItem(i);
 
+            itemControllers.add(controller);
             itemsVBox.getChildren().add(element);
         }
     }

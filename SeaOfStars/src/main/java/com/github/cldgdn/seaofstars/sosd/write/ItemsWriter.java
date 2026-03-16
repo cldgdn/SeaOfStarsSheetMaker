@@ -24,7 +24,7 @@ public class ItemsWriter {
     public static void writeSingle(Item item, String characterPath) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "/items/" + item.ID + ".sosd"))) {
             writer.write("name : " + item.name + "\n");
-            writer.write("description : " + item.description + "\n");
+            writer.write("description : " + item.description.replace("\n", "\\n") + "\n");
             writer.write("amount : " + item.amount);
         }
     }

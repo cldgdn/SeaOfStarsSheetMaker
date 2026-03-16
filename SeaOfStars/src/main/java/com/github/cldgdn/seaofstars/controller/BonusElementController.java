@@ -4,6 +4,7 @@ import com.github.cldgdn.seaofstars.character.Bonus;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 
@@ -18,6 +19,8 @@ public class BonusElementController<T> {
     public ComboBox<T> attributeComboBox;
     @FXML
     public ComboBox<Integer> bonusValueComboBox;
+    @FXML
+    public CheckBox passiveCheckBox;
 
     @FXML
     void removeSelf(ActionEvent event) {

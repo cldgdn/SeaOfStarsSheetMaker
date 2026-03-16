@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 
 public class ItemElementController {
@@ -38,6 +39,11 @@ public class ItemElementController {
         }
 
         amtLabel.setText("Quantità: " + item.amount);
+    }
+
+    @FXML
+    void updateDescription(KeyEvent event) {
+        item.description = descriptionArea.getText();
     }
 
     public void setController(CharacterCreationController controller) {

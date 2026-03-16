@@ -143,7 +143,7 @@ public class StartScreenController {
             });
 
             for (CharacterInfo info : infos) {
-                System.err.println("Adding " + info.name + " by " + info.playerName);
+                System.out.println("[INFO] Adding " + info.name + " by " + info.playerName);
                 FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("characterElement.fxml"));
                 Node element = loader.load();
 

@@ -44,7 +44,7 @@ public class ItemsReader {
                     nameFound = true;
                 }
                 else if (line.startsWith("description : ") && !descFound) {
-                    item.description = line.substring("description : ".length());
+                    item.description = line.substring("description : ".length()).replace("\\n", "\n");
                     descFound = true;
                 }
                 else if (line.startsWith("amount : ") && !amountFound) {

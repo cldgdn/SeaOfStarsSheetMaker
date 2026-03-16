@@ -69,6 +69,9 @@ public class CreateAdvantageController {
 
                     @Override public Trait fromString(String string) {return null;}
                 });
+                bec.passiveCheckBox.setManaged(false);
+                bec.passiveCheckBox.setDisable(true);
+                bec.passiveCheckBox.setVisible(false);
 
                 traitBonusControllers.add(bec);
             }
@@ -84,6 +87,9 @@ public class CreateAdvantageController {
                     }
                     @Override public Ability fromString(String string) {return null;}
                 });
+                bec.passiveCheckBox.setManaged(false);
+                bec.passiveCheckBox.setDisable(true);
+                bec.passiveCheckBox.setVisible(false);
 
                 abilityBonusControllers.add(bec);
             }
@@ -92,6 +98,9 @@ public class CreateAdvantageController {
                 bec.setAttributeList(new String[]{"Punti Ferita", "Limite Umano"});
                 bec.container = bonusesVbox;
                 bec.element = element;
+                bec.passiveCheckBox.setManaged(false);
+                bec.passiveCheckBox.setDisable(true);
+                bec.passiveCheckBox.setVisible(false);
 
                 otherBonusControllers.add(bec);
             }

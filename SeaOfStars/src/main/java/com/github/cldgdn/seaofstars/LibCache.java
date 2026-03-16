@@ -39,7 +39,7 @@ public class LibCache {
                     int j = 0;
                     for (int i = 0; i < traitFiles.length; i++) {
                         if (traitFiles[i].getName().startsWith(".")) {
-                            System.out.println("INFO: skipped file in lib/traits: " + traitFiles[i].getName());
+                            System.out.println("[INFO] skipped file in lib/traits: " + traitFiles[i].getName());
                             continue;
                         }
 
