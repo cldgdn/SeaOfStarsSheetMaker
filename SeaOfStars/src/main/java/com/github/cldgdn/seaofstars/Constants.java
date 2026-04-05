@@ -6,6 +6,8 @@ import java.io.IOException;
 
 public class Constants {
 
+    public String VERSION = "NO VERSION DETECTED";
+
     //TRAIT CONSTANTS-----------------------------------------------------
     public int MIN_TRAIT_BASE_LEVEL = 1;
     public int MAX_TRAIT_BASE_LEVEL = 7;
@@ -47,6 +49,7 @@ public class Constants {
     public int RISK_DICE_FACES = 10; //you roll d10s for risks
     public int INCREMENT_THRESHOLD = 10;
     public int ADVANTAGES_AT_CREATION_AMT = 3;
+    public boolean MASTER_MODE = false;
 
     public static Constants get = null;
 
@@ -103,6 +106,16 @@ public class Constants {
                     INCREMENT_THRESHOLD = getValue(line);
                 } else if (line.startsWith("ADVANTAGES AT CREATION AMT")) {
                     ADVANTAGES_AT_CREATION_AMT = getValue(line);
+                } else if (line.startsWith("MASTER MODE")) {
+                    MASTER_MODE = Boolean.parseBoolean(
+                            line.substring(
+                                    line.indexOf(':') + 1
+                            ).replace(" ", "")
+                    );
+                } else if (line.startsWith("VERSION")) {
+                    VERSION = line.substring(
+                            line.indexOf(':') + 1
+                    ).replace("\n", "");
                 }
             }
         } catch (IOException e) {

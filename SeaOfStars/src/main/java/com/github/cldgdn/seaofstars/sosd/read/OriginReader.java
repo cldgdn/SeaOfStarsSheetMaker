@@ -38,7 +38,7 @@ public class OriginReader {
                         descFound = true;
                     } else if (line.startsWith("# LIST")) {
                         if (!idFound || !nameFound || !descFound) {
-                            throw new BadSOSDFormatException("Bonuses not at end of file.");
+                            throw new BadSOSDFormatException("Origin file is either incomplete or the bonuses are not at the end.");
                         }
                         else {
                             List<Bonus> b = BonusReader.readBonuses(reader, ID);

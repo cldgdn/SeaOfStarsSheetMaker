@@ -75,7 +75,7 @@ public class AdvantagesReader {
                 }
                 else if (line.startsWith("# LIST")) {
                     if (!nameFound || !descFound || !passiveFound || !pointCostFound) {
-                        throw new BadSOSDFormatException("Bonuses not at end of file.");
+                        throw new BadSOSDFormatException("Advantage file " + a.ID + ".sosd is either incomplete or the bonuses are not at the end.");
                     }
                     else {
                         a.bonuses = BonusReader.readBonuses(reader, a.ID);

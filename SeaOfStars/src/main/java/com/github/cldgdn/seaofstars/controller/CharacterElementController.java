@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class CharacterElementController {
@@ -48,7 +49,7 @@ public class CharacterElementController {
             stage.show();
 
         } catch (IOException | BadSOSDFormatException e) {
-            throw new RuntimeException(e);
+            System.err.println("[ERROR] " + e.getMessage());
         }
     }
 

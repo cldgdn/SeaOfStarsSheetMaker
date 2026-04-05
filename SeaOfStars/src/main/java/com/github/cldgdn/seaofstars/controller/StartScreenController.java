@@ -61,6 +61,8 @@ public class StartScreenController {
 
                 CharacterWriter.write(character, "characters/" + character.info.name.replace(" ", "_"));
 
+                System.out.println("[INFO] Adding " + character.info.name + " by " + character.info.playerName);
+
                 FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("characterElement.fxml"));
                 Node element = loader.load();
 

@@ -27,11 +27,9 @@ public class ItemElementController {
             Button b = (Button) source;
 
             if (b == addButton) {
-                System.out.println("Increasing amount to " + (item.amount + 1));
                 item.amount++;
             }
             else if (b == remButton) {
-                System.out.println("Decreasing amount to " + (item.amount - 1));
                 item.amount--;
             }
         }
@@ -43,7 +41,7 @@ public class ItemElementController {
     void updateDescription(KeyEvent event) {
         item.description = descriptionArea.getText();
     }
-    
+
 
     public void setItem(Item i) {
         this.item = i;

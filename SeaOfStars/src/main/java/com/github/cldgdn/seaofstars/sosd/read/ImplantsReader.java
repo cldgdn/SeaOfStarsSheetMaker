@@ -75,7 +75,7 @@ public class ImplantsReader {
                 }
                 else if (line.startsWith("# LIST")) {
                     if (!nameFound || !descFound || !locationFound || !humanCostFound) {
-                        throw new BadSOSDFormatException("Bonuses not at end of file.");
+                        throw new BadSOSDFormatException("Implant file " + i.ID + ".sosd is either incomplete or the bonuses are not at the end.");
                     }
                     else {
                         i.bonuses = BonusReader.readBonuses(reader, i.ID);
