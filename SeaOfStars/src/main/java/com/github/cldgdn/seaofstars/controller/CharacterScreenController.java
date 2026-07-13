@@ -16,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -52,6 +53,8 @@ public class CharacterScreenController {
     @FXML private TextField playerNameField;
     @FXML private VBox traitsVBox;
 
+    private String prevMoneyText = "";
+    private List<String> rollHistory = new ArrayList<>();
 
     @FXML
     void refreshCharacter(ActionEvent event) {
@@ -79,12 +82,12 @@ public class CharacterScreenController {
 
     @FXML
     void rollWithIncrements(ActionEvent event) {
-        RollWithIncrementsDialog dialog = new RollWithIncrementsDialog(character);
+        RollWithIncrementsDialog dialog = new RollWithIncrementsDialog(character, rollHistory);
         Window window = dialog.getDialogPane().getScene().getWindow();
         if (window instanceof Stage stage) {
             stage.initModality(Modality.NONE);
         }
-        dialog.show();
+        dialog.showAndWait().ifPresent(history -> rollHistory = history);
     }
 
     @FXML
@@ -100,6 +103,7 @@ public class CharacterScreenController {
     void saveCharacterEdits(ActionEvent event) {
         character.background.description = backgroundDescriptionArea.getText();
         character.origin.description = originDescriptionArea.getText();
+        character.info.fame = fameField.getText();
 
         try {
             CharacterWriter.write(character, "characters/" + character.info.name.replace(" ", "_"));
@@ -108,8 +112,30 @@ public class CharacterScreenController {
         }
     }
 
+    @FXML
+    void updateFameField(KeyEvent event) {
+        character.info.fame = fameField.getText();
+    }
+
+    @FXML
+    void updateMoneyField(KeyEvent event) {
+        String currentMoneyText = moneyField.getText().trim();
+        if (!prevMoneyText.equals(currentMoneyText)) {
+            try {
+                character.info.money = Integer.parseInt(currentMoneyText);
+                prevMoneyText = currentMoneyText;
+            } catch (NumberFormatException e) {
+                moneyField.setText(prevMoneyText);
+            }
+        }
+    }
+
     public void setCharacter(Character c) throws IOException, BadSOSDFormatException {
+        long time = System.nanoTime();
+        long timeTotal = time;
         this.character = c;
+
+        System.out.println("[INFO] Preparing " + character.info.name + " ...");
 
         character.init();
 
@@ -121,6 +147,11 @@ public class CharacterScreenController {
         moneyField.setText("" + character.info.money);
         hpField.setText(character.hitPoints + "/" + character.hitPointsMax);
         hlField.setText(character.usedHumanLimit + "/" + character.humanLimit);
+
+        prevMoneyText = moneyField.getText();
+
+        System.out.println("[INFO] Character information prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
+        time = System.nanoTime();
 
         //ORIGIN INFORMATION DISPLAY
         originNameLabel.setText(character.origin.name);
@@ -141,6 +172,9 @@ public class CharacterScreenController {
             originVBox.getChildren().add(bLabel);
         }
 
+        System.out.println("[INFO] Character origin prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
+        time = System.nanoTime();
+
         //BACKGROUND INFORMATION DISPLAY
         backgroundNameLabel.setText(character.background.name);
         backgroundDescriptionArea.setText(character.background.description);
@@ -160,6 +194,9 @@ public class CharacterScreenController {
             backgroundVBox.getChildren().add(bLabel);
         }
 
+        System.out.println("[INFO] Character background prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
+        time = System.nanoTime();
+
         //TRAITS INFORMATION DISPLAY
         for (Trait t : character.traits) {
             FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("traitElement.fxml"));
@@ -171,6 +208,9 @@ public class CharacterScreenController {
 
             traitsVBox.getChildren().add(element);
         }
+
+        System.out.println("[INFO] Character traits prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
+        time = System.nanoTime();
 
         //ABILITIES INFORMATION DISPLAY
         for (Ability a : character.abilities) {
@@ -184,6 +224,9 @@ public class CharacterScreenController {
             abilitiesVBox.getChildren().add(element);
         }
 
+        System.out.println("[INFO] Character abilities prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
+        time = System.nanoTime();
+
         //ADVANTAGES INFORMATION DISPLAY
         for (Advantage a : character.advantages) {
             FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("advantageElement.fxml"));
@@ -195,6 +238,9 @@ public class CharacterScreenController {
 
             advantagesVBox.getChildren().add(element);
         }
+
+        System.out.println("[INFO] Character advantages prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
+        time = System.nanoTime();
 
         //IMPLANTS INFORMATION DISPLAY
         for (Implant i : character.implants) {
@@ -208,6 +254,9 @@ public class CharacterScreenController {
             implantsVBox.getChildren().add(element);
         }
 
+        System.out.println("[INFO] Character implants prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
+        time = System.nanoTime();
+
         //ITEMS INFORMATION DISPLAY
         itemControllers.clear();
         for (Item i : character.items) {
@@ -220,5 +269,8 @@ public class CharacterScreenController {
             itemControllers.add(controller);
             itemsVBox.getChildren().add(element);
         }
+
+        System.out.println("[INFO] Character inventory prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
+        System.out.println("[INFO] Done. (" + ((System.nanoTime() - timeTotal) / 1000000.0f) + "ms)\n");
     }
 }

@@ -4,6 +4,7 @@ import com.github.cldgdn.seaofstars.Constants;
 import com.github.cldgdn.seaofstars.RollManager;
 import com.github.cldgdn.seaofstars.character.*;
 import com.github.cldgdn.seaofstars.character.Character;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -14,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class RollWithIncrementsController {
 
@@ -23,9 +25,11 @@ public class RollWithIncrementsController {
     @FXML private VBox activeTraitBonusesVBox;
     @FXML private Label rollResultLabel;
     @FXML private ComboBox<Integer> bonusDiceBox;
+    @FXML private VBox rollHistoryVBox;
 
     public Character character;
     public int lastIncrementsRolled = 0;
+    public List<String> rollHistory;
 
     private int activeAbilityBonusTotal = 0;
     private int activeTraitBonusTotal = 0;
@@ -47,12 +51,15 @@ public class RollWithIncrementsController {
 
         lastIncrementsRolled = increments;
 
-        rollResultLabel.setText(
+        String rollText =
                 trait.name + (trait.modifier + activeTraitBonusTotal < 0 ? " " : " +") + (trait.modifier + activeTraitBonusTotal) + " + " +
                 ability.name + " " + (ability.computedLevel + activeAbilityBonusTotal) +
-                "(" + (bonusDice < 0 ? " " : " +") + bonusDice + ") -> " +
-                Arrays.toString(rolls) + " -> " + increments + " incrementi"
-        );
+                "(" + (bonusDice < 0 ? "" : "+") + bonusDice + ") -> " +
+                Arrays.toString(rolls) + " -> " + increments + " incrementi";
+
+        rollResultLabel.setText(rollText);
+        rollHistory.add(rollText);
+        rollHistoryVBox.getChildren().add(new Label(rollText));
     }
 
     @FXML
@@ -143,6 +150,7 @@ public class RollWithIncrementsController {
     }
 
     public void setCharacter(Character character) {this.character = character;}
+    public void setRollHistory(List<String> rollHistory) {this.rollHistory = rollHistory;}
 
     public void setup() {
         abilityCombo.setConverter(new StringConverter<Ability>() {
@@ -175,6 +183,10 @@ public class RollWithIncrementsController {
             bonusDiceBox.getItems().addAll(new Integer[]{4, 3, 2, 1, 0, -1, -2, -3, -4});
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+
+        for (String roll : rollHistory) {
+            rollHistoryVBox.getChildren().add(new Label(roll));
         }
     }
 }

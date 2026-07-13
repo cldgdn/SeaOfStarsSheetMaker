@@ -7,25 +7,24 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.List;
 
-public class RollWithIncrementsDialog extends Dialog<Integer> {
-    private final Character character;
-
-    public RollWithIncrementsDialog(Character c) {
-        character = c;
-
+public class RollWithIncrementsDialog extends Dialog<List<String>> {
+    public RollWithIncrementsDialog(Character c, List<String> rollHistory) {
         setTitle("Lancio dadi");
         setResizable(true);
 
         FXMLLoader loader = new FXMLLoader(SeaOfStarsMain.class.getResource("rollWithIncrementsDialog.fxml"));
 
         try {
-            VBox content = loader.load();
+            ScrollPane content = loader.load();
             RollWithIncrementsController controller = loader.getController();
             controller.setCharacter(c);
+            controller.setRollHistory(rollHistory);
             controller.setup();
 
             getDialogPane().setContent(content);
@@ -33,7 +32,7 @@ public class RollWithIncrementsDialog extends Dialog<Integer> {
             ButtonType doneButton = new ButtonType("Finito", ButtonBar.ButtonData.OK_DONE);
             getDialogPane().getButtonTypes().add(doneButton);
 
-            setResultConverter(dialogButton -> controller.lastIncrementsRolled);
+            setResultConverter(dialogButton -> controller.rollHistory);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
