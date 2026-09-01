@@ -30,7 +30,7 @@ public class TraitsReader {
                         }
                     }
                 }
-                else {
+                else if (f.getName().endsWith(".sosd")) {
                     traits.add(readSingle(f));
                 }
             }

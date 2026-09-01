@@ -22,7 +22,8 @@ public class ItemsReader {
             }
 
             for (File f : files) {
-                items.add(readSingle(f));
+                if (f.getName().endsWith(".sosd"))
+                    items.add(readSingle(f));
             }
         }
         return items;

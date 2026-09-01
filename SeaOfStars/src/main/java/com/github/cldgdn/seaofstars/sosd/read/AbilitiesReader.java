@@ -33,7 +33,7 @@ public class AbilitiesReader {
                         }
                     }
                 }
-                else {
+                else if (f.getName().endsWith(".sosd")) {
                     abilities.add(readSingle(f));
                 }
             }

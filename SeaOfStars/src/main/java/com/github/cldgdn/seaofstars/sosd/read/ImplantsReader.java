@@ -33,7 +33,7 @@ public class ImplantsReader {
                         }
                     }
                 }
-                else {
+                else if (file.getName().endsWith(".sosd")) {
                     Implant i = readSingle(file);
                     i.isCustom = true;
                     implants.add(i);

@@ -33,7 +33,7 @@ public class AdvantagesReader {
                         }
                     }
                 }
-                else {
+                else if (file.getName().endsWith(".sosd")) {
                     Advantage a = readSingle(file);
                     a.isCustom = true;
                     advantages.add(a);
