@@ -1,5 +1,6 @@
 package com.github.cldgdn.seaofstars.sosd.read;
 
+import com.github.cldgdn.seaofstars.Constants;
 import com.github.cldgdn.seaofstars.character.Trait;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 
@@ -26,7 +27,7 @@ public class TraitsReader {
                         while ((line = reader.readLine()) != null) {
                             String[] words = line.split(" : ");
 
-                            traits.add(readSingle(new File("lib/traits/" + words[0] + ".sosd"), false, Integer.parseInt(words[1])));
+                            traits.add(readSingle(new File(Constants.get.LIB_FOLDER + "/traits/" + words[0] + ".sosd"), false, Integer.parseInt(words[1])));
                         }
                     }
                 }

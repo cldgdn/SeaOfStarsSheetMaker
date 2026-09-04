@@ -23,7 +23,7 @@ public class LibCache {
         if (reset || traits == null) {
             long time = System.nanoTime();
             System.out.println("[INFO] Loading Traits...");
-            File traitsFolder = new File("lib/traits");
+            File traitsFolder = new File(Constants.get.LIB_FOLDER + "/traits");
 
             if (traitsFolder.exists() && traitsFolder.isDirectory()) {
                 File[] traitFiles = traitsFolder.listFiles();
@@ -41,7 +41,7 @@ public class LibCache {
                     int j = 0;
                     for (int i = 0; i < traitFiles.length; i++) {
                         if (traitFiles[i].getName().startsWith(".")) {
-                            System.out.println("[INFO] skipped file in lib/traits: " + traitFiles[i].getName());
+                            System.out.println("[INFO] skipped file in " + Constants.get.LIB_FOLDER + "/traits: " + traitFiles[i].getName());
                             continue;
                         }
 
@@ -66,7 +66,7 @@ public class LibCache {
         if (reset || abilities == null) {
             long time = System.nanoTime();
             System.out.println("[INFO] Loading Abilities...");
-            File abilitiesFolder = new File("lib/abilities");
+            File abilitiesFolder = new File(Constants.get.LIB_FOLDER + "/abilities");
 
             if (abilitiesFolder.exists() && abilitiesFolder.isDirectory()) {
                 File[] abilityFiles = abilitiesFolder.listFiles();
@@ -84,7 +84,7 @@ public class LibCache {
                     int j = 0;
                     for (int i = 0; i < abilityFiles.length; i++) {
                         if (abilityFiles[i].getName().startsWith(".")) {
-                            System.out.println("[INFO] skipped file in lib/abilities: " + abilityFiles[i].getName());
+                            System.out.println("[INFO] skipped file in " + Constants.get.LIB_FOLDER + "/abilities: " + abilityFiles[i].getName());
                             continue;
                         }
 
@@ -109,7 +109,7 @@ public class LibCache {
         if (reset || advantages == null) {
             long time = System.nanoTime();
             System.out.println("[INFO] Loading Advantages...");
-            File advantagesFolder = new File("lib/advantages");
+            File advantagesFolder = new File(Constants.get.LIB_FOLDER + "/advantages");
 
             if (advantagesFolder.exists() && advantagesFolder.isDirectory()) {
                 File[] advantageFiles = advantagesFolder.listFiles();
@@ -127,7 +127,7 @@ public class LibCache {
                     int j = 0;
                     for (int i = 0; i < advantageFiles.length; i++) {
                         if (advantageFiles[i].getName().startsWith(".")) {
-                            System.out.println("[INFO] skipped file in lib/advantages: " + advantageFiles[i].getName());
+                            System.out.println("[INFO] skipped file in " + Constants.get.LIB_FOLDER + "/advantages: " + advantageFiles[i].getName());
                             continue;
                         }
 
@@ -152,7 +152,7 @@ public class LibCache {
         if (reset || implants == null) {
             long time = System.nanoTime();
             System.out.println("[INFO] Loading Implants...");
-            File implantsFolder = new File("lib/implants");
+            File implantsFolder = new File(Constants.get.LIB_FOLDER + "/implants");
 
             if (implantsFolder.exists() && implantsFolder.isDirectory()) {
                 File[] implantFiles = implantsFolder.listFiles();
@@ -170,7 +170,7 @@ public class LibCache {
                     int j = 0;
                     for (int i = 0; i < implantFiles.length; i++) {
                         if (implantFiles[i].getName().startsWith(".")) {
-                            System.out.println("[INFO] skipped file in lib/implants: " + implantFiles[i].getName());
+                            System.out.println("[INFO] skipped file in " + Constants.get.LIB_FOLDER + "/implants: " + implantFiles[i].getName());
                             continue;
                         }
 

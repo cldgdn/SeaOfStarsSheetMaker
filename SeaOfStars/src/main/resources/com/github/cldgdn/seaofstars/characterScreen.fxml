@@ -62,20 +62,23 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
                                     <Label text="Nome Personaggio" />
                                     <Label text="Nome Giocatore" GridPane.rowIndex="1" />
-                                    <Label text="Fama" GridPane.rowIndex="2" />
-                                    <Label fx:id="moneyLabel" text="Sunnies" GridPane.rowIndex="3" />
-                                    <Label text="Punti Ferita" GridPane.rowIndex="4" />
-                                    <Label text="Limite Umano" GridPane.rowIndex="5" />
+                                    <Label text="Età" GridPane.rowIndex="2" />
+                                    <Label text="Fama" GridPane.rowIndex="3" />
+                                    <Label fx:id="moneyLabel" text="Sunnies" GridPane.rowIndex="4" />
+                                    <Label text="Punti Ferita" GridPane.rowIndex="5" />
+                                    <Label text="Limite Umano" GridPane.rowIndex="6" />
                                     <TextField fx:id="characterNameField" disable="true" GridPane.columnIndex="1" />
                                     <TextField fx:id="playerNameField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField fx:id="fameField" focusTraversable="false" onKeyTyped="#updateFameField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField fx:id="moneyField" focusTraversable="false" onKeyTyped="#updateMoneyField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField fx:id="hpField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <TextField fx:id="hlField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <TextField fx:id="fameField" focusTraversable="false" onKeyTyped="#updateFameField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="moneyField" focusTraversable="false" onKeyTyped="#updateMoneyField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField fx:id="hpField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <TextField fx:id="hlField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <TextField fx:id="characterAgeField" disable="true" layoutX="107.0" layoutY="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                  </children>
                                  <padding>
                                     <Insets left="10.0" right="10.0" top="10.0" />

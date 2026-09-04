@@ -40,6 +40,7 @@ public class CharacterScreenController {
     @FXML private Label backgroundNameLabel;
     @FXML private VBox backgroundVBox;
     @FXML private TextField characterNameField;
+    @FXML private TextField characterAgeField;
     @FXML private TextField fameField;
     @FXML private TextField hlField;
     @FXML private TextField hpField;
@@ -142,6 +143,7 @@ public class CharacterScreenController {
         //BASIC CHARACTER INFORMATION DISPLAY
         characterNameField.setText(character.info.name);
         playerNameField.setText(character.info.playerName);
+        characterAgeField.setText("" + character.info.age);
         fameField.setText(character.info.fame);
         moneyLabel.setText(moneyNames[ThreadLocalRandom.current().nextInt(moneyNames.length)]);
         moneyField.setText("" + character.info.money);

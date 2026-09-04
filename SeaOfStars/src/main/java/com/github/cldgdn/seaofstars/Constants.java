@@ -51,61 +51,66 @@ public class Constants {
     public int ADVANTAGES_AT_CREATION_AMT = 3;
     public boolean MASTER_MODE = false;
 
+    //MANAGEMENT CONSTANTS-------------------------------------------------
+    public String CHARACTERS_FOLDER = "characters";
+    public String LIB_FOLDER = "lib";
+    public String MASTER_NAME = "cladio";
+
     public static Constants get = null;
 
-    public Constants() {
+    public Constants(String configPath) {
         get = this;
 
-        try (BufferedReader reader = new BufferedReader(new FileReader("lib/config"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(configPath))) {
             String line;
 
             while ((line = reader.readLine()) != null) {
                 if (line.isBlank() || line.startsWith("#")) continue;
 
                 if (line.startsWith("MIN TRAIT BASE LEVEL")) {
-                    MIN_TRAIT_BASE_LEVEL = getValue(line);
+                    MIN_TRAIT_BASE_LEVEL = getInt(line);
                 } else if (line.startsWith("MAX TRAIT BASE LEVEL")) {
-                    MAX_TRAIT_BASE_LEVEL = getValue(line);
+                    MAX_TRAIT_BASE_LEVEL = getInt(line);
                 } else if (line.startsWith("MIN TRAIT LEVEL")) {
-                    MIN_TRAIT_LEVEL = getValue(line);
+                    MIN_TRAIT_LEVEL = getInt(line);
                 } else if (line.startsWith("MAX TRAIT LEVEL")) {
-                    MAX_TRAIT_LEVEL = getValue(line);
+                    MAX_TRAIT_LEVEL = getInt(line);
                 } else if (line.startsWith("ZERO TRAIT LEVEL")) {
-                    ZERO_TRAIT_LEVEL = getValue(line);
+                    ZERO_TRAIT_LEVEL = getInt(line);
                 } else if (line.startsWith("CRITICAL CONDITION BUFF")) {
-                    CRITICAL_CONDITION_BUFF = getValue(line);
+                    CRITICAL_CONDITION_BUFF = getInt(line);
                 } else if (line.startsWith("CRITICAL CONDITION DEBUFF")) {
-                    CRITICAL_CONDITION_DEBUFF = getValue(line);
+                    CRITICAL_CONDITION_DEBUFF = getInt(line);
                 } else if (line.startsWith("STARTING TRAIT POINTS")) {
-                    STARTING_TRAIT_POINTS = getValue(line);
+                    STARTING_TRAIT_POINTS = getInt(line);
                 } else if (line.startsWith("MIN ABILITY BASE LEVEL")) {
-                    MIN_ABILITY_BASE_LEVEL = getValue(line);
+                    MIN_ABILITY_BASE_LEVEL = getInt(line);
                 } else if (line.startsWith("MAX ABILITY BASE LEVEL")) {
-                    MAX_ABILITY_BASE_LEVEL = getValue(line);
+                    MAX_ABILITY_BASE_LEVEL = getInt(line);
                 } else if (line.startsWith("MIN ABILITY LEVEL")) {
-                    MIN_ABILITY_LEVEL = getValue(line);
+                    MIN_ABILITY_LEVEL = getInt(line);
                 } else if (line.startsWith("MAX ABILITY LEVEL")) {
-                    MAX_ABILITY_LEVEL = getValue(line);
+                    MAX_ABILITY_LEVEL = getInt(line);
                 } else if (line.startsWith("DICE EXPLODE ABILITY LEVEL")) {
-                    DICE_EXPLODE_ABILITY_LEVEL = getValue(line);
+                    DICE_EXPLODE_ABILITY_LEVEL = getInt(line);
                 } else if (line.startsWith("STARTING ABILITY POINTS")) {
-                    STARTING_ABILITY_POINTS = getValue(line);
+                    STARTING_ABILITY_POINTS = getInt(line);
                 } else if (line.startsWith("HUMAN LIMIT BASE")) {
-                    HUMAN_LIMIT_BASE = getValue(line);
+                    HUMAN_LIMIT_BASE = getInt(line);
                 } else if (line.startsWith("HIT POINT BASE")) {
-                    HIT_POINT_BASE = getValue(line);
+                    HIT_POINT_BASE = getInt(line);
                 } else if (line.startsWith("CRITICAL HP")) {
-                    CRITICAL_HP = getValue(line);
+                    CRITICAL_HP = getInt(line);
                 } else if (line.startsWith("ORIGIN BONUSES AMT")) {
-                    ORIGIN_BONUSES_AMT = getValue(line);
+                    ORIGIN_BONUSES_AMT = getInt(line);
                 } else if (line.startsWith("BACKGROUND BONUSES AMT")) {
-                    BACKGROUND_BONUSES_AMT = getValue(line);
+                    BACKGROUND_BONUSES_AMT = getInt(line);
                 } else if (line.startsWith("RISK DICE FACES")) {
-                    RISK_DICE_FACES = getValue(line);
+                    RISK_DICE_FACES = getInt(line);
                 } else if (line.startsWith("INCREMENT THRESHOLD")) {
-                    INCREMENT_THRESHOLD = getValue(line);
+                    INCREMENT_THRESHOLD = getInt(line);
                 } else if (line.startsWith("ADVANTAGES AT CREATION AMT")) {
-                    ADVANTAGES_AT_CREATION_AMT = getValue(line);
+                    ADVANTAGES_AT_CREATION_AMT = getInt(line);
                 } else if (line.startsWith("MASTER MODE")) {
                     MASTER_MODE = Boolean.parseBoolean(
                             line.substring(
@@ -113,9 +118,13 @@ public class Constants {
                             ).replace(" ", "")
                     );
                 } else if (line.startsWith("VERSION")) {
-                    VERSION = line.substring(
-                            line.indexOf(':') + 1
-                    ).replace("\n", "");
+                    VERSION = getString(line);
+                } else if (line.startsWith("CHARACTERS FOLDER")) {
+                    CHARACTERS_FOLDER = getString(line);
+                } else if (line.startsWith("LIB FOLDER")) {
+                    LIB_FOLDER = getString(line);
+                } else if (line.startsWith("MASTER NAME")) {
+                    MASTER_NAME = getString(line);
                 }
             }
         } catch (IOException e) {
@@ -123,11 +132,17 @@ public class Constants {
         }
     }
 
-    private int getValue(String s) {
+    private int getInt(String s) {
         return Integer.parseInt(
                 s.substring(
                         s.indexOf(':') + 1
                 ).replace(" ", "")
         );
+    }
+
+    private String getString(String s) {
+        return s.substring(
+                s.indexOf(':') + 2
+        ).replace("\n", "");
     }
 }

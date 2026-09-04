@@ -1,5 +1,6 @@
 package com.github.cldgdn.seaofstars.controller;
 
+import com.github.cldgdn.seaofstars.Constants;
 import com.github.cldgdn.seaofstars.SeaOfStarsMain;
 import com.github.cldgdn.seaofstars.LibCache;
 import com.github.cldgdn.seaofstars.character.Advantage;
@@ -26,6 +27,7 @@ import javafx.scene.layout.VBox;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -44,7 +46,7 @@ public class StartScreenController {
         CreateAdvantageDialog dialog = new CreateAdvantageDialog();
         dialog.showAndWait().ifPresent(advantage -> {
             try {
-                AdvantagesWriter.writeSingle(advantage, "lib");
+                AdvantagesWriter.writeSingle(advantage, Constants.get.LIB_FOLDER);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -59,7 +61,7 @@ public class StartScreenController {
                 character.init();
                 character.hitPoints = character.hitPointsMax;
 
-                CharacterWriter.write(character, "characters/" + character.info.name.replace(" ", "_"));
+                CharacterWriter.write(character, Constants.get.CHARACTERS_FOLDER + "/" + character.info.name.replace(" ", "_"));
 
                 System.out.println("[INFO] Adding " + character.info.name + " by " + character.info.playerName);
 
@@ -68,7 +70,7 @@ public class StartScreenController {
 
                 CharacterElementController cec = loader.getController();
 
-                cec.setCharacter(character.info.name, character.info.playerName, new File("character/" + character.info.name));
+                cec.setCharacter(character.info.name, character.info.playerName, new File(Constants.get.CHARACTERS_FOLDER + "/" + character.info.name));
 
                 charactersVBox.getChildren().add(element);
             } catch (IOException e) {
@@ -83,7 +85,7 @@ public class StartScreenController {
         CreateImplantDialog dialog = new CreateImplantDialog();
         dialog.showAndWait().ifPresent(implant -> {
             try {
-                ImplantsWriter.writeSingle(implant, "lib");
+                ImplantsWriter.writeSingle(implant, Constants.get.LIB_FOLDER);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -95,7 +97,7 @@ public class StartScreenController {
         CreateItemDialog dialog = new CreateItemDialog();
         dialog.showAndWait().ifPresent(item -> {
             try {
-                ItemsWriter.writeSingle(item, "lib");
+                ItemsWriter.writeSingle(item, Constants.get.LIB_FOLDER);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -116,7 +118,7 @@ public class StartScreenController {
     public void initialize() throws IOException, BadSOSDFormatException {
         long time = System.nanoTime();
         System.out.println("[INFO] Adding Characters...");
-        File characterFolder = new File("characters");
+        File characterFolder = new File(Constants.get.CHARACTERS_FOLDER);
         if (characterFolder.exists() && characterFolder.isDirectory()) {
             File[] files = characterFolder.listFiles();
 
@@ -133,12 +135,12 @@ public class StartScreenController {
             infos.sort(new Comparator<CharacterInfo>() {
                 @Override
                 public int compare(CharacterInfo o1, CharacterInfo o2) {
-                    if (o1.playerName.equals("cladio")) {
+                    if (o1.playerName.equals(Constants.get.MASTER_NAME)) {
                         if (o1.playerName.equals(o2.playerName))
                             return 0;
                         return -1;
                     }
-                    else if (o2.playerName.equals("cladio"))
+                    else if (o2.playerName.equals(Constants.get.MASTER_NAME))
                         return 1;
 
 
@@ -153,7 +155,7 @@ public class StartScreenController {
 
                 CharacterElementController cec = loader.getController();
 
-                cec.setCharacter(info.name, info.playerName, new File("characters/" + info.name.replace(" ", "_")));
+                cec.setCharacter(info.name, info.playerName, new File(Constants.get.CHARACTERS_FOLDER + "/" + info.name.replace(" ", "_")));
 
                 charactersVBox.getChildren().add(element);
             }

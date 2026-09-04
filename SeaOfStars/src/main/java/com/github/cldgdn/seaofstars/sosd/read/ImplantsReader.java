@@ -1,5 +1,6 @@
 package com.github.cldgdn.seaofstars.sosd.read;
 
+import com.github.cldgdn.seaofstars.Constants;
 import com.github.cldgdn.seaofstars.character.Implant;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 
@@ -27,7 +28,7 @@ public class ImplantsReader {
                         String line;
 
                         while ((line = reader.readLine()) != null) {
-                            Implant i = readSingle(new File("lib/implants/" + line + ".sosd"));
+                            Implant i = readSingle(new File(Constants.get.LIB_FOLDER + "/implants/" + line + ".sosd"));
                             i.isCustom = false;
                             implants.add(i);
                         }

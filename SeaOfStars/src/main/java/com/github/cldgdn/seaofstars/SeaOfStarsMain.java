@@ -15,6 +15,9 @@ public class SeaOfStarsMain extends Application {
     public static SeaOfStarsMain instance = null;
     public static Stage stage;
 
+    public static String DEFAULT_CONFIG_PATH = "lib/config";
+    public static String actualConfigPath = DEFAULT_CONFIG_PATH;
+
     public SeaOfStarsMain() {
         if (instance == null) {
             instance = this;
@@ -28,7 +31,12 @@ public class SeaOfStarsMain extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        new Constants();
+        new Constants(SeaOfStarsMain.actualConfigPath);
+
+        System.out.println("[INFO] Using config file at: " + SeaOfStarsMain.actualConfigPath);
+        System.out.println("[INFO] Character folder at: " + Constants.get.CHARACTERS_FOLDER);
+        System.out.println("[INFO] Lib folder at: " + Constants.get.LIB_FOLDER + "\n\n");
+
         FXMLLoader fxmlLoader = new FXMLLoader(SeaOfStarsMain.class.getResource("startScreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Sea Of Stars - Home (ver. " + Constants.get.VERSION + ")");
@@ -57,6 +65,10 @@ public class SeaOfStarsMain extends Application {
                 }
             }
         }));
+
+        if (args.length != 0) {
+            SeaOfStarsMain.actualConfigPath = args[0];
+        }
 
         launch();
     }

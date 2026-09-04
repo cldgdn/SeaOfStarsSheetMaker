@@ -1,5 +1,6 @@
 package com.github.cldgdn.seaofstars.controller;
 
+import com.github.cldgdn.seaofstars.Constants;
 import com.github.cldgdn.seaofstars.SeaOfStarsMain;
 import com.github.cldgdn.seaofstars.sosd.read.CharacterReader;
 import com.github.cldgdn.seaofstars.sosd.write.CharacterWriter;
@@ -41,7 +42,7 @@ public class CharacterElementController {
             stage.setScene(new Scene(root));
             stage.setOnCloseRequest(e -> {
                 try {
-                    CharacterWriter.write(controller.character, "characters/" + controller.character.info.name.replace(" ", "_"));
+                    CharacterWriter.write(controller.character, Constants.get.CHARACTERS_FOLDER + "/" + controller.character.info.name.replace(" ", "_"));
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
