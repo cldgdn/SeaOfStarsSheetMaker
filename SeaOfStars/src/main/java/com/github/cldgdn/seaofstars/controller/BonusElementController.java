@@ -8,7 +8,11 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 
+
+
 public class BonusElementController<T> {
+
+    static final Integer[] BONUS_VALUES = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10};
 
     public VBox container;
     public Node element;
@@ -35,7 +39,7 @@ public class BonusElementController<T> {
     }
 
     public void initialize() {
-        bonusValueComboBox.getItems().addAll(new Integer[]{4, 3, 2, 1, -1, -2, -3, -4});
+        bonusValueComboBox.getItems().addAll(BONUS_VALUES);
         removed = false;
     }
 }
