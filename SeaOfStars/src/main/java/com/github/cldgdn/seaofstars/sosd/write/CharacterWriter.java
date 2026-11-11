@@ -1,9 +1,7 @@
 package com.github.cldgdn.seaofstars.sosd.write;
 
-import com.github.cldgdn.seaofstars.character.Background;
 import com.github.cldgdn.seaofstars.character.Character;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -30,6 +28,7 @@ public class CharacterWriter {
     private static void writeOtherInfo(Character character, String characterPath) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "/otherStats.sosd"))) {
             writer.write("hitPoints : " + character.hitPoints + "\n");
+            writer.write("storyPoints : " + character.storyPoints + "\n");
         }
     }
 }

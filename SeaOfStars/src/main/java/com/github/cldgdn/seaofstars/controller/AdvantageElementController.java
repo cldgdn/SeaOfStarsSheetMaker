@@ -33,7 +33,7 @@ public class AdvantageElementController {
         this.advantage = advantage;
 
         nameLabel.setText(advantage.name);
-        costLabel.setText(advantage.isPassive ? "Effetto Passivo" : advantage.heroPointCost + " Punti Eroe");
+        costLabel.setText(advantage.isPassive ? "Effetto Passivo" : advantage.heroPointCost + " Punti Storia");
         descriptionArea.setText(advantage.description);
 
         if (advantage.isCustom) {

@@ -6,7 +6,6 @@ import com.github.cldgdn.seaofstars.character.Character;
 import com.github.cldgdn.seaofstars.controller.dialog.CreateItemDialog;
 import com.github.cldgdn.seaofstars.controller.dialog.HpUpdateDialog;
 import com.github.cldgdn.seaofstars.controller.dialog.RollWithIncrementsDialog;
-import com.github.cldgdn.seaofstars.sosd.read.CharacterReader;
 import com.github.cldgdn.seaofstars.sosd.write.CharacterWriter;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 import javafx.event.ActionEvent;
@@ -44,6 +43,7 @@ public class CharacterScreenController {
     @FXML private TextField fameField;
     @FXML private TextField hlField;
     @FXML private TextField hpField;
+    @FXML private TextField storyPointsField;
     @FXML private VBox implantsVBox;
     @FXML private VBox itemsVBox;
     @FXML private TextField moneyField;
@@ -55,6 +55,7 @@ public class CharacterScreenController {
     @FXML private VBox traitsVBox;
 
     private String prevMoneyText = "";
+    private String prevStoryPointsText = "";
     private List<String> rollHistory = new ArrayList<>();
 
     @FXML
@@ -131,6 +132,19 @@ public class CharacterScreenController {
         }
     }
 
+    @FXML
+    void updateStoryPointsField(KeyEvent event) {
+        String currentText = storyPointsField.getText();
+        if (!prevStoryPointsText.equals(currentText)) {
+            try {
+                character.storyPoints = Integer.parseInt(currentText);
+                prevStoryPointsText = currentText;
+            } catch (NumberFormatException e) {
+                storyPointsField.setText(prevStoryPointsText);
+            }
+        }
+    }
+
     public void setCharacter(Character c) throws IOException, BadSOSDFormatException {
         long time = System.nanoTime();
         long timeTotal = time;
@@ -148,9 +162,11 @@ public class CharacterScreenController {
         moneyLabel.setText(moneyNames[ThreadLocalRandom.current().nextInt(moneyNames.length)]);
         moneyField.setText("" + character.info.money);
         hpField.setText(character.hitPoints + "/" + character.hitPointsMax);
-        hlField.setText(character.usedHumanLimit + "/" + character.humanLimit);
+        hlField.setText(character.usedHumanLimit + "/" + character.humanLimit + " | (" + Math.round((float) character.usedHumanLimit * 100.0 / character.humanLimit) + "%)");
+        storyPointsField.setText("" + character.storyPoints);
 
         prevMoneyText = moneyField.getText();
+        prevStoryPointsText = storyPointsField.getText();
 
         System.out.println("[INFO] Character information prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
         time = System.nanoTime();

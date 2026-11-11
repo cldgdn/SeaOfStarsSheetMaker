@@ -1,5 +1,6 @@
 package com.github.cldgdn.seaofstars.sosd.read;
 
+import com.github.cldgdn.seaofstars.Constants;
 import com.github.cldgdn.seaofstars.character.Character;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 
@@ -31,6 +32,7 @@ public class CharacterReader {
     public static Character readOtherInfo(String characterPath) throws IOException, BadSOSDFormatException {
         Character character = new Character();
         boolean hpFound = false;
+        boolean spFound = false;
 
         try (BufferedReader reader = new BufferedReader(new FileReader(characterPath + "/otherStats.sosd"))) {
             String line;
@@ -39,11 +41,18 @@ public class CharacterReader {
                 if (line.startsWith("hitPoints : ") && !hpFound) {
                     character.hitPoints = Integer.parseInt(line.substring("hitPoints : ".length()));
                     hpFound = true;
+                } else if (line.startsWith("storyPoints : ") && !spFound) {
+                    character.storyPoints = Integer.parseInt(line.substring("storyPoints : ".length()));
+                    spFound = true;
                 }
             }
 
             if (!hpFound) {
                 throw new BadSOSDFormatException("otherStats.sosd has missing fields.");
+            }
+
+            if (!spFound) {
+                character.storyPoints = Constants.get.DEFAULT_STORY_POINTS;
             }
         }
 

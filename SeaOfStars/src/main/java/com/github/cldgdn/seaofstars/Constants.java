@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Constants {
 
-    public String VERSION = "NO VERSION DETECTED";
+    public String VERSION = "1.1.0";
 
     //TRAIT CONSTANTS-----------------------------------------------------
     public int MIN_TRAIT_BASE_LEVEL = 1;
@@ -14,9 +14,6 @@ public class Constants {
     public int MIN_TRAIT_LEVEL = 1;
     public int MAX_TRAIT_LEVEL = 2 * MAX_TRAIT_BASE_LEVEL;
     public int ZERO_TRAIT_LEVEL = 4;
-
-    public int CRITICAL_CONDITION_BUFF = 4;
-    public int CRITICAL_CONDITION_DEBUFF = -2;
 
     public static final String VIGOR_ID = "trt-vig";
     public static final String GRACE_ID = "trt-grc";
@@ -38,7 +35,7 @@ public class Constants {
     //CHARACTER CONSTANTS-------------------------------------------------
     public int HUMAN_LIMIT_BASE = 3;
     public int HIT_POINT_BASE = 16;
-    public int CRITICAL_HP = 3;
+    public int DEFAULT_STORY_POINTS = 3;
 
     public static final String HUMAN_LIMIT_ID = "chr-lmt";
     public static final String HIT_POINTS_MAX_ID = "chr-hpm";
@@ -77,10 +74,6 @@ public class Constants {
                     MAX_TRAIT_LEVEL = getInt(line);
                 } else if (line.startsWith("ZERO TRAIT LEVEL")) {
                     ZERO_TRAIT_LEVEL = getInt(line);
-                } else if (line.startsWith("CRITICAL CONDITION BUFF")) {
-                    CRITICAL_CONDITION_BUFF = getInt(line);
-                } else if (line.startsWith("CRITICAL CONDITION DEBUFF")) {
-                    CRITICAL_CONDITION_DEBUFF = getInt(line);
                 } else if (line.startsWith("STARTING TRAIT POINTS")) {
                     STARTING_TRAIT_POINTS = getInt(line);
                 } else if (line.startsWith("MIN ABILITY BASE LEVEL")) {
@@ -99,8 +92,6 @@ public class Constants {
                     HUMAN_LIMIT_BASE = getInt(line);
                 } else if (line.startsWith("HIT POINT BASE")) {
                     HIT_POINT_BASE = getInt(line);
-                } else if (line.startsWith("CRITICAL HP")) {
-                    CRITICAL_HP = getInt(line);
                 } else if (line.startsWith("ORIGIN BONUSES AMT")) {
                     ORIGIN_BONUSES_AMT = getInt(line);
                 } else if (line.startsWith("BACKGROUND BONUSES AMT")) {
@@ -117,14 +108,14 @@ public class Constants {
                                     line.indexOf(':') + 1
                             ).replace(" ", "")
                     );
-                } else if (line.startsWith("VERSION")) {
-                    VERSION = getString(line);
                 } else if (line.startsWith("CHARACTERS FOLDER")) {
                     CHARACTERS_FOLDER = getString(line);
                 } else if (line.startsWith("LIB FOLDER")) {
                     LIB_FOLDER = getString(line);
                 } else if (line.startsWith("MASTER NAME")) {
                     MASTER_NAME = getString(line);
+                } else if (line.startsWith("DEFAULT STORY POINTS")) {
+                    DEFAULT_STORY_POINTS = getInt(line);
                 }
             }
         } catch (IOException e) {

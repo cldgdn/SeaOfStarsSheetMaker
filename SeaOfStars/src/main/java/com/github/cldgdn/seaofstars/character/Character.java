@@ -5,7 +5,6 @@ import com.github.cldgdn.seaofstars.Constants;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public class Character {
     public CharacterInfo info;
@@ -28,9 +27,7 @@ public class Character {
     public int humanLimit;
     public int usedHumanLimit;
 
-    public int heroPoints;
-
-    public boolean critical;
+    public int storyPoints;
 
     public Character() {}
 
@@ -44,8 +41,6 @@ public class Character {
     }
 
     private void sortBonuses() {
-        String pref;
-
         traitBonuses.addAll(Arrays.asList(origin.traitBonuses));
         abilityBonuses.addAll(Arrays.asList(background.abilityBonuses));
 
@@ -62,11 +57,6 @@ public class Character {
         hitPointsMax = hitPointsBase;
         humanLimit = humanLimitBase;
         usedHumanLimit = 0;
-        critical = false;
-
-        if (hitPoints <= Constants.get.CRITICAL_HP) {
-            critical = true;
-        }
 
         //update Traits
         for (Trait t : traits) {
@@ -79,12 +69,8 @@ public class Character {
                 }
             }
 
-            //set critical conditions flag to true if trait went below minimum level (def is <= 1)
-            if (t.computedLevel < Constants.get.MIN_TRAIT_LEVEL) {
-                critical = true;
-            }
             //cap trait to max allowed level (def is 14)
-            else if (t.computedLevel > Constants.get.MAX_TRAIT_LEVEL) {
+            if (t.computedLevel > Constants.get.MAX_TRAIT_LEVEL) {
                 t.computedLevel = Constants.get.MAX_TRAIT_LEVEL;
             }
         }
@@ -114,14 +100,14 @@ public class Character {
 
         //modifiers are calculated last as they are dependent on critical conditions, which can be triggered by multiple sources
         for (Trait t : traits) {
-            //calculate modifier taking into account that, if the character is in critical conditions different traits get buffed or debuffed
+            //calculate modifier taking into account that
             if (t.ID.equals(Constants.RESISTANCE_ID) || t.ID.equals(Constants.RESOLVE_ID)) {
-                t.modifier = (t.computedLevel - Constants.get.ZERO_TRAIT_LEVEL) + (critical ? Constants.get.CRITICAL_CONDITION_BUFF : 0);
+                t.modifier = (t.computedLevel - Constants.get.ZERO_TRAIT_LEVEL);
                 //calculates bonus to human limit given by trait if resistance or resolve
                 humanLimit += (t.modifier <= 0) ? (t.modifier) : (t.modifier * Constants.get.HUMAN_LIMIT_BASE);
             }
             else {
-                t.modifier = (t.computedLevel - Constants.get.ZERO_TRAIT_LEVEL) + (critical ? Constants.get.CRITICAL_CONDITION_DEBUFF : 0);
+                t.modifier = (t.computedLevel - Constants.get.ZERO_TRAIT_LEVEL);
             }
 
             if (t.ID.equals(Constants.RESISTANCE_ID)) {
@@ -133,10 +119,6 @@ public class Character {
         //compute total human cost
         for (Implant i : implants) {
             usedHumanLimit += i.humanCost;
-        }
-        //check if limit was broken
-        if (usedHumanLimit > humanLimit) {
-            critical = true;
         }
     }
 
