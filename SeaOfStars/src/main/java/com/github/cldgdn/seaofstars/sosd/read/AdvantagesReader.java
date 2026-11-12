@@ -2,6 +2,7 @@ package com.github.cldgdn.seaofstars.sosd.read;
 
 import com.github.cldgdn.seaofstars.Constants;
 import com.github.cldgdn.seaofstars.character.Advantage;
+import com.github.cldgdn.seaofstars.character.Bonus;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 
 import java.io.BufferedReader;
@@ -30,6 +31,7 @@ public class AdvantagesReader {
                         while ((line = reader.readLine()) != null) {
                             Advantage a = readSingle(new File(Constants.get.LIB_FOLDER + "/advantages/" + line + ".sosd"));
                             a.isCustom = false;
+                            a.bonuses = Bonus.collapseBonuses(a.bonuses);
                             advantages.add(a);
                         }
                     }
@@ -37,6 +39,7 @@ public class AdvantagesReader {
                 else if (file.getName().endsWith(".sosd")) {
                     Advantage a = readSingle(file);
                     a.isCustom = true;
+                    a.bonuses = Bonus.collapseBonuses(a.bonuses);
                     advantages.add(a);
                 }
             }

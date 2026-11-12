@@ -1,6 +1,7 @@
 package com.github.cldgdn.seaofstars.sosd.read;
 
 import com.github.cldgdn.seaofstars.Constants;
+import com.github.cldgdn.seaofstars.character.Bonus;
 import com.github.cldgdn.seaofstars.character.Implant;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 
@@ -36,6 +37,7 @@ public class ImplantsReader {
                             Implant i = readSingle(new File(Constants.get.LIB_FOLDER + "/implants/" + id + ".sosd"));
                             i.isCustom = false;
                             i.isOverclocked = overclocked;
+                            i.bonuses = Bonus.collapseBonuses(i.bonuses);
                             implants.add(i);
                         }
                     }
@@ -43,6 +45,7 @@ public class ImplantsReader {
                 else if (file.getName().endsWith(".sosd")) {
                     Implant i = readSingle(file);
                     i.isCustom = true;
+                    i.bonuses = Bonus.collapseBonuses(i.bonuses);
                     implants.add(i);
                 }
             }
