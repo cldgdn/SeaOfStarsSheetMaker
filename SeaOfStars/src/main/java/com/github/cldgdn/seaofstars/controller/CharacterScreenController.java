@@ -1,5 +1,6 @@
 package com.github.cldgdn.seaofstars.controller;
 
+import com.github.cldgdn.seaofstars.Constants;
 import com.github.cldgdn.seaofstars.SeaOfStarsMain;
 import com.github.cldgdn.seaofstars.character.*;
 import com.github.cldgdn.seaofstars.character.Character;
@@ -60,14 +61,20 @@ public class CharacterScreenController {
 
     @FXML
     void refreshCharacter(ActionEvent event) {
+        refreshCharacter(false);
+    }
+
+    void refreshCharacter(boolean verbose) {
         try {
             advantagesVBox.getChildren().clear();
             implantsVBox.getChildren().clear();
             itemsVBox.getChildren().clear();
             originVBox.getChildren().clear();
             backgroundVBox.getChildren().clear();
+            traitsVBox.getChildren().clear();
+            abilitiesVBox.getChildren().clear();
 
-            setCharacter(character);
+            setCharacter(character, verbose);
         } catch (BadSOSDFormatException | IOException e) {
             throw new RuntimeException(e);
         }
@@ -108,7 +115,7 @@ public class CharacterScreenController {
         character.info.fame = fameField.getText();
 
         try {
-            CharacterWriter.write(character, "characters/" + character.info.name.replace(" ", "_"));
+            CharacterWriter.write(character, Constants.get.CHARACTERS_FOLDER + "/" + character.info.name.replace(" ", "_"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -145,7 +152,7 @@ public class CharacterScreenController {
         }
     }
 
-    public void setCharacter(Character c) throws IOException, BadSOSDFormatException {
+    public void setCharacter(Character c, boolean verbose) throws IOException, BadSOSDFormatException {
         long time = System.nanoTime();
         long timeTotal = time;
         this.character = c;
@@ -168,7 +175,7 @@ public class CharacterScreenController {
         prevMoneyText = moneyField.getText();
         prevStoryPointsText = storyPointsField.getText();
 
-        System.out.println("[INFO] Character information prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
+        if (verbose) System.out.println("[INFO] Character information prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
         time = System.nanoTime();
 
         //ORIGIN INFORMATION DISPLAY
@@ -190,7 +197,7 @@ public class CharacterScreenController {
             originVBox.getChildren().add(bLabel);
         }
 
-        System.out.println("[INFO] Character origin prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
+        if (verbose) System.out.println("[INFO] Character origin prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
         time = System.nanoTime();
 
         //BACKGROUND INFORMATION DISPLAY
@@ -212,7 +219,7 @@ public class CharacterScreenController {
             backgroundVBox.getChildren().add(bLabel);
         }
 
-        System.out.println("[INFO] Character background prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
+        if (verbose) System.out.println("[INFO] Character background prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
         time = System.nanoTime();
 
         //TRAITS INFORMATION DISPLAY
@@ -227,7 +234,7 @@ public class CharacterScreenController {
             traitsVBox.getChildren().add(element);
         }
 
-        System.out.println("[INFO] Character traits prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
+        if (verbose) System.out.println("[INFO] Character traits prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
         time = System.nanoTime();
 
         //ABILITIES INFORMATION DISPLAY
@@ -242,7 +249,7 @@ public class CharacterScreenController {
             abilitiesVBox.getChildren().add(element);
         }
 
-        System.out.println("[INFO] Character abilities prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
+        if (verbose) System.out.println("[INFO] Character abilities prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
         time = System.nanoTime();
 
         //ADVANTAGES INFORMATION DISPLAY
@@ -257,7 +264,7 @@ public class CharacterScreenController {
             advantagesVBox.getChildren().add(element);
         }
 
-        System.out.println("[INFO] Character advantages prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
+        if (verbose) System.out.println("[INFO] Character advantages prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
         time = System.nanoTime();
 
         //IMPLANTS INFORMATION DISPLAY
@@ -267,12 +274,13 @@ public class CharacterScreenController {
 
             ImplantElementController controller = loader.getController();
             controller.setImplant(i);
+            controller.setScreenController(this);
             controller.setDisplayOnly();
 
             implantsVBox.getChildren().add(element);
         }
 
-        System.out.println("[INFO] Character implants prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
+        if (verbose) System.out.println("[INFO] Character implants prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
         time = System.nanoTime();
 
         //ITEMS INFORMATION DISPLAY
@@ -283,12 +291,13 @@ public class CharacterScreenController {
 
             ItemElementController controller = loader.getController();
             controller.setItem(i);
+            controller.setController(this);
 
             itemControllers.add(controller);
             itemsVBox.getChildren().add(element);
         }
 
-        System.out.println("[INFO] Character inventory prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
+        if (verbose) System.out.println("[INFO] Character inventory prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
         System.out.println("[INFO] Done. (" + ((System.nanoTime() - timeTotal) / 1000000.0f) + "ms)\n");
     }
 }

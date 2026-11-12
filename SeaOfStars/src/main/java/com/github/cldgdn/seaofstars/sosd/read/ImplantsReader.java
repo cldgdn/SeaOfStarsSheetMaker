@@ -28,8 +28,14 @@ public class ImplantsReader {
                         String line;
 
                         while ((line = reader.readLine()) != null) {
-                            Implant i = readSingle(new File(Constants.get.LIB_FOLDER + "/implants/" + line + ".sosd"));
+                            boolean hasOverclockValue = line.contains(" ");
+
+                            String id = hasOverclockValue ? line.substring(0, line.indexOf(" ")) : line;
+                            boolean overclocked = hasOverclockValue && Boolean.parseBoolean(line.substring(line.indexOf(" ") + 1));
+
+                            Implant i = readSingle(new File(Constants.get.LIB_FOLDER + "/implants/" + id + ".sosd"));
                             i.isCustom = false;
+                            i.isOverclocked = overclocked;
                             implants.add(i);
                         }
                     }
@@ -52,7 +58,8 @@ public class ImplantsReader {
         boolean nameFound = false,
                 descFound = false,
                 locationFound = false,
-                humanCostFound = false;
+                humanCostFound = false,
+                overclockedFound = false;
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
@@ -74,6 +81,10 @@ public class ImplantsReader {
                     i.humanCost = Integer.parseInt(line.substring("humanCost : ".length()));
                     humanCostFound = true;
                 }
+                else if (line.startsWith("overclocked : ") && !overclockedFound) {
+                    i.isOverclocked = Boolean.parseBoolean(line.substring("overclocked : ".length()));
+                    overclockedFound = true;
+                }
                 else if (line.startsWith("# LIST")) {
                     if (!nameFound || !descFound || !locationFound || !humanCostFound) {
                         throw new BadSOSDFormatException("Implant file " + i.ID + ".sosd is either incomplete or the bonuses are not at the end.");
@@ -88,6 +99,10 @@ public class ImplantsReader {
 
         if (!nameFound || !descFound || !locationFound || !humanCostFound) {
             throw new BadSOSDFormatException("Incomplete implant file: " + i.ID + ".sosd");
+        }
+
+        if (!overclockedFound) {
+            i.isOverclocked = false;
         }
 
         return i;

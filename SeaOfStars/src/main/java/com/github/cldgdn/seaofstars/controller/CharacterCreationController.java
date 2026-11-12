@@ -147,7 +147,7 @@ public class CharacterCreationController {
 
                 ImplantElementController iec = loader.getController();
                 iec.setImplant(implant);
-                iec.setController(this);
+                iec.setCreationController(this);
 
                 implantsVBox.getChildren().add(element);
             } catch (IOException e) {
@@ -266,7 +266,7 @@ public class CharacterCreationController {
 
                 ImplantElementController iec = loader.getController();
                 iec.setImplant(i);
-                iec.setController(this);
+                iec.setCreationController(this);
 
                 implantsVBox.getChildren().add(element);
             }

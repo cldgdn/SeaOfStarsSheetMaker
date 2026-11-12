@@ -46,6 +46,7 @@ public class Constants {
     public int RISK_DICE_FACES = 10; //you roll d10s for risks
     public int INCREMENT_THRESHOLD = 10;
     public int ADVANTAGES_AT_CREATION_AMT = 3;
+    public float IMPLANT_OVERCLOCK_MULTIPLIER = 2;
     public boolean MASTER_MODE = false;
 
     //MANAGEMENT CONSTANTS-------------------------------------------------
@@ -104,9 +105,7 @@ public class Constants {
                     ADVANTAGES_AT_CREATION_AMT = getInt(line);
                 } else if (line.startsWith("MASTER MODE")) {
                     MASTER_MODE = Boolean.parseBoolean(
-                            line.substring(
-                                    line.indexOf(':') + 1
-                            ).replace(" ", "")
+                            getValue(line)
                     );
                 } else if (line.startsWith("CHARACTERS FOLDER")) {
                     CHARACTERS_FOLDER = getString(line);
@@ -116,11 +115,21 @@ public class Constants {
                     MASTER_NAME = getString(line);
                 } else if (line.startsWith("DEFAULT STORY POINTS")) {
                     DEFAULT_STORY_POINTS = getInt(line);
+                } else if (line.startsWith("IMPLANT OVERCLOCK MULTIPLIER")) {
+                    IMPLANT_OVERCLOCK_MULTIPLIER = Float.parseFloat(
+                            getValue(line)
+                    );
                 }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private String getValue(String s) {
+        return s.substring(
+                s.indexOf(':') + 1
+        ).replace(" ", "");
     }
 
     private int getInt(String s) {

@@ -1,5 +1,6 @@
 package com.github.cldgdn.seaofstars.controller;
 
+import com.github.cldgdn.seaofstars.Constants;
 import com.github.cldgdn.seaofstars.character.Item;
 
 import javafx.event.ActionEvent;
@@ -10,14 +11,20 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 public class ItemElementController {
     private Item item;
+    private CharacterScreenController controller;
 
     @FXML private Button addButton;
     @FXML private Label amtLabel;
     @FXML private TextArea descriptionArea;
     @FXML private Label nameLabel;
     @FXML private Button remButton;
+    @FXML private Button deleteButton;
 
     @FXML
     void changeItemAmount(ActionEvent event) {
@@ -43,11 +50,32 @@ public class ItemElementController {
     }
 
 
+    @FXML
+    void removeItem(ActionEvent event) {
+        Path path = Path.of(
+                Constants.get.CHARACTERS_FOLDER + "/" + controller.character.info.name.replace(" ", "_") + "/items/" + item.ID + ".sosd"
+        );
+
+        try {
+            Files.delete(path);
+        } catch (IOException e) {
+            System.err.println("[ERROR] Could not delete item file:\n" + path);
+        }
+
+        controller.character.removeItem(item.ID);
+
+        controller.refreshCharacter(false);
+    }
+
     public void setItem(Item i) {
         this.item = i;
 
         nameLabel.setText(item.name);
         descriptionArea.setText(item.description);
         amtLabel.setText("Quantità: " + item.amount);
+    }
+
+    public void setController(CharacterScreenController controller) {
+        this.controller = controller;
     }
 }

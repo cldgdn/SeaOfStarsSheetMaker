@@ -35,7 +35,7 @@ public class CharacterElementController {
             Parent root = loader.load();
 
             CharacterScreenController controller = loader.getController();
-            controller.setCharacter(CharacterReader.read(file.getPath()));
+            controller.setCharacter(CharacterReader.read(file.getPath()), true);
 
             Stage stage = new Stage();
             stage.setTitle("Sea Of Stars - " + characterNameField.getText());

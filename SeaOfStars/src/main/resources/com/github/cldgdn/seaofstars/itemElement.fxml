@@ -19,6 +19,7 @@
                   <Label fx:id="amtLabel" text="Cost/Passive" />
                   <Button fx:id="addButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#changeItemAmount" prefHeight="25.0" prefWidth="25.0" text="+" />
                   <Button fx:id="remButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#changeItemAmount" prefHeight="25.0" prefWidth="25.0" text="-" />
+                  <Button fx:id="deleteButton" focusTraversable="false" mnemonicParsing="false" onAction="#removeItem" text="Rimuovi" />
                </children>
             </HBox>
             <TitledPane expanded="false" text="Descrizione" VBox.vgrow="NEVER">

@@ -129,6 +129,7 @@ public class CreateAdvantageController {
             a.heroPointCost = costValueCombo.getSelectionModel().getSelectedItem();
         }
 
+        List<Bonus> bonuses = new ArrayList<>();
         for (BonusElementController<Trait> controller : traitBonusControllers) {
             if (controller.removed) continue;
 
@@ -137,8 +138,10 @@ public class CreateAdvantageController {
             b.targetID = controller.attributeComboBox.getSelectionModel().getSelectedItem().ID;
             b.value = controller.bonusValueComboBox.getSelectionModel().getSelectedItem();
             b.isConditional = !a.isPassive;
-            a.bonuses.add(b);
+            bonuses.add(b);
         }
+        a.bonuses = Bonus.collapseBonuses(bonuses);
+        bonuses.clear();
         for (BonusElementController<Ability> controller : abilityBonusControllers) {
             if (controller.removed) continue;
 
@@ -147,8 +150,10 @@ public class CreateAdvantageController {
             b.targetID = controller.attributeComboBox.getSelectionModel().getSelectedItem().ID;
             b.value = controller.bonusValueComboBox.getSelectionModel().getSelectedItem();
             b.isConditional = !a.isPassive;
-            a.bonuses.add(b);
+            bonuses.add(b);
         }
+        a.bonuses.addAll(Bonus.collapseBonuses(bonuses));
+        bonuses.clear();
         for (BonusElementController<String> controller : otherBonusControllers) {
             if (controller.removed) continue;
 
@@ -171,8 +176,9 @@ public class CreateAdvantageController {
 
             b.value = controller.bonusValueComboBox.getSelectionModel().getSelectedItem();
             b.isConditional = !a.isPassive;
-            a.bonuses.add(b);
+            bonuses.add(b);
         }
+        a.bonuses.addAll(Bonus.collapseBonuses(bonuses));
 
         return a;
     }

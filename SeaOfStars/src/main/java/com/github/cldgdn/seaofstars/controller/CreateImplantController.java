@@ -113,6 +113,8 @@ public class CreateImplantController {
         i.location = locationField.getText();
         i.humanCost = costValueCombo.getValue();
 
+        List<Bonus> bonuses = new ArrayList<>();
+
         for (BonusElementController<Trait> controller : traitBonusControllers) {
             if (controller.removed) continue;
 
@@ -122,8 +124,10 @@ public class CreateImplantController {
             b.value = controller.bonusValueComboBox.getSelectionModel().getSelectedItem();
             b.isConditional = !controller.passiveCheckBox.isSelected();
 
-            i.bonuses.add(b);
+            bonuses.add(b);
         }
+        i.bonuses = Bonus.collapseBonuses(bonuses);
+        bonuses.clear();
         for (BonusElementController<Ability> controller : abilityBonusControllers) {
             if (controller.removed) continue;
 
@@ -133,8 +137,10 @@ public class CreateImplantController {
             b.value = controller.bonusValueComboBox.getSelectionModel().getSelectedItem();
             b.isConditional = !controller.passiveCheckBox.isSelected();
 
-            i.bonuses.add(b);
+            bonuses.add(b);
         }
+        i.bonuses.addAll(Bonus.collapseBonuses(bonuses));
+        bonuses.clear();
         for (BonusElementController<String> controller : otherBonusControllers) {
             if (controller.removed) continue;
 
@@ -158,8 +164,9 @@ public class CreateImplantController {
             b.value = controller.bonusValueComboBox.getSelectionModel().getSelectedItem();
             b.isConditional = false;
 
-            i.bonuses.add(b);
+            bonuses.add(b);
         }
+        i.bonuses.addAll(Bonus.collapseBonuses(bonuses));
 
         return i;
     }

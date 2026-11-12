@@ -31,13 +31,14 @@ public class ImplantsWriter {
                 writer.write("description : " + i.description.replace("\n", "\\n") + "\n");
                 writer.write("location : " + i.location + "\n");
                 writer.write("humanCost : " + i.humanCost + "\n");
+                writer.write("overclocked : " + i.isOverclocked + "\n");
                 writer.write("# LIST\n");
                 BonusWriter.writeBonuses(i.bonuses, writer);
             }
         }
         else {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(characterPath + "/implants/lib.sosd", true))) {
-                writer.write(i.ID + "\n");
+                writer.write(i.ID + " " + i.isOverclocked + "\n");
             }
         }
     }

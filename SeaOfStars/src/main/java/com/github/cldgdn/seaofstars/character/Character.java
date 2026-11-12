@@ -45,11 +45,11 @@ public class Character {
         abilityBonuses.addAll(Arrays.asList(background.abilityBonuses));
 
         for (Advantage a : advantages) {
-            dumpBonuses(a.bonuses);
+            dumpBonuses(a.bonuses, 1);
         }
 
         for (Implant i : implants) {
-            dumpBonuses(i.bonuses);
+            dumpBonuses(i.bonuses, i.getMultiplier());
         }
     }
 
@@ -118,7 +118,7 @@ public class Character {
 
         //compute total human cost
         for (Implant i : implants) {
-            usedHumanLimit += i.humanCost;
+            usedHumanLimit += i.getCost();
         }
     }
 
@@ -130,7 +130,7 @@ public class Character {
         }
 
         advantages.add(advantage);
-        dumpBonuses(advantage.bonuses);
+        dumpBonuses(advantage.bonuses, 1);
 
         update();
 
@@ -163,7 +163,7 @@ public class Character {
         }
 
         implants.add(implant);
-        dumpBonuses(implant.bonuses);
+        dumpBonuses(implant.bonuses, implant.getMultiplier());
 
         update();
 
@@ -188,23 +188,39 @@ public class Character {
         return implant;
     }
 
+    public Item removeItem(String ID) {
+        Item item = null;
+
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).ID.equals(ID)) {
+                item = items.remove(i);
+                break;
+            }
+        }
+
+        return item;
+    }
+
     private void removeBonuses(String sourceID) {
         traitBonuses.removeIf(b -> b.sourceID.equals(sourceID));
         abilityBonuses.removeIf(b -> b.sourceID.equals(sourceID));
         otherBonuses.removeIf(b -> b.sourceID.equals(sourceID));
     }
 
-    private void dumpBonuses(List<Bonus> bonuses) {
+    private void dumpBonuses(List<Bonus> bonuses, float multiplier) {
         String pref;
         for (Bonus b : bonuses) {
             pref = b.targetID.substring(0, 3);
 
+            Bonus copy = b.copy();
+            copy.value = Math.round(copy.value * multiplier);
+
             if (pref.equals("trt")) {
-                traitBonuses.add(b);
+                traitBonuses.add(copy);
             } else if (pref.equals("abl")) {
-                abilityBonuses.add(b);
+                abilityBonuses.add(copy);
             } else {
-                otherBonuses.add(b);
+                otherBonuses.add(copy);
             }
         }
     }

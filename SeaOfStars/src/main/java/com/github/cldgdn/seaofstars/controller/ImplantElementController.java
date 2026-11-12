@@ -1,12 +1,9 @@
 package com.github.cldgdn.seaofstars.controller;
 
 import com.github.cldgdn.seaofstars.Constants;
-import com.github.cldgdn.seaofstars.LibCache;
-import com.github.cldgdn.seaofstars.character.Ability;
 import com.github.cldgdn.seaofstars.character.Bonus;
 import com.github.cldgdn.seaofstars.character.Character;
 import com.github.cldgdn.seaofstars.character.Implant;
-import com.github.cldgdn.seaofstars.character.Trait;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +17,8 @@ import java.io.IOException;
 
 public class ImplantElementController {
     private Implant implant;
-    private CharacterCreationController controller;
+    private CharacterCreationController creationController;
+    private CharacterScreenController screenController;
     private boolean isDisplayOnly = false;
 
     @FXML private HBox bonusesHBox;
@@ -29,15 +27,21 @@ public class ImplantElementController {
     @FXML private Label locationLabel;
     @FXML private Label nameLabel;
     @FXML private CheckBox selectionBox;
+    @FXML private CheckBox overclockCheckBox;
 
     public void setDisplayOnly() {
         selectionBox.setVisible(false);
         selectionBox.setManaged(false);
+        overclockCheckBox.setVisible(true);
         isDisplayOnly = true;
     }
 
-    public void setController(CharacterCreationController controller) {
-        this.controller = controller;
+    public void setCreationController(CharacterCreationController creationController) {
+        this.creationController = creationController;
+    }
+
+    public void setScreenController(CharacterScreenController screenController) {
+        this.screenController = screenController;
     }
 
     public void setImplant(Implant i) throws BadSOSDFormatException, IOException {
@@ -45,40 +49,31 @@ public class ImplantElementController {
 
         nameLabel.setText(implant.name);
         descriptionArea.setText(implant.description);
-        costLabel.setText("Costo umano: " + implant.humanCost);
+        costLabel.setText("Costo umano: " + implant.getCost());
         locationLabel.setText("Posizione: " + implant.location);
 
         if (implant.isCustom) {
             descriptionArea.setEditable(true);
         }
 
-        for (Bonus b : implant.bonuses) {
-            Label currBonus = new Label();
+        overclockCheckBox.setSelected(implant.isOverclocked);
 
-            currBonus.setText(b.toString());
-
-            bonusesHBox.getChildren().add(currBonus);
-        }
+        setBonuses();
     }
 
     @FXML
     void toggleSelected(ActionEvent event) {
         if (isDisplayOnly) return;
 
-        Character character = controller.character;
+        Character character = creationController.character;
 
         if (selectionBox.isSelected()) {
-            if (character.usedHumanLimit + implant.humanCost < character.humanLimit) {
-                character.addImplant(implant);
-                controller.updateText();
-            }
-            else {
-                selectionBox.setSelected(false);
-            }
+            character.addImplant(implant);
+            creationController.updateText();
         } else {
             if (character.implants.contains(implant)) {
                 character.removeImplant(implant.ID);
-                controller.updateText();
+                creationController.updateText();
             }
         }
     }
@@ -88,4 +83,31 @@ public class ImplantElementController {
         implant.description = descriptionArea.getText();
     }
 
+
+    @FXML
+    void overclockToggle(ActionEvent event) {
+        if (!isDisplayOnly) {
+            return;
+        }
+
+        implant.isOverclocked = overclockCheckBox.isSelected();
+        costLabel.setText("Costo umano: " + implant.getCost());
+
+
+        setBonuses();
+        screenController.character.init();
+        screenController.refreshCharacter(null);
+    }
+
+    void setBonuses() {
+        bonusesHBox.getChildren().clear();
+
+        for (Bonus b : implant.bonuses) {
+            Label currBonus = new Label();
+
+            currBonus.setText(b.toString(implant.getMultiplier()));
+
+            bonusesHBox.getChildren().add(currBonus);
+        }
+    }
 }

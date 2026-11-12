@@ -19,6 +19,7 @@
                   <Label fx:id="nameLabel" text="Name" />
                   <Label fx:id="costLabel" text="Cost/Passive" />
                   <Label fx:id="locationLabel" text="Location" />
+                  <CheckBox fx:id="overclockCheckBox" focusTraversable="false" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#overclockToggle" text="Overclock" visible="false" />
                </children>
             </HBox>
             <TitledPane expanded="false" text="Descrizione" VBox.vgrow="NEVER">
