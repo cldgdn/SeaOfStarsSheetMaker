@@ -60,6 +60,7 @@ public class RollWithIncrementsController {
         rollResultLabel.setText(rollText);
         rollHistory.add(rollText);
         rollHistoryVBox.getChildren().add(new Label(rollText));
+        bonusDiceBox.getSelectionModel().select(Integer.valueOf(0));
     }
 
     @FXML
@@ -180,7 +181,8 @@ public class RollWithIncrementsController {
         try {
             traitCombo.getItems().addAll(character.traits);
             abilityCombo.getItems().addAll(character.abilities);
-            bonusDiceBox.getItems().addAll(new Integer[]{4, 3, 2, 1, 0, -1, -2, -3, -4});
+            bonusDiceBox.getItems().addAll(new Integer[]{6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5, -6});
+            bonusDiceBox.getSelectionModel().select(Integer.valueOf(0));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Constants {
 
-    public String VERSION = "1.1.0";
+    public String VERSION = "1.2.1";
 
     //TRAIT CONSTANTS-----------------------------------------------------
     public int MIN_TRAIT_BASE_LEVEL = 1;

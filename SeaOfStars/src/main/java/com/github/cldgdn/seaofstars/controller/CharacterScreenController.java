@@ -61,7 +61,7 @@ public class CharacterScreenController {
 
     @FXML
     void refreshCharacter(ActionEvent event) {
-        refreshCharacter(false);
+        refreshCharacter(true);
     }
 
     void refreshCharacter(boolean verbose) {

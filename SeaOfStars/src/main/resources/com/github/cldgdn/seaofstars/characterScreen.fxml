@@ -25,7 +25,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-                  <MenuItem disable="true" mnemonicParsing="false" onAction="#refreshCharacter" text="Refresh" />
+                  <MenuItem mnemonicParsing="false" onAction="#refreshCharacter" text="Refresh" />
               <MenuItem mnemonicParsing="false" onAction="#saveCharacterEdits" text="Salva Modifiche" />
             </items>
           </Menu>
