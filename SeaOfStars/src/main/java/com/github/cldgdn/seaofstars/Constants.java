@@ -1,12 +1,14 @@
 package com.github.cldgdn.seaofstars;
 
+import javafx.scene.Scene;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class Constants {
 
-    public String VERSION = "1.2.1 rev 1";
+    public String VERSION = "1.2.1 rev 2";
 
     //TRAIT CONSTANTS-----------------------------------------------------
     public int MIN_TRAIT_BASE_LEVEL = 1;
@@ -51,6 +53,7 @@ public class Constants {
 
     //MANAGEMENT CONSTANTS-------------------------------------------------
     public String CHARACTERS_FOLDER = "characters";
+    public boolean DARK_THEME = true;
     public String LIB_FOLDER = "lib";
     public String MASTER_NAME = "cladio";
 
@@ -117,6 +120,10 @@ public class Constants {
                     DEFAULT_STORY_POINTS = getInt(line);
                 } else if (line.startsWith("IMPLANT OVERCLOCK MULTIPLIER")) {
                     IMPLANT_OVERCLOCK_MULTIPLIER = Float.parseFloat(
+                            getValue(line)
+                    );
+                } else if (line.startsWith("DARK THEME")) {
+                    DARK_THEME = Boolean.parseBoolean(
                             getValue(line)
                     );
                 }

@@ -2,6 +2,7 @@ package com.github.cldgdn.seaofstars.controller;
 
 import com.github.cldgdn.seaofstars.Constants;
 import com.github.cldgdn.seaofstars.SeaOfStarsMain;
+import com.github.cldgdn.seaofstars.Utils;
 import com.github.cldgdn.seaofstars.sosd.read.CharacterReader;
 import com.github.cldgdn.seaofstars.sosd.write.CharacterWriter;
 import com.github.cldgdn.seaofstars.throwable.exceptions.BadSOSDFormatException;
@@ -38,8 +39,10 @@ public class CharacterElementController {
             controller.setCharacter(CharacterReader.read(file.getPath()), true);
 
             Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            Utils.setStyle(scene);
             stage.setTitle("Sea Of Stars - " + characterNameField.getText());
-            stage.setScene(new Scene(root));
+            stage.setScene(scene);
             stage.setOnCloseRequest(e -> {
                 try {
                     CharacterWriter.write(controller.character, Constants.get.CHARACTERS_FOLDER + "/" + controller.character.info.name.replace(" ", "_"));

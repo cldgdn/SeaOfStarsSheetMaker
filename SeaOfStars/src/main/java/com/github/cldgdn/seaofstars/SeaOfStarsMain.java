@@ -39,6 +39,7 @@ public class SeaOfStarsMain extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(SeaOfStarsMain.class.getResource("startScreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+        Utils.setStyle(scene);
         stage.setTitle("Sea Of Stars - Home (ver. " + Constants.get.VERSION + ")");
         stage.setScene(scene);
         stage.show();

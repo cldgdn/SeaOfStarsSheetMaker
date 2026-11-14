@@ -45,11 +45,11 @@ public class Character {
         abilityBonuses.addAll(Arrays.asList(background.abilityBonuses));
 
         for (Advantage a : advantages) {
-            dumpBonuses(a.bonuses, 1);
+            dumpBonuses(a.bonuses, false);
         }
 
         for (Implant i : implants) {
-            dumpBonuses(i.bonuses, i.getMultiplier());
+            dumpBonuses(i.bonuses, i.isOverclocked);
         }
     }
 
@@ -130,7 +130,7 @@ public class Character {
         }
 
         advantages.add(advantage);
-        dumpBonuses(advantage.bonuses, 1);
+        dumpBonuses(advantage.bonuses, false);
 
         update();
 
@@ -163,7 +163,7 @@ public class Character {
         }
 
         implants.add(implant);
-        dumpBonuses(implant.bonuses, implant.getMultiplier());
+        dumpBonuses(implant.bonuses, implant.isOverclocked);
 
         update();
 
@@ -207,13 +207,13 @@ public class Character {
         otherBonuses.removeIf(b -> b.sourceID.equals(sourceID));
     }
 
-    private void dumpBonuses(List<Bonus> bonuses, float multiplier) {
+    private void dumpBonuses(List<Bonus> bonuses, boolean overclocked) {
         String pref;
         for (Bonus b : bonuses) {
             pref = b.targetID.substring(0, 3);
 
             Bonus copy = b.copy();
-            copy.value = Math.round(copy.value * multiplier);
+            copy.value = b.getValue(overclocked);
 
             if (pref.equals("trt")) {
                 traitBonuses.add(copy);

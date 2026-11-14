@@ -1,6 +1,7 @@
 package com.github.cldgdn.seaofstars.controller.dialog;
 
 import com.github.cldgdn.seaofstars.SeaOfStarsMain;
+import com.github.cldgdn.seaofstars.Utils;
 import com.github.cldgdn.seaofstars.character.Character;
 import com.github.cldgdn.seaofstars.controller.RollWithIncrementsController;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +27,8 @@ public class RollWithIncrementsDialog extends Dialog<List<String>> {
             controller.setCharacter(c);
             controller.setRollHistory(rollHistory);
             controller.setup();
+
+            Utils.setStyle(getDialogPane());
 
             getDialogPane().setContent(content);
 

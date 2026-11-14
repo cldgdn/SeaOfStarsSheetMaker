@@ -1,6 +1,7 @@
 package com.github.cldgdn.seaofstars.controller.dialog;
 
 import com.github.cldgdn.seaofstars.SeaOfStarsMain;
+import com.github.cldgdn.seaofstars.Utils;
 import com.github.cldgdn.seaofstars.character.Implant;
 import com.github.cldgdn.seaofstars.controller.CreateImplantController;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,8 @@ public class CreateImplantDialog extends Dialog<Implant> {
         try {
             ScrollPane content = loader.load();
             CreateImplantController controller = loader.getController();
+
+            Utils.setStyle(getDialogPane());
 
             getDialogPane().setContent(content);
 

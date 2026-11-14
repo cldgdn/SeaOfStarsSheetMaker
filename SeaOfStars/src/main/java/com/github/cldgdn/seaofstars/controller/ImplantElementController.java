@@ -29,10 +29,10 @@ public class ImplantElementController {
     @FXML private CheckBox selectionBox;
     @FXML private CheckBox overclockCheckBox;
 
-    public void setDisplayOnly() {
+    public void setDisplayOnly(boolean overclockAvailable) {
         selectionBox.setVisible(false);
         selectionBox.setManaged(false);
-        overclockCheckBox.setVisible(true);
+        overclockCheckBox.setVisible(overclockAvailable);
         isDisplayOnly = true;
     }
 
@@ -105,7 +105,7 @@ public class ImplantElementController {
         for (Bonus b : implant.bonuses) {
             Label currBonus = new Label();
 
-            currBonus.setText(b.toString(implant.getMultiplier()));
+            currBonus.setText(b.toString(implant.isOverclocked));
 
             bonusesHBox.getChildren().add(currBonus);
         }

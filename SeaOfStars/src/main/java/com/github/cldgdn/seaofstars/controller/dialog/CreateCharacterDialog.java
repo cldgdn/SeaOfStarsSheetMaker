@@ -1,6 +1,7 @@
 package com.github.cldgdn.seaofstars.controller.dialog;
 
 import com.github.cldgdn.seaofstars.SeaOfStarsMain;
+import com.github.cldgdn.seaofstars.Utils;
 import com.github.cldgdn.seaofstars.character.Character;
 import com.github.cldgdn.seaofstars.controller.CharacterCreationController;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,8 @@ public class CreateCharacterDialog extends Dialog<Character> {
         try {
             AnchorPane content = loader.load();
             CharacterCreationController controller = loader.getController();
+
+            Utils.setStyle(getDialogPane());
 
             getDialogPane().setContent(content);
 

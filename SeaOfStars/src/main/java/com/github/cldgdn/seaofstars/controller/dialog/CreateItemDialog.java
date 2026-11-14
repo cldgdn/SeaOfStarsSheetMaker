@@ -1,6 +1,7 @@
 package com.github.cldgdn.seaofstars.controller.dialog;
 
 import com.github.cldgdn.seaofstars.SeaOfStarsMain;
+import com.github.cldgdn.seaofstars.Utils;
 import com.github.cldgdn.seaofstars.character.Item;
 import com.github.cldgdn.seaofstars.controller.CreateItemController;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +19,8 @@ public class CreateItemDialog extends Dialog<Item> {
         try {
             ScrollPane content = loader.load();
             CreateItemController controller = loader.getController();
+
+            Utils.setStyle(getDialogPane());
 
             getDialogPane().setContent(content);
 

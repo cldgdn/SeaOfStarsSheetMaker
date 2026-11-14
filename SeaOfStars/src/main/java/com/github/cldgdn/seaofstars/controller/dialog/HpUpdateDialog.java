@@ -1,6 +1,7 @@
 package com.github.cldgdn.seaofstars.controller.dialog;
 
 import com.github.cldgdn.seaofstars.SeaOfStarsMain;
+import com.github.cldgdn.seaofstars.Utils;
 import com.github.cldgdn.seaofstars.controller.HpUpdateController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ButtonBar;
@@ -21,6 +22,8 @@ public class HpUpdateDialog extends Dialog<Integer> {
         try {
             HBox content = loader.load();
             HpUpdateController controller = loader.getController();
+
+            Utils.setStyle(getDialogPane());
 
             getDialogPane().setContent(content);
 

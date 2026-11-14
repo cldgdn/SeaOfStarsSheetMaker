@@ -275,7 +275,7 @@ public class CharacterScreenController {
             ImplantElementController controller = loader.getController();
             controller.setImplant(i);
             controller.setScreenController(this);
-            controller.setDisplayOnly();
+            controller.setDisplayOnly(true);
 
             implantsVBox.getChildren().add(element);
         }

@@ -1,6 +1,7 @@
 package com.github.cldgdn.seaofstars.controller.dialog;
 
 import com.github.cldgdn.seaofstars.SeaOfStarsMain;
+import com.github.cldgdn.seaofstars.Utils;
 import com.github.cldgdn.seaofstars.character.Advantage;
 import com.github.cldgdn.seaofstars.controller.CreateAdvantageController;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +25,8 @@ public class CreateAdvantageDialog extends Dialog<Advantage> {
             ScrollPane content = loader.load();
             CreateAdvantageController controller = loader.getController();
             this.controller = controller;
+
+            Utils.setStyle(getDialogPane());
 
             getDialogPane().setContent(content);
 

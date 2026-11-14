@@ -178,7 +178,7 @@ public class StartScreenController {
             Node element = loader.load();
 
             ImplantElementController con = loader.getController();
-            con.setDisplayOnly();
+            con.setDisplayOnly(false);
             con.setImplant(i);
 
             implantsVBox.getChildren().add(element);

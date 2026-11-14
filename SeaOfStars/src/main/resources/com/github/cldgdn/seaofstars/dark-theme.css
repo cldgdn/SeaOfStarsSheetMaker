@@ -1,0 +1,89 @@
+
+.root {
+    -fx-base: #252525;
+    -fx-background: #252525;
+    -fx-control-inner-background: #353535;
+    -fx-control-inner-background-alt: #404040;
+
+    -fx-accent: #4a90d9;
+    -fx-focus-color: #4a90d9;
+    -fx-faint-focus-color: transparent;
+
+    -fx-text-fill: #eeeeee;
+}
+
+/* General text */
+.label {
+    -fx-text-fill: #eeeeee;
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: #454545;
+    -fx-text-fill: #eeeeee;
+}
+
+.button:hover {
+    -fx-background-color: #555555;
+}
+
+/* Text fields */
+.text-field, .text-area {
+    -fx-text-fill: #eeeeee;
+    -fx-prompt-text-fill: #999999;
+}
+
+/* ComboBox */
+.combo-box {
+    -fx-background-color: #454545;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: #eeeeee;
+}
+
+/* List views */
+.list-view {
+    -fx-background-color: #353535;
+}
+
+.list-cell {
+    -fx-background-color: #353535;
+    -fx-text-fill: #eeeeee;
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: #4a90d9;
+}
+
+/* Tables */
+.table-view {
+    -fx-background-color: #353535;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #454545;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: #454545;
+}
+
+.table-row-cell {
+    -fx-background-color: #353535;
+    -fx-text-fill: #eeeeee;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #404040;
+}
+
+/* Scroll bars */
+.scroll-bar {
+    -fx-background-color: #252525;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #555555;
+}

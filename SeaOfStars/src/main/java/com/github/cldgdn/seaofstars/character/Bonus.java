@@ -29,10 +29,10 @@ public class Bonus {
     }
 
     public String toString() {
-        return toString(1);
+        return toString(false);
     }
 
-    public String toString(float valueMultiplier) {
+    public String toString(boolean overclocked) {
         String targetName = "nothing";
         Trait[] traits = null;
         Ability[] abilities = null;
@@ -63,7 +63,7 @@ public class Bonus {
         } else if (targetID.equals(Constants.HUMAN_LIMIT_ID)) {
             targetName = "Limite Umano";
         }
-        int value = Math.round((float) this.value * valueMultiplier);
+        int value = this.getValue(overclocked);
         return targetName + " " + (value >= 0 ? "+" + value : value);
     }
 
@@ -91,5 +91,13 @@ public class Bonus {
 
     public Bonus copy() {
         return new Bonus(value, sourceID, targetID, isConditional);
+    }
+
+    public int getValue(boolean overclocked) {
+        if (targetID.equals(Constants.HUMAN_LIMIT_ID) || targetID.equals(Constants.HIT_POINTS_MAX_ID)) {
+            return value;
+        }
+
+        return Math.round(value * (overclocked ? Constants.get.IMPLANT_OVERCLOCK_MULTIPLIER : 1));
     }
 }
