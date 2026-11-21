@@ -1,6 +1,7 @@
 package com.github.cldgdn.seaofstars.controller;
 
 import com.github.cldgdn.seaofstars.Constants;
+import com.github.cldgdn.seaofstars.Utils;
 import com.github.cldgdn.seaofstars.character.Item;
 
 import javafx.event.ActionEvent;
@@ -8,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 
@@ -20,11 +22,17 @@ public class ItemElementController {
     private CharacterScreenController controller;
 
     @FXML private Button addButton;
-    @FXML private Label amtLabel;
+    @FXML private TextField amtField;
     @FXML private TextArea descriptionArea;
     @FXML private Label nameLabel;
     @FXML private Button remButton;
-    @FXML private Button deleteButton;
+
+    @FXML
+    void initialize() {
+        Utils.configureIntegerField(amtField, value -> {
+            item.amount = value;
+        });
+    }
 
     @FXML
     void changeItemAmount(ActionEvent event) {
@@ -41,7 +49,7 @@ public class ItemElementController {
             }
         }
 
-        amtLabel.setText("Quantità: " + item.amount);
+        amtField.setText("" + item.amount);
     }
 
     @FXML
@@ -72,7 +80,7 @@ public class ItemElementController {
 
         nameLabel.setText(item.name);
         descriptionArea.setText(item.description);
-        amtLabel.setText("Quantità: " + item.amount);
+        amtField.setText("" + item.amount);
     }
 
     public void setController(CharacterScreenController controller) {

@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.cldgdn.seaofstars.controller.RollWithIncrementsController">
    <content>
       <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0">
@@ -22,7 +21,7 @@
                   <Label text="Tratto:" />
                   <ComboBox fx:id="traitCombo" onAction="#updateTraitBonuses" prefWidth="150.0" promptText="Seleziona Tratto" />
                   <Label text="Abilità:" />
-                  <ComboBox fx:id="abilityCombo" onAction="#updateAbilityBonuses" prefWidth="150.0" promptText="Selezioba Abilità" />
+                  <ComboBox fx:id="abilityCombo" onAction="#updateAbilityBonuses" prefWidth="150.0" promptText="Seleziona Abilità" />
                   <Label text="+" />
                   <ComboBox fx:id="bonusDiceBox" />
                   <Button mnemonicParsing="false" onAction="#callRoll" text="Roll" />

@@ -22,4 +22,14 @@ public class Trait {
         this.baseLevel = baseLevel;
         this.isCustom = isCustom;
     }
+
+    public int level() {
+        return Math.min(
+                Constants.get.MAX_TRAIT_LEVEL,
+                Math.max(
+                        computedLevel,
+                        Constants.get.MIN_TRAIT_LEVEL
+                )
+        );
+    }
 }

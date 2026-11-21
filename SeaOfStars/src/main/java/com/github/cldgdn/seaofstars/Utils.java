@@ -1,8 +1,14 @@
 package com.github.cldgdn.seaofstars;
 
 import com.github.cldgdn.seaofstars.character.Character;
+import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.DialogPane;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
+
+import java.util.function.IntConsumer;
+import java.util.function.UnaryOperator;
 
 public class Utils {
     public static String genID(String pref, String name) {
@@ -49,5 +55,68 @@ public class Utils {
                     SeaOfStarsMain.class.getResource("dark-theme.css").toExternalForm()
             );
         }
+    }
+
+    public static void configureIntegerField(
+            TextField textField,
+            int min,
+            int max,
+            IntConsumer onCommit
+    ) {
+        if (min > max) {
+            throw new IllegalArgumentException("Integer field minimum value cannot be greater than the maximum." +
+                    "\nField: " + textField.getId() + "\nMin, max: (" + min + ", "+ max + ")");
+        }
+
+        UnaryOperator<TextFormatter.Change> filter = change -> {
+            String newText = change.getControlNewText();
+
+            if (newText.matches("-?\\d*")) {
+                return change;
+            }
+
+            return null;
+        };
+
+        textField.setTextFormatter(new TextFormatter<>(filter));
+
+        String[] lastValidText = {textField.getText()};
+
+        Runnable commit = () -> {
+            String text = textField.getText().trim();
+
+            try {
+                int value = Integer.parseInt(text);
+
+                if (value < min || value > max) {
+                    throw new NumberFormatException("Value " + value + " is outside the allowed range: [" + min + ", " + max + "]");
+                }
+
+                onCommit.accept(value);
+                lastValidText[0] = text;
+            } catch (NumberFormatException e) {
+                textField.setText(lastValidText[0]);
+            }
+        };
+
+        textField.addEventHandler(ActionEvent.ACTION, event -> commit.run());
+
+        textField.focusedProperty().addListener((obs, oldValue, newValue) -> {
+            if (!newValue) {
+                commit.run();
+            }
+        });
+    }
+
+    public static void configureIntegerField(
+            TextField field,
+            IntConsumer onCommit
+    ) {
+        configureIntegerField(
+                field,
+                Integer.MIN_VALUE,
+                Integer.MAX_VALUE,
+                onCommit
+        );
     }
 }

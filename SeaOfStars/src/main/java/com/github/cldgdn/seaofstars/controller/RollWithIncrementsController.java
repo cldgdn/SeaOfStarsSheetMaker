@@ -157,7 +157,7 @@ public class RollWithIncrementsController {
         abilityCombo.setConverter(new StringConverter<Ability>() {
             @Override
             public String toString(Ability ability) {
-                return ability == null ? null : ability.name + " (" + ability.computedLevel + ")";
+                return ability == null ? null : ability.name + " (" + ability.level() + ")";
             }
 
             @Override

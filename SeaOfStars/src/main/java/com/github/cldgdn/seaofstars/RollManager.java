@@ -39,7 +39,7 @@ public class RollManager {
             if (curr == -1)
                 break;
 
-            //if the high roll picked is already an increment by itself (10 or more), then it is counted as such and the algorythm moves on to the next highest roll
+            //if the high roll picked is already an increment by itself (10 or more), then it is counted as such and the algorithm moves on to the next highest roll
             if (rolls[curr] >= Constants.get.INCREMENT_THRESHOLD) {
                 increments++;
                 continue;

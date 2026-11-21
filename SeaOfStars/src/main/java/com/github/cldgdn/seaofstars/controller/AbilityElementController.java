@@ -94,9 +94,9 @@ public class AbilityElementController {
     public void setAbility(Ability ability) {
         this.ability = ability;
         nameLabel.setText(ability.name);
-        levelLabel.setText("Livello: " + ability.computedLevel);
+        levelLabel.setText("Livello: " + ability.level());
 
-        for (int i = 0; i < ability.computedLevel; i++) {
+        for (int i = 0; i < ability.level(); i++) {
             radios[i].setSelected(true);
         }
     }

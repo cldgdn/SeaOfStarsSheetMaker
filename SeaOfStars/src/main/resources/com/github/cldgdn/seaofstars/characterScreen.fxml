@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -74,14 +75,20 @@
                                     <Label text="Punti Ferita" GridPane.rowIndex="5" />
                                     <Label text="Limite Umano" GridPane.rowIndex="6" />
                                     <Label text="Punti Storia" GridPane.rowIndex="7" />
-                                    <TextField fx:id="characterNameField" disable="true" GridPane.columnIndex="1" />
-                                    <TextField fx:id="playerNameField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="characterNameField" editable="false" focusTraversable="false" GridPane.columnIndex="1" />
+                                    <TextField fx:id="playerNameField" editable="false" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <TextField fx:id="fameField" focusTraversable="false" onKeyTyped="#updateFameField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField fx:id="moneyField" focusTraversable="false" onKeyTyped="#updateMoneyField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <TextField fx:id="hpField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                    <TextField fx:id="hlField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                    <TextField fx:id="characterAgeField" disable="true" layoutX="107.0" layoutY="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField fx:id="storyPointsField" focusTraversable="false" onKeyTyped="#updateStoryPointsField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <TextField fx:id="hlField" editable="false" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <TextField fx:id="characterAgeField" editable="false" focusTraversable="false" layoutX="107.0" layoutY="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="storyPointsField" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                       <children>
+                                          <TextField fx:id="hpField" editable="false" focusTraversable="false" />
+                                          <Button mnemonicParsing="false" onAction="#heal" text="+" textOverrun="CLIP" />
+                                          <Button mnemonicParsing="false" onAction="#damage" text="-" textOverrun="CLIP" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="moneyField" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                  </children>
                                  <padding>
                                     <Insets left="10.0" right="10.0" top="10.0" />
@@ -228,7 +235,7 @@
                               <VBox alignment="TOP_CENTER" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <Button fx:id="addItemButton" mnemonicParsing="false" onAction="#addItem" text="Aggiungi" />
-                                    <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
+                                    <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                        <content>
                                           <VBox fx:id="itemsVBox" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                                              <padding>

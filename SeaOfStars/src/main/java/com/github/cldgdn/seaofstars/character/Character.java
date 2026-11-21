@@ -68,26 +68,18 @@ public class Character {
                     t.computedLevel += b.value;
                 }
             }
-
-            //cap trait to max allowed level (def is 14)
-            if (t.computedLevel > Constants.get.MAX_TRAIT_LEVEL) {
-                t.computedLevel = Constants.get.MAX_TRAIT_LEVEL;
-            }
         }
 
         //update Abilities
         for (Ability a : abilities) {
             a.computedLevel = a.baseLevel;
 
-            //for each ability bonus, check if it is for this specific ability and in that case, if it is non coditional add it to the computed ability level
+            //for each ability bonus, check if it is for this specific ability and in that case, if it is non-conditional add it to the computed ability level
             for (Bonus b : abilityBonuses) {
                 if (a.ID.equals(b.targetID) && !b.isConditional) {
                     a.computedLevel += b.value;
                 }
             }
-
-            //clamp ability level between min and max values
-            a.computedLevel = Math.max(Constants.get.MIN_ABILITY_LEVEL, Math.min(a.computedLevel, Constants.get.MAX_ABILITY_LEVEL));
         }
 
         //go through the bonuses that affect HP and HL
@@ -98,7 +90,7 @@ public class Character {
             }
         }
 
-        //modifiers are calculated last as they are dependent on critical conditions, which can be triggered by multiple sources
+        //modifiers are calculated last
         for (Trait t : traits) {
             //calculate modifier taking into account that
             if (t.ID.equals(Constants.RESISTANCE_ID) || t.ID.equals(Constants.RESOLVE_ID)) {
@@ -223,5 +215,15 @@ public class Character {
                 otherBonuses.add(copy);
             }
         }
+    }
+
+    public void heal(int amount) {
+        hitPoints += amount;
+        if (hitPoints > hitPointsMax) hitPoints = hitPointsMax;
+    }
+
+    public void damage(int amount) {
+        hitPoints -= amount;
+        if (hitPoints < 0) hitPoints = 0;
     }
 }

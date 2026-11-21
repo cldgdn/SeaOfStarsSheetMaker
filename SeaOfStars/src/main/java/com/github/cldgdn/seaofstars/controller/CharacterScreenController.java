@@ -2,6 +2,7 @@ package com.github.cldgdn.seaofstars.controller;
 
 import com.github.cldgdn.seaofstars.Constants;
 import com.github.cldgdn.seaofstars.SeaOfStarsMain;
+import com.github.cldgdn.seaofstars.Utils;
 import com.github.cldgdn.seaofstars.character.*;
 import com.github.cldgdn.seaofstars.character.Character;
 import com.github.cldgdn.seaofstars.controller.dialog.CreateItemDialog;
@@ -55,9 +56,18 @@ public class CharacterScreenController {
     @FXML private TextField playerNameField;
     @FXML private VBox traitsVBox;
 
-    private String prevMoneyText = "";
-    private String prevStoryPointsText = "";
     private List<String> rollHistory = new ArrayList<>();
+
+    @FXML
+    void initialize() {
+        Utils.configureIntegerField(moneyField, value -> {
+            character.info.money = value;
+        });
+
+        Utils.configureIntegerField(storyPointsField, 0, 7, value -> {
+            character.storyPoints = value;
+        });
+    }
 
     @FXML
     void refreshCharacter(ActionEvent event) {
@@ -127,29 +137,19 @@ public class CharacterScreenController {
     }
 
     @FXML
-    void updateMoneyField(KeyEvent event) {
-        String currentMoneyText = moneyField.getText().trim();
-        if (!prevMoneyText.equals(currentMoneyText)) {
-            try {
-                character.info.money = Integer.parseInt(currentMoneyText);
-                prevMoneyText = currentMoneyText;
-            } catch (NumberFormatException e) {
-                moneyField.setText(prevMoneyText);
-            }
-        }
+    void heal(ActionEvent event) {
+        character.heal(1);
+        updateHPField();
     }
 
     @FXML
-    void updateStoryPointsField(KeyEvent event) {
-        String currentText = storyPointsField.getText();
-        if (!prevStoryPointsText.equals(currentText)) {
-            try {
-                character.storyPoints = Integer.parseInt(currentText);
-                prevStoryPointsText = currentText;
-            } catch (NumberFormatException e) {
-                storyPointsField.setText(prevStoryPointsText);
-            }
-        }
+    void damage(ActionEvent event) {
+        character.damage(1);
+        updateHPField();
+    }
+
+    void updateHPField() {
+        hpField.setText(character.hitPoints + "/" + character.hitPointsMax);
     }
 
     public void setCharacter(Character c, boolean verbose) throws IOException, BadSOSDFormatException {
@@ -171,9 +171,6 @@ public class CharacterScreenController {
         hpField.setText(character.hitPoints + "/" + character.hitPointsMax);
         hlField.setText(character.usedHumanLimit + "/" + character.humanLimit + " | (" + Math.round((float) character.usedHumanLimit * 100.0 / character.humanLimit) + "%)");
         storyPointsField.setText("" + character.storyPoints);
-
-        prevMoneyText = moneyField.getText();
-        prevStoryPointsText = storyPointsField.getText();
 
         if (verbose) System.out.println("[INFO] Character information prepared. (" + ((System.nanoTime() - time) / 1000000.0f) + "ms)");
         time = System.nanoTime();

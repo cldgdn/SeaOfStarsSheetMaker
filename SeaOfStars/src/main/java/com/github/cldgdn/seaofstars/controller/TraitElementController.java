@@ -134,9 +134,9 @@ public class TraitElementController {
     }
 
     void setDisplayOnly() {
-        levelLabel.setText("Livello: " + trait.computedLevel);
+        levelLabel.setText("Livello: " + trait.level());
 
-        int mod = (trait.computedLevel - Constants.get.ZERO_TRAIT_LEVEL);
+        int mod = (trait.level() - Constants.get.ZERO_TRAIT_LEVEL);
         modLabel.setText("Mod: " + ((mod >= 0) ? "+" : "") + mod);
 
         for (int i = 0; i < trait.computedLevel; i++) {

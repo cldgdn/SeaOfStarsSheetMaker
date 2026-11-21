@@ -21,5 +21,13 @@ public class Ability {
         this.isCustom = isCustom;
     }
 
-
+    public int level() {
+        return Math.min(
+                Constants.get.MAX_ABILITY_LEVEL,
+                Math.max(
+                        computedLevel,
+                        Constants.get.MIN_ABILITY_LEVEL
+                )
+        );
+    }
 }
